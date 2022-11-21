@@ -13,16 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->integer('user_id')->primary();
-            $table->string('username',100)->unique();
-            $table->string('password');
-            $table->string('first_name',100);
-            $table->string('last_name',100);
-            $table->text('avatar');
-            $table->string('level');
+        Schema::create('sections', function (Blueprint $table) {
+            $table->integer('section_id')->primary();
+            $table->integer('course_id')->unsigned();
+            $table->string('name', 120);
+            $table->text('description');
+            $table->text('files');
+            $table->string('post_status', 60);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('course_id')->references('course_id')->on('courses');
         });
     }
 
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('sections');
     }
 };
