@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/', function () {
     return view('home');
 })->name('home');
-Route::get('/', function () {
-    return 'adasd';
+Route::get('/login', function () {
+    return view('home');
 })->name('login');
