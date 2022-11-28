@@ -15,17 +15,18 @@ return new class extends Migration
     {
         Schema::create('request_lecturers', function (Blueprint $table) {
             $table->integer('rl_id')->primary();
-            $table->integer('user_id');
             $table->text('description');
             $table->longText('files');
             $table->string('status', 50);
+            $table->integer('created_by');
             $table->integer('updated_by');
+            $table->integer('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('updated_by')->references('admin_id')->on('admins');
-        });
+            $table->foreign('created_by')->references('user_id')->on('users');
+            $table->foreign('updated_by')->references('user_id')->on('users');
+            $table->foreign('deleted_by')->references('user_id')->on('users');        });
     }
 
     /**

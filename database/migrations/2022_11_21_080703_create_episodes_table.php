@@ -18,10 +18,16 @@ return new class extends Migration
             $table->integer('section_id');
             $table->string('name', 120);
             $table->text('video');
+            $table->integer('created_by');
+            $table->integer('updated_by');
+            $table->integer('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('section_id')->references('section_id')->on('sections');
+            $table->foreign('created_by')->references('user_id')->on('users');
+            $table->foreign('updated_by')->references('user_id')->on('users');
+            $table->foreign('deleted_by')->references('user_id')->on('users');
         });
     }
 

@@ -13,17 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sub_categories', function (Blueprint $table) {
-            $table->integer('sub_category_id')->primary();
-            $table->integer('category_id');
-            $table->string('name', 60);
+        Schema::create('guiz_results', function (Blueprint $table) {
+            $table->integer('result_id')->primary();
+            $table->integer('quiz_id');
+            $table->double('result_scors', 10, 2, true);
+            $table->json('result_choice');
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->integer('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('category_id')->references('category_id')->on('categories');
+            $table->foreign('quiz_id')->references('quiz_id')->on('quizzes');
             $table->foreign('created_by')->references('user_id')->on('users');
             $table->foreign('updated_by')->references('user_id')->on('users');
             $table->foreign('deleted_by')->references('user_id')->on('users');
@@ -37,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub_categories');
+        Schema::dropIfExists('guiz_results');
     }
 };
