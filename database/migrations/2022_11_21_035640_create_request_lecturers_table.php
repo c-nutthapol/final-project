@@ -19,9 +19,12 @@ return new class extends Migration
             $table->text('description');
             $table->longText('files');
             $table->string('status', 50);
+            $table->integer('updated_by');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('updated_by')->references('admin_id')->on('admins');
         });
     }
 
