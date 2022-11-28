@@ -13,9 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/', function () {
-    return view('home');
-})->name('home');
-Route::get('/login', function () {
-    return view('home');
-})->name('login');
+Route::name('client.')->group(function () {
+    Route::get('/', function () {
+        return view('client.home');
+    })->name('home');
+    Route::prefix('auth')->name('auth.')->group(function () {
+        Route::get('/login', function () {
+            return view('client.auth.login');
+        })->name('login');
+    });
+});
+
+Route::prefix('admin')->name('admin-')->group(function () {
+    Route::get('/', function () {
+        return view('admin.home');
+    })->name('home');
+    Route::prefix('auth')->name('auth.')->group(function () {
+        Route::get('/login', function () {
+            return view('admin.auth.login');
+        })->name('login');
+    });
+});

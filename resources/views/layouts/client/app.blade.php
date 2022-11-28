@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
     <meta charset="UTF-8">
@@ -7,20 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> @yield('title')</title>
     @livewireStyles
-    @include('layouts.partials.header')
+    @include('layouts.client.partials.header')
 </head>
 
 <body>
-    @include('layouts.partials.nav')
-    @include('layouts.partials.sidebar')
+    @include('layouts.client.partials.nav')
+    @include('layouts.client.partials.sidebar')
 
     @yield('content')
 
-    @include('layouts.partials.footer')
-    @include('layouts.partials.script')
+    @include('layouts.client.partials.footer')
+    @include('layouts.client.partials.script')
+
+    @livewireScripts
 
     @yield('script')
-    @livewireScripts
+
+    @stack('script')
 </body>
 
 </html>
