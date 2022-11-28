@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('last_name', 100);
             $table->text('avatar');
             $table->string('level');
+            $table->dateTime('email_verified_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 
