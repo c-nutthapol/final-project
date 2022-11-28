@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->integer('section_id')->primary();
-            $table->integer('course_id')->unsigned();
+            $table->integer('course_id');
             $table->string('name', 120);
             $table->text('description');
             $table->text('files');

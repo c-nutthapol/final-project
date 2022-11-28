@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->integer('sub_category_id')->primary();
-            $table->integer('category_id')->unsigned();
+            $table->integer('category_id');
             $table->string('name', 60);
             $table->timestamps();
             $table->softDeletes();

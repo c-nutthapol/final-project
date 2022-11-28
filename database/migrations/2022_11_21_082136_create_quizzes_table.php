@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('quizzes', function (Blueprint $table) {
-            $table->integer('quiz_id');
-            $table->integer('section_id')->unsigned();
+            $table->integer('quiz_id')->primary();
+            $table->integer('section_id');
             $table->string('post_status', 60);
-            $table->integer('pass_scors', 5);
+            $table->integer('pass_scors');
             $table->timestamps();
             $table->softDeletes();
 

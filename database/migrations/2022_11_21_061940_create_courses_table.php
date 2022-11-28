@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('second_name', 120);
             $table->longText('target');
             $table->text('description');
-            $table->integer('level', 5);
+            $table->integer('level');
             $table->text('image');
             $table->text('video');
             $table->integer('cert_config_id');
