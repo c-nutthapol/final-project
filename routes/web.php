@@ -21,6 +21,12 @@ Route::name('client.')->group(function () {
         Route::get('/login', function () {
             return view('client.auth.login');
         })->name('login');
+        Route::get('/register', function () {
+            return view('client.auth.register');
+        })->name('register');
+        Route::get('/account', function () {
+            return view('client.auth.account');
+        })->name('account');
     });
 });
 

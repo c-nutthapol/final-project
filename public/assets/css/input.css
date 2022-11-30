@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply font-normal text-base tracking-wider py-2.5 px-4 rounded-2xl transition ease-out duration-300 hover:brightness-95 active:shadow-none active:brightness-90 active:scale-95;
+}
+
+.btn.is-primary {
+  @apply text-white bg-primary shadow-btn hover:shadow-[0_4px_10px_#B6B3FF];
+}
+
+.btn.is-secondary {
+  @apply text-white bg-secondary;
+}
+
+.btn.is-danger {
+  @apply text-white bg-danger;
+}
+
+.btn.is-success {
+  @apply text-white bg-success;
+}
