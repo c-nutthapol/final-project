@@ -24,9 +24,11 @@ Route::name('client.')->group(function () {
         Route::get('/register', function () {
             return view('client.auth.register');
         })->name('register');
-        Route::get('/account', function () {
-            return view('client.auth.account');
-        })->name('account');
+        Route::middleware('auth')->group(function () {
+            Route::get('/account', function () {
+                return view('client.auth.account');
+            })->name('account');
+        });
     });
 });
 
