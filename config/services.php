@@ -34,11 +34,11 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => sprintf(
+        'redirect' => isset($_SERVER['SERVER_NAME']) ? sprintf(
             "%s://%s/auth/google/callback",
             isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ?
                 'https' : 'http',
             $_SERVER['SERVER_NAME']
-        ),
+        ) : '',
     ],
 ];

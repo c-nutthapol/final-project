@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('last_name', 100)->nullable();
             $table->text('avatar')->nullable();
             $table->string('level')->default('student');
-            $table->dateTime('email_verified_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
