@@ -94,6 +94,9 @@
             <input type="password" id="confirm-password" wire:model.defer="password_confirm"
                 class="bg-white border border-secondary-80 text-base font-normal text-secondary rounded-md placeholder:text-secondary-80 placeholder:font-light focus:text-primary-80 focus:ring-primary focus:border-ring-primary block w-full pl-10 p-2.5"
                 placeholder="*********" />
+            @error('password_confirm')
+                <span class="error">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 

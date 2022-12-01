@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Client\Auth;
 
+use App\Models\User;
 use Livewire\Component;
 use Laravel\Socialite\Facades\Socialite;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -20,11 +21,11 @@ class Register extends Component
 
     protected $rules = [
         'username' => 'required|max:100',
-        'first_name' => 'string|required|max:100',
-        'last_name' => 'string|required|max:100',
+        'first_name' => 'required|max:100',
+        'last_name' => 'required|max:100',
         'email' => 'required|max:255',
         'password' => 'required|max:255',
-        'password_confirm' => 'password|required|max:255'
+        'password_confirm' => 'same:password|required|max:255'
     ];
 
     protected $attributes = [
@@ -38,15 +39,19 @@ class Register extends Component
 
     protected $messages = [
         'required' => 'โปรดกรอกข้อมูล :attribute',
-        'max' => 'ตัวอักษรต้องไม่เกิน :max'
+        'max' => 'ตัวอักษรต้องไม่เกิน :max',
+        'same' => ':attribute และ :other ต้องตรงกัน'
     ];
     public function submit()
     {
         $validatedData = $this->validate($this->rules, $this->messages, $this->attributes);
-        if (0) {
+        try {
+            unset($validatedData['password_confirm']);
+            $user = User::created($validatedData);
+            auth()->attempt($validatedData);
             return redirect()->route('client.home');
-        } else {
-            $this->alert('error', 'ชื่อผู้ใช้ อีเมล หรือรหัสผ่านไม่ถูกต้อง', [
+        } catch (\Exception $e) {
+            $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
                 'position' => 'top-end',
                 'timer' => 3000,
                 'toast' => true,
