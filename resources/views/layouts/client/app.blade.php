@@ -21,7 +21,6 @@
     @include('layouts.client.partials.script')
 
     @livewireScripts
-
     @yield('script')
 
     @stack('script')

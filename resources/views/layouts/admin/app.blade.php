@@ -20,7 +20,7 @@
     @include('layouts.admin.partials.script')
 
     @livewireScripts
-
+    <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
     @yield('script')
 
     @stack('script')

@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'Home')
+@section('title', 'D-Course | Home')
 
 @section('content')
     <!--------- Hero  ---------->

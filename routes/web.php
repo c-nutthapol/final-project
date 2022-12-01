@@ -18,17 +18,11 @@ Route::name('client.')->group(function () {
         return view('client.home');
     })->name('home');
     Route::prefix('auth')->name('auth.')->group(function () {
-        Route::get('/login', function () {
-            return view('client.auth.login');
-        })->name('login');
-        Route::get('/register', function () {
-            return view('client.auth.register');
-        })->name('register');
-        Route::get('{provider}/callback', ['uses' => 'AuthController@callback'] )->name('callback');
+        Route::get('/login', 'Client\AuthController@login')->name('login');
+        Route::get('/register', 'Client\AuthController@register')->name('register');
+        Route::get('{provider}/callback', 'Client\AuthController@callback')->name('callback');
         Route::middleware('auth')->group(function () {
-            Route::get('/account', function () {
-                return view('client.auth.account');
-            })->name('account');
+            Route::get('/account', 'Client\AuthController@account')->name('account');
         });
     });
 });
