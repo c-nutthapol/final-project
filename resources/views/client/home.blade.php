@@ -50,8 +50,8 @@
                     <!--------- Items  ---------->
                     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         <!--------- Card  ---------->
-                        <a href="course_detail.html" class="group" data-aos="fade-up" data-aos-delay="400"
-                            data-aos-duration="1000" data-aos-once="true">
+                        <a href="{{ route('client.courses.detail') }}" class="group" data-aos="fade-up"
+                            data-aos-delay="400" data-aos-duration="1000" data-aos-once="true">
                             <div
                                 class="flex flex-col justify-between bg-white overflow-hidden h-full rounded-xl cursor-pointer box-border shadow-card-course transition duration-150 ease-out group-hover:ease-in group-hover:scale-105 group-hover:-translate-y-2 group-hover:shadow-[0_12px_40px_rgba(182,179,255,0.3)] group-active:scale-100 group-active:opacity-80 group-active:translate-y-0">
                                 <div>
@@ -103,8 +103,8 @@
                         </a>
 
                         <!--------- Card  ---------->
-                        <a href="course_detail.html" class="group" data-aos="fade-up" data-aos-delay="400"
-                            data-aos-duration="1000" data-aos-once="true">
+                        <a href="{{ route('client.courses.detail') }}" class="group" data-aos="fade-up"
+                            data-aos-delay="400" data-aos-duration="1000" data-aos-once="true">
                             <div
                                 class="flex flex-col justify-between bg-white overflow-hidden h-full rounded-xl cursor-pointer box-border shadow-card-course transition duration-150 ease-out group-hover:ease-in group-hover:scale-105 group-hover:-translate-y-2 group-hover:shadow-[0_12px_40px_rgba(182,179,255,0.3)] group-active:scale-100 group-active:opacity-80 group-active:translate-y-0">
                                 <div>
@@ -159,8 +159,8 @@
                         </a>
 
                         <!--------- Card  ---------->
-                        <a href="course_detail.html" class="group" data-aos="fade-up" data-aos-delay="400"
-                            data-aos-duration="1000" data-aos-once="true">
+                        <a href="{{ route('client.courses.detail') }}" class="group" data-aos="fade-up"
+                            data-aos-delay="400" data-aos-duration="1000" data-aos-once="true">
                             <div
                                 class="flex flex-col justify-between bg-white overflow-hidden h-full rounded-xl cursor-pointer box-border shadow-card-course transition duration-150 ease-out group-hover:ease-in group-hover:scale-105 group-hover:-translate-y-2 group-hover:shadow-[0_12px_40px_rgba(182,179,255,0.3)] group-active:scale-100 group-active:opacity-80 group-active:translate-y-0">
                                 <div>
@@ -212,8 +212,8 @@
                         </a>
 
                         <!--------- Card  ---------->
-                        <a href="course_detail.html" class="group" data-aos="fade-up" data-aos-delay="400"
-                            data-aos-duration="1000" data-aos-once="true">
+                        <a href="{{ route('client.courses.detail') }}" class="group" data-aos="fade-up"
+                            data-aos-delay="400" data-aos-duration="1000" data-aos-once="true">
                             <div
                                 class="flex flex-col justify-between bg-white overflow-hidden h-full rounded-xl cursor-pointer box-border shadow-card-course transition duration-150 ease-out group-hover:ease-in group-hover:scale-105 group-hover:-translate-y-2 group-hover:shadow-[0_12px_40px_rgba(182,179,255,0.3)] group-active:scale-100 group-active:opacity-80 group-active:translate-y-0">
                                 <div>
@@ -269,8 +269,8 @@
                         </a>
 
                         <!--------- Card  ---------->
-                        <a href="course_detail.html" class="group" data-aos="fade-up" data-aos-delay="400"
-                            data-aos-duration="1000" data-aos-once="true">
+                        <a href="{{ route('client.courses.detail') }}" class="group" data-aos="fade-up"
+                            data-aos-delay="400" data-aos-duration="1000" data-aos-once="true">
                             <div
                                 class="flex flex-col justify-between bg-white overflow-hidden h-full rounded-xl cursor-pointer box-border shadow-card-course transition duration-150 ease-out group-hover:ease-in group-hover:scale-105 group-hover:-translate-y-2 group-hover:shadow-[0_12px_40px_rgba(182,179,255,0.3)] group-active:scale-100 group-active:opacity-80 group-active:translate-y-0">
                                 <div>
@@ -323,8 +323,8 @@
                         </a>
 
                         <!--------- Card  ---------->
-                        <a href="javascript:void(0)" class="group" data-aos="fade-up" data-aos-delay="400"
-                            data-aos-duration="1000" data-aos-once="true">
+                        <a href="{{ route('client.courses.detail') }}" class="group" data-aos="fade-up"
+                            data-aos-delay="400" data-aos-duration="1000" data-aos-once="true">
                             <div
                                 class="flex flex-col justify-between bg-white overflow-hidden h-full rounded-xl cursor-pointer box-border shadow-card-course transition duration-150 ease-out group-hover:ease-in group-hover:scale-105 group-hover:-translate-y-2 group-hover:shadow-[0_12px_40px_rgba(182,179,255,0.3)] group-active:scale-100 group-active:opacity-80 group-active:translate-y-0">
                                 <div>
@@ -379,8 +379,8 @@
                         </a>
 
                         <!--------- Card  ---------->
-                        <a href="javascript:void(0)" class="group" data-aos="fade-up" data-aos-delay="400"
-                            data-aos-duration="1000" data-aos-once="true">
+                        <a href="{{ route('client.courses.detail') }}" class="group" data-aos="fade-up"
+                            data-aos-delay="400" data-aos-duration="1000" data-aos-once="true">
                             <div
                                 class="flex flex-col justify-between bg-white overflow-hidden h-full rounded-xl cursor-pointer box-border shadow-card-course transition duration-150 ease-out group-hover:ease-in group-hover:scale-105 group-hover:-translate-y-2 group-hover:shadow-[0_12px_40px_rgba(182,179,255,0.3)] group-active:scale-100 group-active:opacity-80 group-active:translate-y-0">
                                 <div>
@@ -432,8 +432,8 @@
                         </a>
 
                         <!--------- Card  ---------->
-                        <a href="javascript:void(0)" class="group" data-aos="fade-up" data-aos-delay="400"
-                            data-aos-duration="1000" data-aos-once="true">
+                        <a href="{{ route('client.courses.detail') }}" class="group" data-aos="fade-up"
+                            data-aos-delay="400" data-aos-duration="1000" data-aos-once="true">
                             <div
                                 class="flex flex-col justify-between bg-white overflow-hidden h-full rounded-xl cursor-pointer box-border shadow-card-course transition duration-150 ease-out group-hover:ease-in group-hover:scale-105 group-hover:-translate-y-2 group-hover:shadow-[0_12px_40px_rgba(182,179,255,0.3)] group-active:scale-100 group-active:opacity-80 group-active:translate-y-0">
                                 <div>

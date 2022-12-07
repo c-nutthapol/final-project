@@ -31,8 +31,7 @@
     </div>
 </nav>
 <!--------- Navbar  ---------->
-<nav id="navbar"
-    class="w-full h-auto md:h-20 flex items-center px-3 py-3 md:py-0 lg:px-6 sticky top-0 left-0 z-[999]"
+<nav id="navbar" class="w-full h-auto md:h-20 flex items-center px-3 py-3 md:py-0 lg:px-6 sticky top-0 left-0 z-40"
     data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000" data-aos-once="true">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
         <!--------- Navbar Brand  ---------->
@@ -71,8 +70,8 @@
             <ul
                 class="flex flex-col p-4 mt-4 rounded-lg bg-gray-50/90 backdrop-blur-md md:flex-row md:bg-transparent md:rounded-none md:border-none md:items-center md:space-x-8 md:p-0 md:m-0 lg:space-x-16">
                 <li class="block px-3 py-2 lg:inline-block md:p-0">
-                    <a href="courses.html"
-                        class="text-base font-normal tracking-wider text-secondary hover:text-primary">
+                    <a href="{{ route('client.courses.all') }}"
+                        class="text-base font-normal tracking-wider hover:text-primary {{ Route::currentRouteName() == 'client.courses.all' ? 'text-primary' : 'text-secondary' }}">
                         คอร์สทั้งหมด
                     </a>
                 </li>

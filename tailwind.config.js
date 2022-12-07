@@ -4,7 +4,7 @@ module.exports = {
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
-        "./node_modules/flowbite/**/*.js"
+        "./node_modules/flowbite/**/*.js",
     ],
     theme: {
         extend: {
@@ -27,6 +27,7 @@ module.exports = {
             "secondary-80": "#ACA9BB",
             danger: "#F00036",
             success: "#00CD92",
+            warning: "#FFC555",
             "dark-theme": "#2F2E41",
             "dark-theme-80": "#3F3D56",
         },
