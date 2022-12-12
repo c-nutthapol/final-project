@@ -18,11 +18,13 @@ class Login extends Component
     /* It's a default value for the form. */
     public $usernameOrEmail = 'usertest', $password = 'P@ssw0rd';
 
+    /* A validation rule for the form. */
     protected $rules = [
         'usernameOrEmail' => 'required|max:100',
         'password' => 'required|min:8'
     ];
 
+    /* For the validation error message. */
     protected $attributes = [
         'usernameOrEmail' => 'ชื่อผู้ใช้ หรือ อีเมล',
         'password' => 'รหัสผ่าน',

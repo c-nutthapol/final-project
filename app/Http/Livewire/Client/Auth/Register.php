@@ -21,6 +21,7 @@ class Register extends Component
     /* A default value for the form. */
     public $username = 'usertest', $password = 'P@ssw0rd', $email = 'usertest@gmail.com', $first_name = 'user', $last_name = 'test', $password_confirm = 'P@ssw0rd';
 
+    /* A validation rule for the form. */
     protected $rules = [
         'username' => 'required|max:100|unique:users,username',
         'first_name' => 'required|max:100',
@@ -30,6 +31,7 @@ class Register extends Component
         'password_confirm' => 'same:password|required'
     ];
 
+    /* For the validation error message. */
     protected $attributes = [
         'username' => 'ชื่อผู้ใช้',
         'first_name' => 'ชื่อ',

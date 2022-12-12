@@ -35,7 +35,7 @@ class Account extends Component
     /* A variable that is used to store the user's data. */
     public $email, $username, $first_name, $last_name, $password, $password_confirm, $avatar, $avatar_temp;
 
-    /* Used to validate the data that is entered by the user. */
+    /* A validation rule for the form. */
     protected $rules = [
         'first_name' => 'required|max:100',
         'last_name' => 'required|max:100',
@@ -44,7 +44,7 @@ class Account extends Component
         'avatar' => 'image|nullable'
     ];
 
-    /* Used to change the name of the attributes that are displayed in the error message. */
+    /* For the validation error message. */
     protected $attributes = [
         'username' => 'ชื่อผู้ใช้',
         'first_name' => 'ชื่อ',
