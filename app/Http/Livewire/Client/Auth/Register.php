@@ -18,6 +18,7 @@ class Register extends Component
     }
 
 
+    /* A default value for the form. */
     public $username = 'usertest', $password = 'P@ssw0rd', $email = 'usertest@gmail.com', $first_name = 'user', $last_name = 'test', $password_confirm = 'P@ssw0rd';
 
     protected $rules = [
@@ -45,10 +46,13 @@ class Register extends Component
         'same' => ':attribute และ :other ต้องตรงกัน',
         'unique' => ':attribute ได้ถูกนำไปใช้แล้ว'
     ];
+
+    /* A function that will be called when the form is submitted. */
     public function submit()
     {
         $validatedData = $this->validate($this->rules, $this->messages, $this->attributes);
         try {
+            /* Creating a new user and logging them in. */
             $user = User::create($validatedData);
             if ($user) {
                 Auth::login($user);
@@ -76,6 +80,7 @@ class Register extends Component
         }
     }
 
+    /* Redirecting the user to the Google login page. */
     public function googleRedirect()
     {
         return redirect(Socialite::driver('google')->redirect()->getTargetUrl());

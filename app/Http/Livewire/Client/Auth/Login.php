@@ -15,6 +15,7 @@ class Login extends Component
         return view('livewire.client.auth.login');
     }
 
+    /* It's a default value for the form. */
     public $usernameOrEmail = 'usertest', $password = 'P@ssw0rd';
 
     protected $rules = [
@@ -33,9 +34,11 @@ class Login extends Component
         'min' => ':attribute ต้องมีอักขระอย่างน้อย :min',
     ];
 
+    /* It's a function that will be called when the user clicks the submit button. */
     public function submit()
     {
         $validatedData = $this->validate($this->rules, $this->messages, $this->attributes);
+        /* It's a function that will be called when the user clicks the submit button. */
         if (auth()->attempt(['username' => $validatedData['usernameOrEmail'], 'password' => $validatedData['password']]) || auth()->attempt(['email' => $validatedData['usernameOrEmail'], 'password' => $validatedData['password']])) {
             return redirect()->route('client.home');
         } else {
@@ -50,6 +53,7 @@ class Login extends Component
         }
     }
 
+    /* It's a function that will be called when the user clicks the Google button. */
     public function googleRedirect()
     {
         return redirect(Socialite::driver('google')->redirect()->getTargetUrl());

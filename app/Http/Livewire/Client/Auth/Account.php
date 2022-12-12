@@ -12,10 +12,12 @@ class Account extends Component
 {
     use LivewireAlert, WithFileUploads;
 
+    /* A variable that is used to store the user id. */
     public $user_id;
 
     public function mount()
     {
+        /* Used to get the user's data. */
         $user = auth()->user();
         $this->user_id = $user->id;
         $this->avatar_temp = $user->avatar;
@@ -30,10 +32,10 @@ class Account extends Component
         return view('livewire.client.auth.account');
     }
 
-    public $avatar, $avatar_temp;
+    /* A variable that is used to store the user's data. */
+    public $email, $username, $first_name, $last_name, $password, $password_confirm, $avatar, $avatar_temp;
 
-    public $email, $username, $first_name, $last_name, $password, $password_confirm;
-
+    /* Used to validate the data that is entered by the user. */
     protected $rules = [
         'first_name' => 'required|max:100',
         'last_name' => 'required|max:100',
@@ -42,6 +44,7 @@ class Account extends Component
         'avatar' => 'image|nullable'
     ];
 
+    /* Used to change the name of the attributes that are displayed in the error message. */
     protected $attributes = [
         'username' => 'ชื่อผู้ใช้',
         'first_name' => 'ชื่อ',
@@ -59,14 +62,18 @@ class Account extends Component
         'image' => ':attribute ต้องเป็นรูปภาพ'
     ];
 
+    /* A function that is called when the submit button is clicked. */
     public function submit()
     {
         $validatedData = $this->validate($this->rules, $this->messages, $this->attributes);
         try {
+            /* Used to update the user's data. */
             $user = User::find(auth()->user()->id);
+            /* Used to check if the avatar is empty or not. If it is not empty, it will be updated. */
             if (!empty($validatedData['avatar'])) {
                 $user->avatar = $this->avatar->store('public/account/' . md5(auth()->user()->id));
             }
+            /* Used to check if the password is empty or not. If it is not empty, it will be updated. */
             if (!empty($validatedData['password'])) {
                 $user->password = $validatedData['password'];
             }
