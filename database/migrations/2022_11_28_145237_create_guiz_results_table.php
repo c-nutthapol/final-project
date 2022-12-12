@@ -14,20 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('guiz_results', function (Blueprint $table) {
-            $table->integer('result_id')->primary();
-            $table->integer('quiz_id');
+            $table->id('id');
+            $table->bigInteger('quiz_id', 0, 1);
             $table->double('result_scors', 10, 2, true);
             $table->json('result_choice');
-            $table->integer('created_by');
-            $table->integer('updated_by');
-            $table->integer('deleted_by')->nullable();
+            $table->bigInteger('created_by', 0, 1);
+            $table->bigInteger('updated_by', 0, 1);
+            $table->bigInteger('deleted_by', 0, 1)->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('quiz_id')->references('quiz_id')->on('quizzes');
-            $table->foreign('created_by')->references('user_id')->on('users');
-            $table->foreign('updated_by')->references('user_id')->on('users');
-            $table->foreign('deleted_by')->references('user_id')->on('users');
+            $table->foreign('quiz_id')->references('id')->on('quizzes');
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
+            $table->foreign('deleted_by')->references('id')->on('users');
         });
     }
 

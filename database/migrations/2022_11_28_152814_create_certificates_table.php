@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('certificates', function (Blueprint $table) {
-            $table->integer('cer_id')->primary();
-            $table->integer('course_id');
-            $table->integer('user_id');
+            $table->id('id');
+            $table->bigInteger('course_id', 0, 1);
+            $table->bigInteger('user_id', 0, 1);
             $table->dateTime('issue_date');
             $table->timestamps();
 
-            $table->foreign('course_id')->references('course_id')->on('courses');
-            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

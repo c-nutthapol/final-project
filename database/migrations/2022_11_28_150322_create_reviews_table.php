@@ -14,15 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->integer('review_id')->primary();
-            $table->integer('course_id');
+            $table->id('id');
+            $table->bigInteger('course_id', 0, 1);
             $table->text('comment');
-            $table->integer('scors');
-            $table->integer('created_by');
+            $table->bigInteger('scors');
+            $table->bigInteger('created_by', 0, 1);
             $table->timestamps();
 
-            $table->foreign('course_id')->references('course_id')->on('courses');
-            $table->foreign('created_by')->references('user_id')->on('users');
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 

@@ -14,20 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('episodes', function (Blueprint $table) {
-            $table->integer('episode_id')->primary();
-            $table->integer('section_id');
+            $table->id('id');
+            $table->bigInteger('section_id', 0, 1);
             $table->string('name', 120);
             $table->text('video');
-            $table->integer('created_by');
-            $table->integer('updated_by');
-            $table->integer('deleted_by')->nullable();
+            $table->bigInteger('created_by', 0, 1);
+            $table->bigInteger('updated_by', 0, 1);
+            $table->bigInteger('deleted_by', 0, 1)->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('section_id')->references('section_id')->on('sections');
-            $table->foreign('created_by')->references('user_id')->on('users');
-            $table->foreign('updated_by')->references('user_id')->on('users');
-            $table->foreign('deleted_by')->references('user_id')->on('users');
+            $table->foreign('section_id')->references('id')->on('sections');
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
+            $table->foreign('deleted_by')->references('id')->on('users');
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Client\Auth;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Laravel\Socialite\Facades\Socialite;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -17,15 +18,15 @@ class Register extends Component
     }
 
 
-    public $username, $password, $email, $first_name, $last_name, $password_confirm;
+    public $username = 'usertest', $password = 'P@ssw0rd', $email = 'usertest@gmail.com', $first_name = 'user', $last_name = 'test', $password_confirm = 'P@ssw0rd';
 
     protected $rules = [
-        'username' => 'required|max:100',
+        'username' => 'required|max:100|unique:users,username',
         'first_name' => 'required|max:100',
         'last_name' => 'required|max:100',
-        'email' => 'required|max:255',
-        'password' => 'required|max:255',
-        'password_confirm' => 'same:password|required|max:255'
+        'email' => 'required|email:rfc,dns|unique:users,email',
+        'password' => 'required|min:8',
+        'password_confirm' => 'same:password|required'
     ];
 
     protected $attributes = [
@@ -40,16 +41,27 @@ class Register extends Component
     protected $messages = [
         'required' => 'โปรดกรอกข้อมูล :attribute',
         'max' => 'ตัวอักษรต้องไม่เกิน :max',
-        'same' => ':attribute และ :other ต้องตรงกัน'
+        'same' => ':attribute และ :other ต้องตรงกัน',
+        'unique' => ':attribute ได้ถูกนำไปใช้แล้ว'
     ];
     public function submit()
     {
         $validatedData = $this->validate($this->rules, $this->messages, $this->attributes);
         try {
-            unset($validatedData['password_confirm']);
-            $user = User::created($validatedData);
-            auth()->attempt($validatedData);
-            return redirect()->route('client.home');
+            $user = User::create($validatedData);
+            if ($user) {
+                Auth::login($user);
+                return redirect()->route('client.home');
+            } else {
+                $this->alert('warning', 'การลงทะเบียนล้มเหลว', [
+                    'position' => 'top-end',
+                    'timer' => 3000,
+                    'toast' => true,
+                    'timerProgressBar' => true,
+                    'showDenyButton' => false,
+                    'onDenied' => '',
+                ]);
+            };
         } catch (\Exception $e) {
             $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
                 'position' => 'top-end',
@@ -58,6 +70,7 @@ class Register extends Component
                 'timerProgressBar' => true,
                 'showDenyButton' => false,
                 'onDenied' => '',
+                'text' => $e->getMessage(),
             ]);
         }
     }

@@ -14,19 +14,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sub_categories', function (Blueprint $table) {
-            $table->integer('sub_category_id')->primary();
-            $table->integer('category_id');
+            $table->id('id');
+            $table->bigInteger('category_id', 0, 1);
             $table->string('name', 60);
-            $table->integer('created_by');
-            $table->integer('updated_by');
-            $table->integer('deleted_by')->nullable();
+            $table->bigInteger('created_by', 0, 1);
+            $table->bigInteger('updated_by', 0, 1);
+            $table->bigInteger('deleted_by', 0, 1)->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('category_id')->references('category_id')->on('categories');
-            $table->foreign('created_by')->references('user_id')->on('users');
-            $table->foreign('updated_by')->references('user_id')->on('users');
-            $table->foreign('deleted_by')->references('user_id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
+            $table->foreign('deleted_by')->references('id')->on('users');
         });
     }
 

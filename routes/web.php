@@ -30,6 +30,7 @@ Route::name('client.')->group(function () {
         Route::get('{provider}/callback', 'Client\AuthController@callback')->name('callback');
         Route::middleware('auth')->group(function () {
             Route::get('/account', 'Client\AuthController@account')->name('account');
+            Route::get('/logout', 'Client\AuthController@logout')->name('logout');
         });
         // คอร์สเรียนของฉัน
         Route::prefix('courses')->name('courses.')->group(function () {

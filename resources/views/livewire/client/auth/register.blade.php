@@ -24,6 +24,9 @@
             <input type="text" id="username" wire:model.defer="username"
                 class="bg-white border border-secondary-80 text-base font-normal text-secondary rounded-md placeholder:text-secondary-80 placeholder:font-light focus:text-primary-80 focus:ring-primary focus:border-ring-primary block w-full pl-10 p-2.5"
                 placeholder="Username" />
+            @error('username')
+                <span class="error">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 
@@ -38,6 +41,9 @@
             <input type="text" id="first_name" wire:model.defer="first_name"
                 class="bg-white border border-secondary-80 text-base font-normal text-secondary rounded-md placeholder:text-secondary-80 placeholder:font-light focus:text-primary-80 focus:ring-primary focus:border-ring-primary block w-full pl-10 p-2.5"
                 placeholder="First name" />
+            @error('first_name')
+                <span class="error">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 
@@ -52,6 +58,9 @@
             <input type="text" id="last_name" wire:model.defer="last_name"
                 class="bg-white border border-secondary-80 text-base font-normal text-secondary rounded-md placeholder:text-secondary-80 placeholder:font-light focus:text-primary-80 focus:ring-primary focus:border-ring-primary block w-full pl-10 p-2.5"
                 placeholder="Last name" />
+            @error('last_name')
+                <span class="error">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 
@@ -66,6 +75,9 @@
             <input type="email" id="email" wire:model.defer="email"
                 class="bg-white border border-secondary-80 text-base font-normal text-secondary rounded-md placeholder:text-secondary-80 placeholder:font-light focus:text-primary-80 focus:ring-primary focus:border-ring-primary block w-full pl-10 p-2.5"
                 placeholder="name@example.com" />
+            @error('email')
+                <span class="error">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 
@@ -80,6 +92,9 @@
             <input type="password" id="password" wire:model.defer="password"
                 class="bg-white border border-secondary-80 text-base font-normal text-secondary rounded-md placeholder:text-secondary-80 placeholder:font-light focus:text-primary-80 focus:ring-primary focus:border-ring-primary block w-full pl-10 p-2.5"
                 placeholder="*********" />
+            @error('password')
+                <span class="error">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 

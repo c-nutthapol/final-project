@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('social_media', function (Blueprint $table) {
-            $table->integer('social_id')->primary();
-            $table->integer('user_id');
+            $table->id('id');
+            $table->bigInteger('user_id', 0, 1);
             $table->string('provider', 100);
             $table->string('provider_id')->unique();
             $table->string('email');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

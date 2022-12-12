@@ -65,87 +65,91 @@
         </div>
 
         <!--------- Navbar Menu  ---------->
-        {{-- @IF สำหรับตอนยังไม่ได้เข้าสู่ระบบ --}}
-        <div id="navbar-menu" class="hidden w-full md:inline-block md:w-auto font-ibm">
-            <ul
-                class="flex flex-col p-4 mt-4 rounded-lg bg-gray-50/90 backdrop-blur-md md:flex-row md:bg-transparent md:rounded-none md:border-none md:items-center md:space-x-8 md:p-0 md:m-0 lg:space-x-16">
-                <li class="block px-3 py-2 lg:inline-block md:p-0">
-                    <a href="{{ route('client.courses.all') }}"
-                        class="text-base font-normal tracking-wider hover:text-primary {{ Route::currentRouteName() == 'client.courses.all' ? 'text-primary' : 'text-secondary' }}">
-                        คอร์สทั้งหมด
-                    </a>
-                </li>
-                <li class="block px-3 py-2 lg:inline-block md:p-0">
-                    <a href="{{ route('client.auth.login') }}"
-                        class="text-base font-normal tracking-wider text-secondary hover:text-primary">
-                        เข้าสู่ระบบ
-                    </a>
-                </li>
-                <li class="block px-3 py-2 lg:inline-block md:p-0">
-                    <a href="{{ route('client.auth.register') }}" class="inline-block uppercase btn is-primary">
-                        สมัครสมาชิก
-                    </a>
-                </li>
-            </ul>
-        </div>
 
-        {{-- @ELSE สำหรับตอน Login สำเร็จ --}}
-        <!--  Account -->
-        {{-- <div id="navbar-menu" class="hidden w-full md:inline-block md:w-auto">
-            <ul
-                class="flex flex-col p-4 mt-4 rounded-lg bg-gray-50/90 backdrop-blur-md md:flex-row md:bg-transparent md:rounded-none md:border-none md:items-center md:space-x-8 md:p-0 md:m-0 lg:space-x-16">
-                <li class="block px-3 py-2 lg:inline-block md:p-0">
-                    <a href="courses.html"
-                        class="text-base font-normal tracking-wider font-ibm text-secondary hover:text-primary">
-                        คอร์สทั้งหมด
-                    </a>
-                </li>
-                <li class="block px-3 py-2 lg:inline-block md:p-0">
-                    <a href="courses.html"
-                        class="text-base font-normal tracking-wider font-ibm text-secondary hover:text-primary">
-                        ร่วมสอนกับเรา
-                    </a>
-                </li>
-                <li class="block px-3 py-2 lg:inline-block md:p-0">
-                    <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="inline-block btn is-primary"
-                        type="button">
-                        <figure class="flex items-center gap-3">
-                            <img src="assets/images/users/avatar.jpg" alt="avatar"
-                                class="object-cover object-top rounded-full w-7 h-7" />
-                            <figcaption class="text-base font-normal text-white">
-                                Katrina Santo
-                            </figcaption>
-                        </figure>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div id="dropdown"
-                        class="z-10 hidden w-48 bg-white divide-y divide-gray-200 rounded min-w-min shadow-card-course">
-                        <ul class="py-1 text-base text-gray-700" aria-labelledby="dropdownDefault">
-                            <li>
-                                <a href="{{ route('client.auth.account') }}"
+        @if (!auth()->check())
+            {{-- @IF สำหรับตอนยังไม่ได้เข้าสู่ระบบ --}}
+            <div id="navbar-menu" class="hidden w-full md:inline-block md:w-auto font-ibm">
+                <ul
+                    class="flex flex-col p-4 mt-4 rounded-lg bg-gray-50/90 backdrop-blur-md md:flex-row md:bg-transparent md:rounded-none md:border-none md:items-center md:space-x-8 md:p-0 md:m-0 lg:space-x-16">
+                    <li class="block px-3 py-2 lg:inline-block md:p-0">
+                        <a href="{{ route('client.courses.all') }}"
+                            class="text-base font-normal tracking-wider hover:text-primary {{ Route::currentRouteName() == 'client.courses.all' ? 'text-primary' : 'text-secondary' }}">
+                            คอร์สทั้งหมด
+                        </a>
+                    </li>
+                    <li class="block px-3 py-2 lg:inline-block md:p-0">
+                        <a href="{{ route('client.auth.login') }}"
+                            class="text-base font-normal tracking-wider text-secondary hover:text-primary">
+                            เข้าสู่ระบบ
+                        </a>
+                    </li>
+                    <li class="block px-3 py-2 lg:inline-block md:p-0">
+                        <a href="{{ route('client.auth.register') }}" class="inline-block uppercase btn is-primary">
+                            สมัครสมาชิก
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        @else
+            {{-- @ELSE สำหรับตอน Login สำเร็จ --}}
+            <!--  Account -->
+            <div id="navbar-menu" class="hidden w-full md:inline-block md:w-auto">
+                <ul
+                    class="flex flex-col p-4 mt-4 rounded-lg bg-gray-50/90 backdrop-blur-md md:flex-row md:bg-transparent md:rounded-none md:border-none md:items-center md:space-x-8 md:p-0 md:m-0 lg:space-x-16">
+                    <li class="block px-3 py-2 lg:inline-block md:p-0">
+                        <a href="courses.html"
+                            class="text-base font-normal tracking-wider font-ibm text-secondary hover:text-primary">
+                            คอร์สทั้งหมด
+                        </a>
+                    </li>
+                    <li class="block px-3 py-2 lg:inline-block md:p-0">
+                        <a href="courses.html"
+                            class="text-base font-normal tracking-wider font-ibm text-secondary hover:text-primary">
+                            ร่วมสอนกับเรา
+                        </a>
+                    </li>
+                    <li class="block px-3 py-2 lg:inline-block md:p-0">
+                        <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="inline-block btn is-primary"
+                            type="button">
+                            <figure class="flex items-center gap-3">
+                                <img src="{{ asset('assets/images/users/avatar.jpg') }}" alt="avatar"
+                                    class="object-cover object-top rounded-full w-7 h-7" />
+                                <figcaption class="text-base font-normal text-white">
+                                    Katrina Santo
+                                </figcaption>
+                            </figure>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div id="dropdown"
+                            class="z-10 hidden w-48 bg-white divide-y divide-gray-200 rounded min-w-min shadow-card-course">
+                            <ul class="py-1 text-base text-gray-700" aria-labelledby="dropdownDefault">
+                                <li>
+                                    <a href="{{ route('client.auth.account') }}"
+                                        class="block px-4 py-2 font-ibm text-secondary hover:bg-gray-100 focus:bg-primary/5 focus:text-primary">
+                                        <i class="leading-none fi fi-rr-user"></i>
+                                        <span class="inline-block ml-2">บัญชีผู้ใช้</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mycourse.html"
+                                        class="block px-4 py-2 font-ibm text-secondary hover:bg-gray-100 focus:bg-primary/5 focus:text-primary">
+                                        <i class="leading-none fi fi-rr-graduation-cap"></i>
+                                        <span class="inline-block ml-2">คอร์สเรียนของฉัน</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="py-1">
+                                <a href="{{ route('client.auth.logout') }}"
                                     class="block px-4 py-2 font-ibm text-secondary hover:bg-gray-100 focus:bg-primary/5 focus:text-primary">
-                                    <i class="leading-none fi fi-rr-user"></i>
-                                    <span class="inline-block ml-2">บัญชีผู้ใช้</span>
+                                    <i class="leading-none fi fi-rr-sign-out-alt"></i>
+                                    <span class="inline-block ml-2">ออกจากระบบ</span>
                                 </a>
-                            </li>
-                            <li>
-                                <a href="mycourse.html"
-                                    class="block px-4 py-2 font-ibm text-secondary hover:bg-gray-100 focus:bg-primary/5 focus:text-primary">
-                                    <i class="leading-none fi fi-rr-graduation-cap"></i>
-                                    <span class="inline-block ml-2">คอร์สเรียนของฉัน</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="py-1">
-                            <a href="#"
-                                class="block px-4 py-2 font-ibm text-secondary hover:bg-gray-100 focus:bg-primary/5 focus:text-primary">
-                                <i class="leading-none fi fi-rr-sign-out-alt"></i>
-                                <span class="inline-block ml-2">ออกจากระบบ</span>
-                            </a>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
-        </div> --}}
+                    </li>
+                </ul>
+            </div>
+        @endif
+
     </div>
 </nav>

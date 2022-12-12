@@ -14,19 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('request_lecturers', function (Blueprint $table) {
-            $table->integer('rl_id')->primary();
+            $table->id('id');
             $table->text('description');
             $table->longText('files');
             $table->string('status', 50);
-            $table->integer('created_by');
-            $table->integer('updated_by');
-            $table->integer('deleted_by')->nullable();
+            $table->bigInteger('created_by', 0, 1);
+            $table->bigInteger('updated_by', 0, 1);
+            $table->bigInteger('deleted_by', 0, 1)->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('created_by')->references('user_id')->on('users');
-            $table->foreign('updated_by')->references('user_id')->on('users');
-            $table->foreign('deleted_by')->references('user_id')->on('users');        });
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
+            $table->foreign('deleted_by')->references('id')->on('users');
+        });
     }
 
     /**

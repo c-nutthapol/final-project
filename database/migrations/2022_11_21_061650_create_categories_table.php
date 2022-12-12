@@ -14,17 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->integer('category_id')->primary();
-            $table->string('name',60);
-            $table->integer('created_by');
-            $table->integer('updated_by');
-            $table->integer('deleted_by')->nullable();
+            $table->id('id');
+            $table->string('name', 60);
+            $table->bigInteger('created_by', 0, 1);
+            $table->bigInteger('updated_by', 0, 1);
+            $table->bigInteger('deleted_by', 0, 1)->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('created_by')->references('user_id')->on('users');
-            $table->foreign('updated_by')->references('user_id')->on('users');
-            $table->foreign('deleted_by')->references('user_id')->on('users');
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
+            $table->foreign('deleted_by')->references('id')->on('users');
         });
     }
 
