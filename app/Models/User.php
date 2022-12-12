@@ -39,6 +39,12 @@ class User extends Authenticatable
         'password',
     ];
 
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
     /**
      * Always encrypt the password when it is updated.
      *
