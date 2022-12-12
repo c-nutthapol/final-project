@@ -1,7 +1,5 @@
 @extends('layouts.client.app')
 
-@section('title', 'Account')
-
 @section('content')
     <main class="bg-primary-20/[0.2]">
         <div class="relative pt-24 lg:pb-96">
@@ -15,13 +13,14 @@
                             <div class="p-10 text-center bg-white rounded-2xl shadow-card-course">
                                 <figure class="relative">
                                     {{-- User Picture --}}
-                                    <img src="{{ asset('assets/images/users/avatar.jpg') }}" alt="avatar"
-                                        class="relative z-10 object-cover object-top mx-auto mb-6 rounded-full w-28 h-28" />
+                                    <img src="{{ Storage::exists(auth()->user()->avatar) ? Storage::url(auth()->user()->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
+                                        alt="Avatar"
+                                        class="relative z-10 object-cover object-top w-32 h-32 mx-auto mb-6 rounded-full" />
                                     {{-- Blobs --}}
                                     <img src="{{ asset('assets/images/icons/blobs-avatar.svg') }}"
                                         class="absolute left-0 right-0 z-0 mx-auto w-36 -top-4" />
                                     <figcaption class="relative z-10 text-xl font-medium text-primary font-ibm">
-                                        Katrina Santo
+                                        {{ auth()->user()->full_name }}
                                     </figcaption>
                                 </figure>
                             </div>
@@ -46,7 +45,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#"
+                                    <a href="{{ route('client.auth.logout') }}"
                                         class="block px-4 py-3 text-base font-bold text-white transition duration-300 ease-in-out bg-danger rounded-xl hover:bg-danger/90 hover:text-white/90">
                                         <div class="flex items-center space-x-3">
                                             <i class="text-lg leading-none fi fi-rr-sign-out-alt"></i>

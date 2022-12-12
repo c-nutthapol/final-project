@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'D-Course | Home')
+@section('title', config('app.name') . ' | หน้าหลัก')
 
 @section('content')
     <!--------- Hero  ---------->

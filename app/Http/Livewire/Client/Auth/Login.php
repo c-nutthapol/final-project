@@ -15,11 +15,11 @@ class Login extends Component
         return view('livewire.client.auth.login');
     }
 
-    public $usernameOrEmail, $password;
+    public $usernameOrEmail = 'usertest', $password = 'P@ssw0rd';
 
     protected $rules = [
         'usernameOrEmail' => 'required|max:100',
-        'password' => 'required|max:255'
+        'password' => 'required|min:8'
     ];
 
     protected $attributes = [
@@ -29,7 +29,8 @@ class Login extends Component
 
     protected $messages = [
         'required' => 'โปรดกรอกข้อมูล :attribute',
-        'max' => 'ตัวอักษรต้องไม่เกิน :max'
+        'max' => ':attribute ต้องไม่เกิน :max อักขระ',
+        'min' => ':attribute ต้องมีอักขระอย่างน้อย :min',
     ];
 
     public function submit()

@@ -40,7 +40,8 @@ class Register extends Component
 
     protected $messages = [
         'required' => 'โปรดกรอกข้อมูล :attribute',
-        'max' => 'ตัวอักษรต้องไม่เกิน :max',
+        'max' => ':attribute ต้องไม่เกิน :max อักขระ',
+        'min' => ':attribute ต้องมีอักขระอย่างน้อย :min',
         'same' => ':attribute และ :other ต้องตรงกัน',
         'unique' => ':attribute ได้ถูกนำไปใช้แล้ว'
     ];

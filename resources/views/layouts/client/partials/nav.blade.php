@@ -131,7 +131,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="mycourse.html"
+                                    <a href="{{ route('client.auth.courses.all') }}"
                                         class="block px-4 py-2 font-ibm text-secondary hover:bg-gray-100 focus:bg-primary/5 focus:text-primary">
                                         <i class="leading-none fi fi-rr-graduation-cap"></i>
                                         <span class="inline-block ml-2">คอร์สเรียนของฉัน</span>
