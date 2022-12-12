@@ -115,7 +115,7 @@
                                 <img src="{{ asset('assets/images/users/avatar.jpg') }}" alt="avatar"
                                     class="object-cover object-top rounded-full w-7 h-7" />
                                 <figcaption class="text-base font-normal text-white">
-                                    Katrina Santo
+                                    {{ auth()->user()->full_name }}
                                 </figcaption>
                             </figure>
                         </button>
