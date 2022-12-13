@@ -97,13 +97,13 @@
                 <ul
                     class="flex flex-col p-4 mt-4 rounded-lg bg-gray-50/90 backdrop-blur-md md:flex-row md:bg-transparent md:rounded-none md:border-none md:items-center md:space-x-8 md:p-0 md:m-0 lg:space-x-16">
                     <li class="block px-3 py-2 lg:inline-block md:p-0">
-                        <a href="courses.html"
+                        <a href="{{ route('client.courses.all') }}"
                             class="text-base font-normal tracking-wider font-ibm text-secondary hover:text-primary">
                             คอร์สทั้งหมด
                         </a>
                     </li>
                     <li class="block px-3 py-2 lg:inline-block md:p-0">
-                        <a href="courses.html"
+                        <a href="{{ route('client.teacher.course.manage.requirements') }}"
                             class="text-base font-normal tracking-wider font-ibm text-secondary hover:text-primary">
                             ร่วมสอนกับเรา
                         </a>

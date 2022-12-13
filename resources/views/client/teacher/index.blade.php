@@ -205,7 +205,7 @@
 
                             <!--------- Courses List  ---------->
                             <div class="space-y-4">
-                                <a href="{{ route('client.auth.teacher.course.manage.overview') }}"
+                                <a href="{{ route('client.teacher.course.manage.overview') }}"
                                     class="flex justify-between p-4 overflow-hidden duration-200 ease-in-out transform bg-primary-20/20 rounded-2xl hover:bg-primary-20/40 focus:bg-primary-20/60">
                                     <div class="flex flex-row justify-start space-x-4">
                                         <img src="{{ asset('assets/images/rooms/room-1.jpg') }}" alt="photo"
@@ -258,7 +258,7 @@
                                     </div>
                                 </a>
 
-                                <a href="{{ route('client.auth.teacher.course.manage.overview') }}"
+                                <a href="{{ route('client.teacher.course.manage.overview') }}"
                                     class="flex justify-between p-4 overflow-hidden duration-200 ease-in-out transform bg-primary-20/20 rounded-2xl hover:bg-primary-20/40 focus:bg-primary-20/60">
                                     <div class="flex flex-row justify-start space-x-4">
                                         <img src="{{ asset('assets/images/rooms/room-2.jpg') }}" alt="photo"
@@ -311,7 +311,7 @@
                                     </div>
                                 </a>
 
-                                <a href="{{ route('client.auth.teacher.course.manage.overview') }}"
+                                <a href="{{ route('client.teacher.course.manage.overview') }}"
                                     class="flex justify-between p-4 overflow-hidden duration-200 ease-in-out transform bg-primary-20/20 rounded-2xl hover:bg-primary-20/40 focus:bg-primary-20/60">
                                     <div class="flex flex-row justify-start space-x-4">
                                         <img src="{{ asset('assets/images/rooms/room-3.jpg') }}" alt="photo"
@@ -358,7 +358,7 @@
                                     </div>
                                 </a>
 
-                                <a href="{{ route('client.auth.teacher.course.manage.overview') }}"
+                                <a href="{{ route('client.teacher.course.manage.overview') }}"
                                     class="flex justify-between p-4 overflow-hidden duration-200 ease-in-out transform bg-primary-20/20 rounded-2xl hover:bg-primary-20/40 focus:bg-primary-20/60">
                                     <div class="flex flex-row justify-start space-x-4">
                                         <img src="{{ asset('assets/images/rooms/room-4.jpg') }}" alt="photo"
@@ -411,7 +411,7 @@
                                     </div>
                                 </a>
 
-                                <a href="{{ route('client.auth.teacher.course.manage.overview') }}"
+                                <a href="{{ route('client.teacher.course.manage.overview') }}"
                                     class="flex justify-between p-4 overflow-hidden duration-200 ease-in-out transform bg-primary-20/20 rounded-2xl hover:bg-primary-20/40 focus:bg-primary-20/60">
                                     <div class="flex flex-row justify-start space-x-4">
                                         <img src="{{ asset('assets/images/rooms/room-1.jpg') }}" alt="photo"
