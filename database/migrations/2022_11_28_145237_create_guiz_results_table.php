@@ -18,8 +18,8 @@ return new class extends Migration
             $table->bigInteger('quiz_id', 0, 1);
             $table->double('result_scors', 10, 2, true);
             $table->json('result_choice');
-            $table->bigInteger('created_by', 0, 1);
-            $table->bigInteger('updated_by', 0, 1);
+            $table->bigInteger('created_by', 0, 1)->nullable();
+            $table->bigInteger('updated_by', 0, 1)->nullable();
             $table->bigInteger('deleted_by', 0, 1)->nullable();
             $table->timestamps();
             $table->softDeletes();

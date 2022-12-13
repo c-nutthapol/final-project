@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('course_id', 0, 1);
             $table->text('comment');
             $table->bigInteger('scors');
-            $table->bigInteger('created_by', 0, 1);
+            $table->bigInteger('created_by', 0, 1)->nullable();
             $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('courses');

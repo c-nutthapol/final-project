@@ -42,22 +42,22 @@ Route::name('client.')->group(function () {
 
     Route::prefix('teacher')->name('teacher.')->middleware(['auth:web', 'role:lecturer,student'])->group(function () {
         // คอร์สเรียนทั้งหมดของผู้สอน
-        Route::view('/', 'client.teacher.index')->name('all');
+        Route::get('/', 'Client\TeacherController@courses')->name('all');
 
         // จัดการคอร์สเรียน
         Route::prefix('course')->name('course.')->group(function () {
             Route::prefix('manage')->name('manage.')->group(function () {
-                Route::view('/overview', 'client.teacher.course.manage.overview')->name('overview');
-                Route::view('/learn', 'client.teacher.course.manage.learn')->name('learn');
-                Route::view('/requirements', 'client.teacher.course.manage.requirements')->name('requirements');
+                Route::get('/overview/{id}', 'Client\TeacherController@courseManageOverview')->middleware('hashid')->name('overview');
+                Route::get('/learn/{id}', 'Client\TeacherController@courseManageLearn')->name('learn');
+                Route::get('/requirements/{id}', 'Client\TeacherController@courseManageRequirements')->name('requirements');
             });
             // จัดการเนื้อหาของคอร์สเรียน
             Route::prefix('content')->name('content.')->group(function () {
-                Route::view('/', 'client.teacher.course.content.index')->name('index');
-                Route::view('/form', 'client.teacher.course.content.form')->name('form');
+                Route::get('/{id}', 'Client\TeacherController@courseContent')->name('index');
+                Route::get('/{id}/form', 'Client\TeacherController@courseContenFrom')->name('form');
             });
             // ตั้งค่าคอร์สเรียน
-            Route::view('/settings', 'client.teacher.course.settings')->name('settings');
+            Route::get('/settings/{id}', 'Client\TeacherController@setting')->name('settings');
         });
     });
 });

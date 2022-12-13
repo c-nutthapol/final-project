@@ -25,7 +25,6 @@ class Account extends Component
         $this->username = $user->username;
         $this->first_name = $user->first_name;
         $this->last_name = $user->last_name;
-
     }
 
     public function render()
@@ -89,7 +88,7 @@ class Account extends Component
                 'showDenyButton' => false,
                 'onDenied' => '',
             ]);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
                 'position' => 'top-end',
                 'timer' => 3000,

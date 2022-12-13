@@ -6,7 +6,7 @@
     <div class="container relative z-10 mx-auto mt-8">
         <div class="max-w-screen-lg p-10 mx-auto overflow-hidden bg-white rounded-xl shadow-card-course font-ibm">
             <div class="flex items-center mb-8 space-x-2">
-                <a href="{{ route('client.teacher.course.content.index') }}" class="inline-block leading-none"
+                <a href="{{ route('client.teacher.course.content.index',$id) }}" class="inline-block leading-none"
                     data-popover-target="popover-back-content">
                     <i class="fi fi-rr-arrow-left"></i>
                 </a>

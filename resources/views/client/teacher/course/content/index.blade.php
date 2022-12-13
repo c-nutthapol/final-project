@@ -51,7 +51,7 @@
                                     class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-card-course w-44">
                                     <ul class="py-1 text-sm text-secondary" aria-labelledby="dropdownMenu">
                                         <li>
-                                            <a href="{{ route('client.teacher.course.content.form') }}"
+                                            <a href="{{ route('client.teacher.course.content.form', $id) }}"
                                                 class="block px-4 py-2 hover:bg-gray-100">
                                                 <div class="flex items-center space-x-2">
                                                     <i class="leading-none fi fi-rr-plus"></i>
@@ -94,7 +94,7 @@
                                         </div>
                                     </a>
                                     <div class="space-x-1.5">
-                                        <a href="{{ route('client.teacher.course.content.form') }}"
+                                        <a href="{{ route('client.teacher.course.content.form', $id) }}"
                                             class="text-base text-secondary hover:text-warning">
                                             <i class="leading-none fi fi-rr-edit"></i>
                                         </a>
@@ -113,7 +113,7 @@
                                         </div>
                                     </a>
                                     <div class="space-x-1.5">
-                                        <a href="{{ route('client.teacher.course.content.form') }}"
+                                        <a href="{{ route('client.teacher.course.content.form', $id) }}"
                                             class="text-base text-secondary hover:text-warning">
                                             <i class="leading-none fi fi-rr-edit"></i>
                                         </a>

@@ -15,18 +15,18 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id('id');
-            $table->string('name', 60);
-            $table->string('second_name', 120);
-            $table->longText('target');
-            $table->text('description');
-            $table->integer('level');
-            $table->text('image');
-            $table->text('video');
-            $table->bigInteger('sub_category_id', 0, 1);
-            $table->string('post_status', 60);
-            $table->string('status', 60);
-            $table->bigInteger('created_by', 0, 1);
-            $table->bigInteger('updated_by', 0, 1);
+            $table->string('name', 60)->nullable();
+            $table->string('second_name', 120)->nullable();
+            $table->longText('target')->nullable();
+            $table->text('description')->nullable();
+            $table->string('level', 60)->nullable(); //entry = ระดับเริ่มต้น, moderate = ระดับปานกลาง , high = ระดับสูง
+            $table->text('image')->nullable();
+            $table->text('video')->nullable();
+            $table->bigInteger('sub_category_id', 0, 1)->nullable();
+            $table->string('post_status', 60)->default('private'); //private = ส่วนตัว, public = สาธารณะ
+            $table->string('status', 60)->default('correct'); //terminate = ยุติ, correct = ถูกต้อง
+            $table->bigInteger('created_by', 0, 1)->nullable();
+            $table->bigInteger('updated_by', 0, 1)->nullable();
             $table->bigInteger('deleted_by', 0, 1)->nullable();
             $table->timestamps();
             $table->softDeletes();
