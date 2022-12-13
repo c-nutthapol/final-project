@@ -24,8 +24,6 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check() && $guard == 'web') {
                 return redirect(RouteServiceProvider::CLIENT_HOME);
-            } else if (Auth::guard($guard)->check() && $guard == 'admin') {
-                return redirect(RouteServiceProvider::ADMIN_HOME);
             }
         }
 
