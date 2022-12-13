@@ -1,6 +1,6 @@
 @extends('client.auth.layout')
 
-@section('title', 'My Courses')
+@section('title', 'หลักสูตรของฉัน')
 
 @section('account.content')
     <div>

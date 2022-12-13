@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', 'D-Course')
+@section('title', 'จัดการคอร์สเรียน')
 
 @section('content')
     <!--------- Content  ---------->

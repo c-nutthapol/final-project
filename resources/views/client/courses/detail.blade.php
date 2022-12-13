@@ -1,6 +1,8 @@
 @extends('layouts.client.app')
 
-@section('title', 'Angular - The Complete Guide (2022 Edititon)')
+@section('title', 'หลักสูตร')
+
+@section('subtitle','| Angular - The Complete Guide (2022 Edititon)')
 
 @section('content')
     <!--------- Content  ---------->

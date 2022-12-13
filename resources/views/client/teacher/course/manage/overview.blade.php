@@ -1,6 +1,6 @@
 @extends('client.teacher.course.layout')
 
-@section('title', 'Overview')
+@section('title', 'ภาพรวม')
 
 @section('teacher.content')
     <div class="container relative z-10 mx-auto mt-8">

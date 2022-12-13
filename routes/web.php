@@ -40,7 +40,7 @@ Route::name('client.')->group(function () {
         });
     });
 
-    Route::prefix('teacher')->name('teacher.')->middleware(['auth:web', 'role:lecturer'])->group(function () {
+    Route::prefix('teacher')->name('teacher.')->middleware(['auth:web', 'role:lecturer,student'])->group(function () {
         // คอร์สเรียนทั้งหมดของผู้สอน
         Route::view('/', 'client.teacher.index')->name('all');
 

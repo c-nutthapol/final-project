@@ -1,6 +1,6 @@
 @extends('layouts.client.app')
 
-@section('title', config('app.name') . ' | หน้าหลัก')
+@section('title', 'หน้าหลัก')
 
 @section('content')
     <!--------- Hero  ---------->

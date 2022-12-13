@@ -1,6 +1,6 @@
 @extends('client.teacher.course.layout')
 
-@section('title', 'Content')
+@section('title', 'เนื้อหา')
 
 @section('teacher.content')
     <div class="container relative z-10 mx-auto mt-8">
@@ -134,80 +134,80 @@
                     </div>
                     {{-- <!--------- @ELSE สำหรับประเภทแบบทดสอบ  ----------> --}}
                     <!-- <div class="col-span-2 space-y-6">
-                              <div>
-                                <label
-                                  for="question"
-                                  class="block mb-1.5 text-base font-medium text-dark-theme"
-                                >
-                                  คำถาม
-                                </label>
-                                <input
-                                  type="text"
-                                  id="question"
-                                  class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                                  placeholder="กรุณากรอกคำถาม"
-                                />
-                              </div>
-                              <div class="grid grid-cols-2 gap-4">
-                                <div class="flex items-center space-x-4">
-                                  <input
-                                    checked
-                                    id="radio-choice-1"
-                                    type="radio"
-                                    value=""
-                                    name="radio-choice"
-                                    class="w-6 h-6 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
-                                  />
-                                  <input
-                                    type="text"
-                                    class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                                    placeholder="กรุณากรอกตัวเลือก"
-                                  />
-                                </div>
-                                <div class="flex items-center space-x-4">
-                                  <input
-                                    id="radio-choice-2"
-                                    type="radio"
-                                    value=""
-                                    name="radio-choice"
-                                    class="w-6 h-6 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
-                                  />
-                                  <input
-                                    type="text"
-                                    class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                                    placeholder="กรุณากรอกตัวเลือก"
-                                  />
-                                </div>
-                                <div class="flex items-center space-x-4">
-                                  <input
-                                    id="radio-choice-3"
-                                    type="radio"
-                                    value=""
-                                    name="radio-choice"
-                                    class="w-6 h-6 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
-                                  />
-                                  <input
-                                    type="text"
-                                    class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                                    placeholder="กรุณากรอกตัวเลือก"
-                                  />
-                                </div>
-                                <div class="flex items-center space-x-4">
-                                  <input
-                                    id="radio-choice-4"
-                                    type="radio"
-                                    value=""
-                                    name="radio-choice"
-                                    class="w-6 h-6 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
-                                  />
-                                  <input
-                                    type="text"
-                                    class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                                    placeholder="กรุณากรอกตัวเลือก"
-                                  />
-                                </div>
-                              </div>
-                            </div> -->
+                                  <div>
+                                    <label
+                                      for="question"
+                                      class="block mb-1.5 text-base font-medium text-dark-theme"
+                                    >
+                                      คำถาม
+                                    </label>
+                                    <input
+                                      type="text"
+                                      id="question"
+                                      class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
+                                      placeholder="กรุณากรอกคำถาม"
+                                    />
+                                  </div>
+                                  <div class="grid grid-cols-2 gap-4">
+                                    <div class="flex items-center space-x-4">
+                                      <input
+                                        checked
+                                        id="radio-choice-1"
+                                        type="radio"
+                                        value=""
+                                        name="radio-choice"
+                                        class="w-6 h-6 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
+                                      />
+                                      <input
+                                        type="text"
+                                        class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
+                                        placeholder="กรุณากรอกตัวเลือก"
+                                      />
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                      <input
+                                        id="radio-choice-2"
+                                        type="radio"
+                                        value=""
+                                        name="radio-choice"
+                                        class="w-6 h-6 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
+                                      />
+                                      <input
+                                        type="text"
+                                        class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
+                                        placeholder="กรุณากรอกตัวเลือก"
+                                      />
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                      <input
+                                        id="radio-choice-3"
+                                        type="radio"
+                                        value=""
+                                        name="radio-choice"
+                                        class="w-6 h-6 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
+                                      />
+                                      <input
+                                        type="text"
+                                        class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
+                                        placeholder="กรุณากรอกตัวเลือก"
+                                      />
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                      <input
+                                        id="radio-choice-4"
+                                        type="radio"
+                                        value=""
+                                        name="radio-choice"
+                                        class="w-6 h-6 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
+                                      />
+                                      <input
+                                        type="text"
+                                        class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
+                                        placeholder="กรุณากรอกตัวเลือก"
+                                      />
+                                    </div>
+                                  </div>
+                                </div> -->
                 </div>
 
                 <!--------- Submit  ---------->
