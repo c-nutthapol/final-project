@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ config('app.name') . ' |' }} @yield('title') @yield('subtitle')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
+    <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+    {{-- <script src="{{ mix('resources/js/app.js') }}" defer></script> --}}
     @livewireStyles
     @include('layouts.client.partials.header')
 </head>
@@ -19,6 +21,7 @@
 
     @include('layouts.client.partials.footer')
     @include('layouts.client.partials.script')
+
 
     @livewireScripts
     @yield('script')
