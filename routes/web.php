@@ -40,7 +40,7 @@ Route::name('client.')->group(function () {
         });
     });
 
-    Route::prefix('teacher')->name('teacher.')->middleware(['auth:web', 'RoleChecker:lecturer'])->group(function () {
+    Route::prefix('teacher')->name('teacher.')->middleware(['auth:web', 'role:lecturer'])->group(function () {
         // คอร์สเรียนทั้งหมดของผู้สอน
         Route::view('/', 'client.teacher.index')->name('all');
 
@@ -62,13 +62,8 @@ Route::name('client.')->group(function () {
     });
 });
 
-Route::prefix('admin')->name('admin-')->group(function () {
+Route::prefix('admin')->middleware(['auth:web', 'role:administrator'])->name('admin-')->group(function () {
     Route::get('/', function () {
         return view('admin.home');
     })->name('home');
-    Route::prefix('auth')->name('auth.')->group(function () {
-        Route::get('/login', function () {
-            return view('admin.auth.login');
-        })->name('login');
-    });
 });
