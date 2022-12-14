@@ -103,7 +103,7 @@
                                         <div>
                                             <label for="file_video"
                                                 class="block mb-1.5 text-base font-medium text-dark-theme">
-                                                เลือกวิดีโอ
+                                                เลือกไฟล์
                                             </label>
                                             <input
                                                 class="block w-full text-base bg-white border rounded-md cursor-pointer border-secondary-80 text-secondary focus:ring-primary focus:border-ring-primary"

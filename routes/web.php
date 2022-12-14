@@ -56,6 +56,10 @@ Route::name('client.')->group(function () {
                 Route::get('/{id}', 'Client\TeacherController@courseContent')->name('index');
                 Route::get('/{id}/form', 'Client\TeacherController@courseContenFrom')->name('form');
             });
+            // ผู้ลงเรียน
+            Route::view('/students/{id}', 'client.teacher.course.students')->name('students');
+            // รีวิว
+            Route::view('/reviews/{id}', 'client.teacher.course.reviews')->name('reviews');
             // ตั้งค่าคอร์สเรียน
             Route::get('/settings/{id}', 'Client\TeacherController@setting')->name('settings');
         });
