@@ -43,7 +43,7 @@
                             <select id="category"
                                 class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
                                 wire:model.lazy="category" wire:change="$set('sub_category_id',null)">
-                                <option selected>เลือกหมวดหมู่</option>
+                                <option value="">เลือกหมวดหมู่</option>
                                 @foreach ($categories as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
@@ -59,7 +59,7 @@
                             <select id="subcategory"
                                 class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
                                 wire:model.defer="sub_category_id">
-                                <option selected>เลือกหมวดหมู่ย่อย</option>
+                                <option value="">เลือกหมวดหมู่ย่อย</option>
                                 @foreach ($sub_categories as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach

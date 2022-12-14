@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SubCategory extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 
@@ -28,5 +28,10 @@ class SubCategory extends Model
         static::deleting(function ($model) {
             $model->deleted_by = auth()->check() ? auth()->user()->id : null;
         });
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }
