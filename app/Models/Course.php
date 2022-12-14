@@ -31,6 +31,11 @@ class Course extends Model
         });
     }
 
+    public function sub_category()
+    {
+        return $this->belongsTo(SubCategory::class, 'sub_category_id');
+    }
+
     public function getEncodeAttribute()
     {
         return Hashids::encodeHex($this->id);
@@ -64,6 +69,6 @@ class Course extends Model
 
     public function getCreatedAtAttribute($str)
     {
-        return thaidate('h:i j M Y', $str);
+        return thaidate('H:i j M Y', $str);
     }
 }
