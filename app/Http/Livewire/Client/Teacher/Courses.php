@@ -4,9 +4,12 @@ namespace App\Http\Livewire\Client\Teacher;
 
 use App\Models\Course;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Courses extends Component
 {
+    use WithPagination;
+
     /* This is a listener that is listening for the event `coursesRefresh` and when it is triggered, it will refresh the
     component. */
     protected $listeners = [
@@ -25,6 +28,7 @@ class Courses extends Component
 
     public function resSearch(...$res)
     {
+        $this->gotoPage(1);
         return $this->search = $res[0];
     }
 
@@ -55,6 +59,7 @@ class Courses extends Component
             $query->when(!empty($this->search['sort']) && $this->search['sort'] == 'highReview', function ($query) {
                 // $query->ordeerBy('created_at', $this->search['sort']);
             });
+            $query->whereIn('post_status',$this->search['status']);
         });
         return $items->where('created_by', $user->id)->paginate(4);
     }
