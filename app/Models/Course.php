@@ -17,30 +17,49 @@ class Course extends Model
     {
         parent::boot();
 
+        /* A method that is called when the model is being created. */
         static::creating(function ($model) {
             $model->created_by = auth()->check() ? auth()->user()->id : null;
             $model->updated_by = auth()->check() ? auth()->user()->id : null;
         });
 
+        /* A method that is called when the model is being updated. */
         static::updating(function ($model) {
             $model->updated_by = auth()->check() ? auth()->user()->id : null;
         });
 
+        /* A method that is called when the model is being deleted. */
         static::deleting(function ($model) {
             $model->deleted_by = auth()->check() ? auth()->user()->id : null;
         });
     }
 
+    /**
+     * The `sub_category()` function returns the sub category that belongs to the product
+     *
+     * @return The sub_category() method returns the sub_category that belongs to the product.
+     */
     public function sub_category()
     {
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
 
+    /**
+     * It encodes the id of the model into a hashid.
+     *
+     * @return The id of the model is being returned.
+     */
     public function getEncodeAttribute()
     {
         return Hashids::encodeHex($this->id);
     }
 
+
+    /**
+     * ฟังก์ชันนี้จะแสดงข้อมูลระดับความรุนแรงของข้อมูลที่อยู่ในรูปแบบของภาษาไทย
+     *
+     * @return ระดับเริ่มต้น, ระดับปานกลาง, ระดับสูง, ไม่
+     */
     public function getLevelThAttribute()
     {
         if ($this->level == 'entry')
@@ -53,6 +72,7 @@ class Course extends Model
         return 'ไม่ระบุ';
     }
 
+    /* A getter method. It is used to get the value of the attribute `post_status` and return it in a different format. */
     public function getStatusPostAttribute()
     {
         if ($this->post_status == 'private')
@@ -67,6 +87,11 @@ class Course extends Model
         </span>';
     }
 
+    /**
+     * It converts the date format to Thai date format.
+     *
+     * @param str The date string to be converted.
+     */
     public function getCreatedAtAttribute($str)
     {
         return thaidate('H:i j M Y', $str);

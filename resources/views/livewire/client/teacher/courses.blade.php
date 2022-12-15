@@ -64,6 +64,14 @@
                     </div>
                 </a>
             @empty
+                <a href="javascript:void(0)"
+                    class="flex justify-between p-4 overflow-hidden duration-200 ease-in-out transform bg-primary-20/20 rounded-2xl hover:bg-primary-20/40 focus:bg-primary-20/60">
+
+                    <span class="inline-block text-center text-secondary">
+                        ไม่พบข้อมูล
+                    </span>
+
+                </a>
             @endforelse
         </div>
 

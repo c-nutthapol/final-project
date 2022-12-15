@@ -27,7 +27,7 @@
                             เปลี่ยนรูปโปรไฟล์
                         </span>
                     </div>
-                    <input type="file" class="hidden w-full" wire:model.lazy="avatar" />
+                    <input type="file" class="hidden w-full" wire:model.defer="avatar" />
 
                 </label>
 

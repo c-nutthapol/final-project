@@ -1,7 +1,6 @@
 @extends('layouts.client.app')
 
 @section('title', 'จัดการหลักสูตร')
-@section('subtitle', '| Learn 3D Modelling and Design')
 
 @section('content')
     <!--------- Content  ---------->
@@ -23,7 +22,7 @@
                             </div>
                             <div data-popper-arrow></div>
                         </div>
-                        Learn 3D Modelling and Design
+                        @yield('subtitle')
                     </h2>
 
                     <!--------- Tabs Menu  ---------->

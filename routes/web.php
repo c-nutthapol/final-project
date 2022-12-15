@@ -47,7 +47,7 @@ Route::name('client.')->group(function () {
         // จัดการคอร์สเรียน
         Route::prefix('course')->name('course.')->group(function () {
             Route::prefix('manage')->name('manage.')->group(function () {
-                Route::get('/overview/{id}', 'Client\TeacherController@courseManageOverview')->middleware('hashid')->name('overview');
+                Route::get('/overview/{id}', 'Client\TeacherController@courseManageOverview')->name('overview');
                 Route::get('/learn/{id}', 'Client\TeacherController@courseManageLearn')->name('learn');
                 Route::get('/requirements/{id}', 'Client\TeacherController@courseManageRequirements')->name('requirements');
             });
@@ -57,11 +57,11 @@ Route::name('client.')->group(function () {
                 Route::get('/{id}/form', 'Client\TeacherController@courseContenFrom')->name('form');
             });
             // ผู้ลงเรียน
-            Route::view('/students/{id}', 'client.teacher.course.students')->name('students');
+            Route::get('/students/{id}', 'Client\TeacherController@courseStudents')->name('students');
             // รีวิว
-            Route::view('/reviews/{id}', 'client.teacher.course.reviews')->name('reviews');
+            Route::get('/reviews/{id}', 'Client\TeacherController@courseReviews')->name('reviews');
             // ตั้งค่าคอร์สเรียน
-            Route::get('/settings/{id}', 'Client\TeacherController@setting')->name('settings');
+            Route::get('/settings/{id}', 'Client\TeacherController@courseSetting')->name('settings');
         });
     });
 });

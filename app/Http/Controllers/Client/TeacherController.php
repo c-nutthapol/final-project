@@ -12,39 +12,43 @@ class TeacherController extends Controller
         return view('client.teacher.index');
     }
 
-    public function courseManageOverview(Request $request)
+    public function courseManageOverview($id)
     {
-        $id = $request->id;
         return view('client.teacher.course.manage.overview', compact('id'));
     }
-    public function courseManageLearn(Request $request)
+    public function courseManageLearn($id)
     {
-        $id = $request->id;
         return view('client.teacher.course.manage.learn', compact('id'));
     }
 
-    public function courseManageRequirements(Request $request)
+    public function courseManageRequirements($id)
     {
-        $id = $request->id;
         return view('client.teacher.course.manage.requirements', compact('id'));
     }
 
 
-    public function courseContent(Request $request)
+    public function courseContent($id)
     {
-        $id = $request->id;
         return view('client.teacher.course.content.index', compact('id'));
     }
 
-    public function courseContenFrom(Request $request)
+    public function courseContenFrom($id)
     {
-        $id = $request->id;
         return view('client.teacher.course.content.form', compact('id'));
     }
 
-    public function setting(Request $request)
+    public function courseReviews($id)
     {
-        $id = $request->id;
+        return view('client.teacher.course.reviews', compact('id'));
+    }
+
+    public function courseStudents($id)
+    {
+        return view('client.teacher.course.students', compact('id'));
+    }
+
+    public function courseSetting($id)
+    {
         return view('client.teacher.course.settings', compact('id'));
     }
 }

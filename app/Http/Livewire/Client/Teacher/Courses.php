@@ -24,7 +24,18 @@ class Courses extends Component
         return view('livewire.client.teacher.courses', compact('courses'));
     }
 
-    public $search = [];
+    public $search = [
+        "search" => null,
+        "category" => null,
+        "sort" => "desc",
+        "level" => [
+            "high",
+            "moderate",
+            "entry",
+        ],
+        "reviewScore" => ">=4",
+        "status" => ['private', 'public']
+    ];
 
     public function resSearch(...$res)
     {
@@ -59,7 +70,7 @@ class Courses extends Component
             $query->when(!empty($this->search['sort']) && $this->search['sort'] == 'highReview', function ($query) {
                 // $query->ordeerBy('created_at', $this->search['sort']);
             });
-            $query->whereIn('post_status',$this->search['status']);
+            $query->whereIn('post_status', $this->search['status']);
         });
         return $items->where('created_by', $user->id)->paginate(4);
     }
