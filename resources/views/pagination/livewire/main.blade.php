@@ -4,6 +4,7 @@
 
         <nav aria-label="Page navigation">
             <ul class="inline-flex items-center space-x-6">
+                {{-- Previous Page Link --}}
                 @if (!$paginator->onFirstPage())
                     <li>
                         <a href="javascript:void(0)"
