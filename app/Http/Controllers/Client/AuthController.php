@@ -35,9 +35,10 @@ class AuthController extends Controller
         }
     }
 
-    public function login()
+    public function login(Request $request)
     {
-        return view('client.auth.login');
+        $redirect = $request->redirect;
+        return view('client.auth.login', compact('redirect'));
     }
 
     public function logout()

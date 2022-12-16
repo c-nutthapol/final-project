@@ -31,9 +31,8 @@
                 <h2 class="mb-12 text-2xl font-extrabold tracking-wide text-dark-theme">
                     เข้าสู่ระบบ
                 </h2>
-
                 <!--------- Card Form  ---------->
-                @livewire('client.auth.login')
+                @livewire('client.auth.login', ['redirect' => $redirect])
 
             </div>
             <!--------- Register  ---------->

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Client\Auth;
 
+use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
@@ -15,6 +16,12 @@ class Login extends Component
         return view('livewire.client.auth.login');
     }
 
+    public $redirect;
+
+    public function mount($redirect = null)
+    {
+        $this->redirect = $redirect;
+    }
     /* It's a default value for the form. */
     public $usernameOrEmail = 'usertest', $password = 'P@ssw0rd';
 
@@ -42,7 +49,11 @@ class Login extends Component
         $validatedData = $this->validate($this->rules, $this->messages, $this->attributes);
         /* It's a function that will be called when the user clicks the submit button. */
         if (auth()->attempt(['username' => $validatedData['usernameOrEmail'], 'password' => $validatedData['password']]) || auth()->attempt(['email' => $validatedData['usernameOrEmail'], 'password' => $validatedData['password']])) {
-            return redirect()->route('client.home');
+            if (!empty($this->redirect)) {
+                return redirect()->to($this->redirect);
+            } else {
+                return redirect()->route('client.home');
+            }
         } else {
             $this->alert('error', 'ชื่อผู้ใช้ อีเมล หรือรหัสผ่านไม่ถูกต้อง', [
                 'position' => 'top-end',
