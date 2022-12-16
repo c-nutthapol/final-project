@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id('id');
             $table->string('name', 255)->nullable();
-            $table->longText('target')->nullable();
+            $table->longText('will_learn')->nullable();
+            $table->longText('must_have')->nullable();
             $table->text('description')->nullable();
             $table->string('level', 60)->nullable(); //entry = ระดับเริ่มต้น, moderate = ระดับปานกลาง , high = ระดับสูง
             $table->text('image')->nullable();
@@ -59,8 +60,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
         Schema::dropIfExists('courses_lecturers');
         Schema::dropIfExists('courses_students');
+        Schema::dropIfExists('courses');
     }
 };

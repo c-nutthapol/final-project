@@ -23,6 +23,10 @@ class Course extends Model
             $model->updated_by = auth()->check() ? auth()->user()->id : null;
         });
 
+        static::created(function ($model) {
+            auth()->check() ? $model->lecturers()->attach(auth()->user()->id) : null;
+        });
+
         /* A method that is called when the model is being updated. */
         static::updating(function ($model) {
             $model->updated_by = auth()->check() ? auth()->user()->id : null;
@@ -42,6 +46,27 @@ class Course extends Model
     public function sub_category()
     {
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
+    }
+
+    /**
+     * This course belongs to many lecturers, and the relationship is defined by the courses_lecturers table, where the
+     * course_id is the foreign key and the user_id is the local key.
+     *
+     * @return A collection of users that are lecturers for the course.
+     */
+    public function lecturers()
+    {
+        return $this->belongsToMany(User::class, 'courses_lecturers', 'course_id', 'user_id');
+    }
+
+    /**
+     * The function students() returns a collection of users who are students in the course
+     *
+     * @return A collection of users that are students of the course.
+     */
+    public function students()
+    {
+        return $this->belongsToMany(User::class, 'courses_students', 'course_id', 'user_id');
     }
 
     /**

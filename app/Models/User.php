@@ -55,4 +55,24 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    /**
+     * > This function returns a collection of courses that the user is a lecturer of
+     *
+     * @return A collection of courses that the user is a lecturer of.
+     */
+    public function lecturers()
+    {
+        return $this->belongsToMany(Course::class, 'courses_lecturers', 'user_id', 'course_id');
+    }
+
+    /**
+     * The students() function returns a collection of all the courses that the user is enrolled in
+     *
+     * @return A collection of courses that the user is enrolled in.
+     */
+    public function students()
+    {
+        return $this->belongsToMany(Course::class, 'courses_students', 'user_id', 'course_id');
+    }
 }

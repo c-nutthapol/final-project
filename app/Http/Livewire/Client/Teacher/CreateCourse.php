@@ -53,7 +53,7 @@ class CreateCourse extends Component
     {
         $validatedData = $this->validate($this->rules, $this->messages, $this->attributes);
         try {
-            Course::create(collect($validatedData)->except('category')->toArray());
+            $create = Course::create(collect($validatedData)->except('category')->toArray());
             $this->alert('success', 'บันทึกเสร็จสิ้น', [
                 'position' => 'top-end',
                 'timer' => 3000,

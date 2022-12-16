@@ -72,6 +72,11 @@ class Courses extends Component
             });
             $query->whereIn('post_status', $this->search['status']);
         });
-        return $items->where('created_by', $user->id)->paginate(4);
+
+        $items->whereHas('lecturers', function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        });
+
+        return $items->paginate(4);
     }
 }
