@@ -68,8 +68,10 @@
                             </td>
                         </tr>
                     @empty
-                        <tr colspan="3">
-                            ไม่พบข้อมูล
+                        <tr class="tracking-wide bg-white border-b hover:bg-gray-50">
+                            <th colspan="3" scope="row" class="px-6 py-4 font-bold text-center text-secondary">
+                                ไม่พบข้อมูล
+                            </th>
                         </tr>
                     @endforelse
 
