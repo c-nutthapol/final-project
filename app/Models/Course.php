@@ -13,6 +13,11 @@ class Course extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'will_learn' => 'object',
+        'must_have' => 'object'
+    ];
+
     protected static function boot()
     {
         parent::boot();
