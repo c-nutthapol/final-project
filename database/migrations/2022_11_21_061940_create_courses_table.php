@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id('id');
-            $table->string('name', 60)->nullable();
-            $table->string('second_name', 120)->nullable();
+            $table->string('name', 255)->nullable();
             $table->longText('target')->nullable();
             $table->text('description')->nullable();
             $table->string('level', 60)->nullable(); //entry = ระดับเริ่มต้น, moderate = ระดับปานกลาง , high = ระดับสูง
@@ -36,6 +35,21 @@ return new class extends Migration
             $table->foreign('updated_by')->references('id')->on('users');
             $table->foreign('deleted_by')->references('id')->on('users');
         });
+
+        Schema::create('courses_students', function (Blueprint $table) {
+            $table->bigInteger('course_id', 0, 1);
+            $table->bigInteger('user_id', 0, 1);
+
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        });
+        Schema::create('courses_lecturers', function (Blueprint $table) {
+            $table->bigInteger('course_id', 0, 1);
+            $table->bigInteger('user_id', 0, 1);
+
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        });
     }
 
     /**
@@ -46,5 +60,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('courses');
+        Schema::dropIfExists('courses_lecturers');
+        Schema::dropIfExists('courses_students');
     }
 };

@@ -25,7 +25,7 @@ class CreateCourse extends Component
 
     /* A validation rule for the form. */
     protected $rules = [
-        'name' => 'required|min:8|max:100',
+        'name' => 'required|min:8|max:255',
         'category' => 'required|exists:categories,id',
         'sub_category_id' => 'required|exists:sub_categories,id',
         'level' => 'required|in:entry,moderate,high',

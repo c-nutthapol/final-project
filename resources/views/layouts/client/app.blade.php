@@ -26,11 +26,15 @@
     @include('layouts.client.partials.footer')
     @include('layouts.client.partials.script')
 
-
     @livewireScripts
     @yield('script')
-
     @stack('script')
+    <script>
+        $("a[target=popup]").click(function() {
+            let href = $(this).prop('href');
+            window.open(href, 'popup', 'width=600,height=600,scrollbars=yes');
+        });
+    </script>
 </body>
 
 </html>

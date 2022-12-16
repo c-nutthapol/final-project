@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('max_mb', function ($attribute, $value, $parameters, $validator) {
+
+            if ($value instanceof UploadedFile && !$value->isValid()) {
+                return false;
+            }
+
+            // SplFileInfo::getSize returns filesize in bytes
+            $size = $value->getSize() / 1024 / 1024;
+
+            return $size <= $parameters[0];
+        });
+
+        Validator::replacer('max_mb', function ($message, $attribute, $rule, $parameters) {
+            return str_replace(':' . $rule, $parameters[0], $message);
+        });
     }
 }

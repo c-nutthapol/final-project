@@ -47,7 +47,7 @@ Route::name('client.')->group(function () {
         // จัดการคอร์สเรียน
         Route::prefix('course')->name('course.')->group(function () {
             Route::prefix('manage')->name('manage.')->group(function () {
-                Route::get('/overview/{id}', 'Client\TeacherController@courseManageOverview')->name('overview');
+                Route::any('/overview/{id}', 'Client\TeacherController@courseManageOverview')->name('overview');
                 Route::get('/learn/{id}', 'Client\TeacherController@courseManageLearn')->name('learn');
                 Route::get('/requirements/{id}', 'Client\TeacherController@courseManageRequirements')->name('requirements');
             });

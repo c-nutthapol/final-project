@@ -60,7 +60,7 @@
             </label>
             <select id="subcategory"
                 class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                wire:model.lazy="sub_category">
+                wire:model.lazy="sub_category_id">
                 <option value="">เลือกหมวดหมู่ย่อย</option>
                 @foreach ($sub_categories as $item)
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -76,14 +76,15 @@
             </label>
             <div class="space-y-2">
                 <div class="flex items-center">
-                    <input id="radio-beginners" type="radio" value="entry" wire:model="level" name="radio-review"
+                    <input id="radio-beginners" type="radio" value="entry" wire:model.defer="level"
+                        name="radio-review"
                         class="w-4 h-4 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80" />
                     <label for="radio-beginners" class="pl-3 text-base font-normal cursor-pointer text-secondary">
                         ระดับเริ่มต้น
                     </label>
                 </div>
                 <div class="flex items-center">
-                    <input id="radio-intermediate" type="radio" value="moderate" wire:model="level"
+                    <input id="radio-intermediate" type="radio" value="moderate" wire:model.defer="level"
                         name="radio-review"
                         class="w-4 h-4 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80" />
                     <label for="radio-intermediate" class="pl-3 text-base font-normal cursor-pointer text-secondary">
@@ -91,13 +92,17 @@
                     </label>
                 </div>
                 <div class="flex items-center">
-                    <input id="radio-advanced" type="radio" value="high" wire:model="level" name="radio-review"
+                    <input id="radio-advanced" type="radio" value="high" wire:model.defer="level"
+                        name="radio-review"
                         class="w-4 h-4 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80" />
                     <label for="radio-advanced" class="pl-3 text-base font-normal cursor-pointer text-secondary">
                         ระดับสูง
                     </label>
                 </div>
             </div>
+            @error('level')
+                <span class="error text-error">{{ $message }}</span>
+            @enderror
         </div>
         <div class="col-span-2">
             <label for="description" class="block mb-1.5 text-base font-medium text-dark-theme">
@@ -107,15 +112,32 @@
                 class="block w-full p-3 text-base bg-white border rounded-lg border-secondary-80 text-secondary placeholder:text-secondary-80 focus:ring-primary focus:border-primary"
                 placeholder="รายละเอียดคอร์ส..."></textarea>
         </div>
+        @if ($image_temp)
+            <a href="{{ url('/') }}" target="popup" class="btn is-success">
+                <div class="flex items-center space-x-2">
+                    <span>ดูวิดีโอ</span>
+                </div>
+            </a>
+        @endif
 
-        <div class="col-span-2">
+        <div class="col-span-2" x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
+            x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
+            x-on:livewire-upload-progress="progress = $event.detail.progress">
             <label for="file_video" class="block mb-1.5 text-base font-medium text-dark-theme">
                 เลือกวิดีโอแนะนำคอร์ส
             </label>
+
             <input
                 class="block w-full text-base bg-white border rounded-md cursor-pointer border-secondary-80 text-secondary focus:ring-primary focus:border-ring-primary"
-                id="file_video" type="file" accept="video/mp4,video/x-m4v,video/*" />
+                id="file_video" type="file" wire:model="video" accept="video/mp4,video/x-m4v,video/*" />
+            @error('video')
+                <span class="error text-error">{{ $message }}</span>
+            @enderror
+            <div x-show="isUploading">
+                <progress max="100" x-bind:value="progress"></progress>
+            </div>
         </div>
+
     </div>
     <!--------- Submit  ---------->
     <div class="block mt-6 text-right">
@@ -140,4 +162,3 @@
         </button>
     </div>
 </form>
-

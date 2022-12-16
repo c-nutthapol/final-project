@@ -1,3 +1,4 @@
+<script src="{{ asset('assets/js/jquery-3.6.2.min.js') }}"></script>
 <script src="https://cdn.plyr.io/3.7.3/plyr.js"></script>
 <script src="{{ asset('vendor/plyr/setting.js') }}"></script>
 <script src="{{ asset('assets/vendor/flowbite/dist/flowbite.js') }}"></script>
