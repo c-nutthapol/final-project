@@ -80,12 +80,12 @@
                             <!--------- คะแนนรีวิว ---------->
                             <div
                                 class="relative p-10 overflow-hidden text-center bg-yellow-300 rounded-2xl shadow-card-course">
-                                <div
+                                <a href="javascript:void(0);" data-modal-toggle="review-modal"
                                     class="absolute top-0 left-0 flex items-center justify-center w-full h-full cursor-pointer bg-black/70 backdrop-blur-[1px] transform ease-in-out duration-200 text-white hover:text-yellow-300">
                                     <div class="text-2xl font-bold tracking-wider font-ibm">
                                         ให้คะแนน
                                     </div>
-                                </div>
+                                </a>
                                 <!--------- Icon ---------->
                                 <div
                                     class="flex items-center justify-center w-40 h-40 mx-auto mb-4 overflow-hidden text-4xl font-bold tracking-wider text-yellow-400 bg-white rounded-full font-montserrat">
@@ -244,6 +244,82 @@
             <!--------- Wave  ---------->
             <img src="{{ asset('assets/images/wave-footer.svg') }}" class="absolute left-0 z-0 w-full -bottom-0" />
         </div>
+
+        <!-- Review Modal -->
+        <div id="review-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+            class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+            <div class="relative w-full h-full max-w-2xl md:h-auto font-ibm">
+                <!-- Modal content -->
+                <div class="relative bg-white shadow rounded-2xl">
+                    <form>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-4">
+                            <div x-data="{
+                                rating: 0,
+                                hoverRating: 0,
+                                ratings: [{ 'amount': 1 }, { 'amount': 2 }, { 'amount': 3 }, { 'amount': 4 }, { 'amount': 5 }],
+                                rate(amount) {
+                                    if (this.rating == amount) {
+                                        this.rating = 0;
+                                    } else {
+                                        this.rating = amount
+                                    };
+                                },
+                            }">
+                                <div class="text-center">
+                                    <h4 class="mb-1 text-secondary text-2xl font-bold">คะแนน</h4>
+                                </div>
+                                <div class="flex space-x-0 justify-center">
+                                    <template x-for="(star, index) in ratings" :key="index">
+                                        <button type="button" @click="rate(star.amount)"
+                                            @mouseover="hoverRating = star.amount" @mouseleave="hoverRating = rating"
+                                            aria-hidden="true"
+                                            class="rounded-sm text-gray-400 fill-current focus:outline-none focus:shadow-outline p-1 w-12 m-0 cursor-pointer"
+                                            :class="{
+                                                'text-gray-600': hoverRating >= star.amount,
+                                                'text-yellow-400': rating >=
+                                                    star.amount && hoverRating >= star.amount
+                                            }">
+                                            <svg class="w-15 transition duration-150" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                        </button>
+                                    </template>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-x-3 gap-y-4">
+                                <div class="col-span-2">
+                                    <textarea
+                                        class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
+                                        placeholder="คำอธิบาย" rows="5" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="flex items-center justify-center p-6 space-x-2 border-t border-gray-200 rounded-b">
+                            <button data-modal-toggle="review-modal" type="button" class="btn is-secondary">
+                                <div class="flex items-center">
+                                    <i class="text-lg leading-none fi fi-rr-cross-small"></i>
+                                    <span class="inline-block ml-2 font-medium">ยกเลิก</span>
+                                </div>
+                            </button>
+                            <button data-modal-toggle="review-modal" type="submit" class="btn is-warning">
+                                <div class="flex items-center">
+                                    <i class="text-lg leading-none fi fi-rr-edit"></i>
+                                    <span class="inline-block ml-2 font-medium">
+                                        รีวิว
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
+
+
 
 @endsection
