@@ -251,21 +251,25 @@
             <div class="relative w-full h-full max-w-2xl md:h-auto font-ibm">
                 <!-- Modal content -->
                 <div class="relative bg-white shadow rounded-2xl">
-                    <form>
+                    <form x-data="{
+                        rating: 0,
+                        hoverRating: 0,
+                        ratings: [{ 'amount': 1 }, { 'amount': 2 }, { 'amount': 3 }, { 'amount': 4 }, { 'amount': 5 }],
+                        rate(amount) {
+                            if (this.rating == amount) {
+                                this.rating = 0;
+                            } else {
+                                this.rating = amount
+                            };
+                        },
+                        clearRating() {
+                            this.rating = 0;
+                            this.hoverRating = 0;
+                        }
+                    }">
                         <!-- Modal body -->
                         <div class="p-6 space-y-4">
-                            <div x-data="{
-                                rating: 0,
-                                hoverRating: 0,
-                                ratings: [{ 'amount': 1 }, { 'amount': 2 }, { 'amount': 3 }, { 'amount': 4 }, { 'amount': 5 }],
-                                rate(amount) {
-                                    if (this.rating == amount) {
-                                        this.rating = 0;
-                                    } else {
-                                        this.rating = amount
-                                    };
-                                },
-                            }">
+                            <div>
                                 <div class="text-center">
                                     <h4 class="mb-1 text-secondary text-2xl font-bold">คะแนน</h4>
                                 </div>
@@ -274,9 +278,9 @@
                                         <button type="button" @click="rate(star.amount)"
                                             @mouseover="hoverRating = star.amount" @mouseleave="hoverRating = rating"
                                             aria-hidden="true"
-                                            class="rounded-sm text-gray-400 fill-current focus:outline-none focus:shadow-outline p-1 w-12 m-0 cursor-pointer"
+                                            class="rounded-sm text-gray-200 fill-current focus:outline-none focus:shadow-outline p-1 w-12 m-0 cursor-pointer"
                                             :class="{
-                                                'text-gray-600': hoverRating >= star.amount,
+                                                'text-gray-400': hoverRating >= star.amount,
                                                 'text-yellow-400': rating >=
                                                     star.amount && hoverRating >= star.amount
                                             }">
@@ -299,7 +303,8 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="flex items-center justify-center p-6 space-x-2 border-t border-gray-200 rounded-b">
-                            <button data-modal-toggle="review-modal" type="button" class="btn is-secondary">
+                            <button data-modal-toggle="review-modal" type="button" class="btn is-secondary"
+                                @click="clearRating">
                                 <div class="flex items-center">
                                     <i class="text-lg leading-none fi fi-rr-cross-small"></i>
                                     <span class="inline-block ml-2 font-medium">ยกเลิก</span>
