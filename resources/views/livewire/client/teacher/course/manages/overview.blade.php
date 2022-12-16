@@ -113,11 +113,11 @@
                 placeholder="รายละเอียดคอร์ส..."></textarea>
         </div>
         @if ($image_temp)
-            <a href="{{ url('/') }}" target="popup" class="btn is-success">
-                <div class="flex items-center space-x-2">
+            <div>
+                <a href="{{ url('/') }}" target="popup" class="btn is-success">
                     <span>ดูวิดีโอ</span>
-                </div>
-            </a>
+                </a>
+            </div>
         @endif
 
         <div class="col-span-2" x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
