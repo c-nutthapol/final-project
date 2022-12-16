@@ -104,6 +104,7 @@ class Overview extends Component
                     Storage::delete($update->video);
                 }
                 $update->video = $this->video->store('public/course/' . $this->idHash);
+                $this->video_temp = $update->video;
             }
             $update->name = $validateData['name'];
             $update->sub_category_id = $validateData['sub_category_id'];

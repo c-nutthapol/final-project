@@ -112,9 +112,10 @@
                 class="block w-full p-3 text-base bg-white border rounded-lg border-secondary-80 text-secondary placeholder:text-secondary-80 focus:ring-primary focus:border-primary"
                 placeholder="รายละเอียดคอร์ส..."></textarea>
         </div>
-        @if ($image_temp)
+        @if ($video_temp)
             <div>
-                <a href="{{ url('/') }}" target="popup" class="btn is-success">
+                <a href="{{ !is_null($video_temp) && Storage::exists($video_temp) ? Storage::url($video_temp) : '' }}"
+                    target="popup" class="btn is-success">
                     <span>ดูวิดีโอ</span>
                 </a>
             </div>

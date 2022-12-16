@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Review extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
     protected $guarded = [];
 
@@ -16,8 +16,20 @@ class Review extends Model
     {
         parent::boot();
 
+        /* This is a model event. It is called when a model is being created. */
         static::creating(function ($model) {
             $model->created_by = auth()->check() ? auth()->user()->id : null;
         });
     }
+
+    /**
+     * The `course()` function returns the course that the student is enrolled in
+     *
+     * @return A collection of all the questions for the course.
+     */
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id');
+    }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Client\Teacher;
 
 use App\Models\Course;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -68,7 +69,10 @@ class Courses extends Component
                 $query->orderBy('created_at', $this->search['sort']);
             });
             $query->when(!empty($this->search['sort']) && $this->search['sort'] == 'highReview', function ($query) {
-                // $query->ordeerBy('created_at', $this->search['sort']);
+                $query->whereHas('reviews',function($query){
+                    $query->select(DB::raw('coalesce(avg(scors),0) as rating'));
+                    $query->orderByDesc('rating');
+                });
             });
             $query->whereIn('post_status', $this->search['status']);
         });

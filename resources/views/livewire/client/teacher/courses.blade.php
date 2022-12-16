@@ -24,18 +24,17 @@
                             </h4>
                             <div class="flex justify-start mb-3 space-x-2">
                                 <div class="flex items-center space-x-1 text-sm">
-                                    <i class="leading-none text-yellow-300 fi fi-rr-star">
-                                    </i>
-                                    <i class="leading-none text-yellow-300 fi fi-rr-star">
-                                    </i>
-                                    <i class="leading-none text-yellow-300 fi fi-rr-star">
-                                    </i>
-                                    <i class="leading-none text-yellow-300 fi fi-rr-star">
-                                    </i>
-                                    <span class="inline-block pl-1 text-secondary">(4)</span>
-                                    {{--  <span class="inline-block text-secondary">
-                                    ยังไม่มีการรีวิว
-                                </span> --}}
+                                    @if (floor($item->rating))
+                                        @for ($i = 0; $i < floor($item->rating); $i++)
+                                            <i class="leading-none text-yellow-300 fi fi-rr-star">
+                                            </i>
+                                        @endfor
+                                        <span class="inline-block pl-1 text-secondary">( {{ $item->rating }} )</span>
+                                    @else
+                                        <span class="inline-block text-secondary">
+                                            ยังไม่มีการรีวิว
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="text-sm text-secondary">
                                     -
@@ -50,7 +49,7 @@
                                 </div>
                                 <div class="flex items-center gap-2 text-sm font-normal text-primary-80">
                                     <i class="leading-none fi fi-rr-user"></i>
-                                    <div>20</div>
+                                    <div>{{ $item->students->count() }}</div>
                                 </div>
                             </div>
                             <div class="flex items-center text-sm tracking-wide text-secondary">

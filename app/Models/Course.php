@@ -54,6 +54,16 @@ class Course extends Model
     }
 
     /**
+     * The reviews() function returns all the reviews that belong to the course
+     *
+     * @return A collection of reviews that belong to the course.
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'course_id');
+    }
+
+    /**
      * This course belongs to many lecturers, and the relationship is defined by the courses_lecturers table, where the
      * course_id is the foreign key and the user_id is the local key.
      *
@@ -84,11 +94,15 @@ class Course extends Model
         return Hashids::encodeHex($this->id);
     }
 
+    public function getRatingAttribute()
+    {
+        return number_format($this->reviews()->avg('scors'), 2, '.', '');
+    }
 
     /**
-     * ฟังก์ชันนี้จะแสดงข้อมูลระดับความรุนแรงของข้อมูลที่อยู่ในรูปแบบของภาษาไทย
+     * This function displays data severity level information in Thai language format.
      *
-     * @return ระดับเริ่มต้น, ระดับปานกลาง, ระดับสูง, ไม่
+     * @return entry, moderate, high, not specified
      */
     public function getLevelThAttribute()
     {

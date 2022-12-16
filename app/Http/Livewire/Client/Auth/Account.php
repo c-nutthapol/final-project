@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Client\Auth;
 
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -71,6 +72,9 @@ class Account extends Component
             $user = User::find(auth()->user()->id);
             /* Used to check if the avatar is empty or not. If it is not empty, it will be updated. */
             if (!empty($validatedData['avatar'])) {
+                if ($user->avatar != null && Storage::exists($user->avatar)) {
+                    Storage::delete($user->avatar);
+                }
                 $user->avatar = $this->avatar->store('public/account/' . md5(auth()->user()->id));
             }
             /* Used to check if the password is empty or not. If it is not empty, it will be updated. */
