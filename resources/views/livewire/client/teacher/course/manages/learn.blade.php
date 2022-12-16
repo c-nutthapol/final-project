@@ -11,17 +11,7 @@
                 <span class="inline-block ml-2">เพิ่มสิ่งที่ผู้เรียนจะได้</span>
             </button>
         </div>
-        <!--------- Search ---------->
-        <div class="flex justify-end mb-4">
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <i class="text-base leading-none fi fi-rr-search"></i>
-                </div>
-                <input type="search" id="search"
-                    class="block py-2 pl-10 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                    placeholder="ค้นหา..." required />
-            </div>
-        </div>
+
         <!--------- Table ---------->
         <div class="relative overflow-x-auto border border-secondary/10 sm:rounded-md">
             <table class="w-full text-sm text-left text-gray-500">

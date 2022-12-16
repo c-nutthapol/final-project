@@ -22,11 +22,11 @@ class Learn extends Component
     public function render()
     {
         $course = Course::find($this->idTable);
-        $willLearn = $this->paginate($course->will_learn);
+        $willLearn = $this->paginate($course->will_learn, $this->search);
         return view('livewire.client.teacher.course.manages.learn', compact('willLearn'));
     }
 
-    public $subtitle, $idTable, $idHash;
+    public $subtitle, $idTable, $idHash, $search;
 
     public function mount($id)
     {
@@ -41,35 +41,35 @@ class Learn extends Component
 
     public function store($name)
     {
-        // try {
-        $update = Course::find($this->idTable);
-        $data = Collection::make($update->will_learn);
-        $count = $data->count();
-        $key = $count > 0 ? $count - 1 : 0;
-        $data->push(['id' => (empty($data[$key]) ? 1 : 1 + $data[$key]->id), 'name' => $name]);
+        try {
+            $update = Course::find($this->idTable);
+            $data = Collection::make($update->will_learn);
+            $count = $data->count();
+            $key = $count > 0 ? $count - 1 : 0;
+            $data->push(['id' => (empty($data[$key]) ? 1 : 1 + $data[$key]->id), 'name' => $name]);
 
-        $update->will_learn = $data->toArray();
-        $update->save();
-        $this->gotoPage(1);
-        return $this->alert('success', 'บันทึกเสร็จสิ้น', [
-            'position' => 'top-end',
-            'timer' => 3000,
-            'toast' => true,
-            'timerProgressBar' => true,
-            'showDenyButton' => false,
-            'onDenied' => '',
-        ]);
-        // } catch (\Exception $e) {
-        //     return $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
-        //         'position' => 'top-end',
-        //         'timer' => 3000,
-        //         'toast' => true,
-        //         'timerProgressBar' => true,
-        //         'showDenyButton' => false,
-        //         'onDenied' => '',
-        //         'text' => $e->getMessage(),
-        //     ]);
-        // }
+            $update->will_learn = $data->toArray();
+            $update->save();
+            $this->gotoPage(1);
+            return $this->alert('success', 'บันทึกเสร็จสิ้น', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                'showDenyButton' => false,
+                'onDenied' => '',
+            ]);
+        } catch (\Exception $e) {
+            return $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                'showDenyButton' => false,
+                'onDenied' => '',
+                'text' => $e->getMessage(),
+            ]);
+        }
     }
 
     public function update($id, $name)
@@ -131,10 +131,10 @@ class Learn extends Component
         return  $update->save();
     }
 
-    private function paginate($items = [], $perPage = 5, $page = null, $options = [])
+    private function paginate($items = [], $search = null, $perPage = 5, $page = null, $options = [])
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
-        $items = $items instanceof Collection ? $items : Collection::make($items)->values();
+        $items = $items instanceof Collection ? $items : Collection::make($items);
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 }
