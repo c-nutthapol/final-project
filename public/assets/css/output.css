@@ -1628,6 +1628,10 @@ input:checked + .toggle-bg {
   width: 16rem;
 }
 
+.w-\[32rem\] {
+  width: 32rem;
+}
+
 .min-w-min {
   min-width: -moz-min-content;
   min-width: min-content;
@@ -1651,6 +1655,10 @@ input:checked + .toggle-bg {
 
 .max-w-screen-lg {
   max-width: 1024px;
+}
+
+.max-w-screen-md {
+  max-width: 768px;
 }
 
 .flex-initial {
@@ -2475,6 +2483,11 @@ input:checked + .toggle-bg {
   padding-right: 1.25rem;
 }
 
+.py-64 {
+  padding-top: 16rem;
+  padding-bottom: 16rem;
+}
+
 .pt-8 {
   padding-top: 2rem;
 }
@@ -2521,6 +2534,10 @@ input:checked + .toggle-bg {
 
 .text-right {
   text-align: right;
+}
+
+.text-end {
+  text-align: end;
 }
 
 .font-montserrat {
