@@ -30,6 +30,11 @@ class SubCategory extends Model
         });
     }
 
+    /**
+     * The `category()` function returns the category that the post belongs to
+     *
+     * @return The category that the post belongs to.
+     */
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');

@@ -28,6 +28,7 @@ class Course extends Model
             $model->updated_by = auth()->check() ? auth()->user()->id : null;
         });
 
+        /* Attaching the user who created the course to the course as a lecturer. */
         static::created(function ($model) {
             auth()->check() ? $model->lecturers()->attach(auth()->user()->id) : null;
         });
@@ -94,9 +95,14 @@ class Course extends Model
         return Hashids::encodeHex($this->id);
     }
 
+    /**
+     * It returns the average of the scors column in the reviews table.
+     *
+     * @return The average of the scors column in the reviews table.
+     */
     public function getRatingAttribute()
     {
-        return number_format($this->reviews()->avg('scors'), 2, '.', '');
+        return number_format($this->reviews()->avg('scors'), 1, '.', '');
     }
 
     /**
