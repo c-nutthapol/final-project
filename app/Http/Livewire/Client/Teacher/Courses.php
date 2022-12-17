@@ -69,7 +69,7 @@ class Courses extends Component
                 $query->orderBy('created_at', $this->search['sort']);
             });
             $query->when(!empty($this->search['sort']) && $this->search['sort'] == 'highReview', function ($query) {
-                $query->whereHas('reviews',function($query){
+                $query->whereHas('reviews', function ($query) {
                     $query->select(DB::raw('coalesce(avg(scors),0) as rating'));
                     $query->orderByDesc('rating');
                 });
@@ -77,8 +77,8 @@ class Courses extends Component
             $query->whereIn('post_status', $this->search['status']);
         });
 
-        $items->whereHas('lecturers', function ($query) {
-            $query->where('user_id', auth()->user()->id);
+        $items->whereHas('lecturers', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
         });
 
         return $items->paginate(4);
