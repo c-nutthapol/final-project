@@ -79,15 +79,16 @@
 
     <div class="grid grid-cols-2 gap-5">
         @foreach ($reviews as $item)
-            <figure class="flex items-start p-6 space-x-3 break-words bg-white rounded-xl" data-aos="fade-up"
-                data-aos-delay="260" data-aos-duration="1200" data-aos-once="true">
+            <figure class="relative flex flex-row items-start min-w-0 p-6 space-x-3 break-all bg-white rounded-xl"
+                data-aos="fade-up" data-aos-delay="260" data-aos-duration="1200" data-aos-once="true">
                 <img src="{{ !is_null($item->user->avatar) && Storage::exists($item->user->avatar) ? Storage::url($item->user->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
                     alt="avatar" class="object-cover object-top w-12 h-12 rounded-xl shadow-avatar">
-                <div class="flex-1">
+                <div class="flex-auto">
                     <figcaption class="inline text-base font-semibold text-secondary">
                         {{ $item->user->full_name }}
                     </figcaption>
-                    <span class="inline ml-1 text-sm text-primary-40">{{ $item->created_at }}
+                    <span class="inline ml-1 text-sm text-primary-40">
+                        {{ $item->created_at }}
                     </span>
                     <div class="flex flex-row mt-1 space-x-1">
                         @for ($i = 0; $i < 5; $i++)

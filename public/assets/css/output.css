@@ -1633,6 +1633,10 @@ input:checked + .toggle-bg {
   min-width: min-content;
 }
 
+.min-w-0 {
+  min-width: 0px;
+}
+
 .max-w-xl {
   max-width: 36rem;
 }
@@ -1655,6 +1659,10 @@ input:checked + .toggle-bg {
 
 .flex-1 {
   flex: 1 1 0%;
+}
+
+.flex-auto {
+  flex: 1 1 auto;
 }
 
 .flex-shrink {
@@ -1983,6 +1991,10 @@ input:checked + .toggle-bg {
 
 .break-words {
   overflow-wrap: break-word;
+}
+
+.break-all {
+  word-break: break-all;
 }
 
 .rounded-xl {
