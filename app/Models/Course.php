@@ -144,6 +144,6 @@ class Course extends Model
      */
     public function getCreatedAtAttribute($str)
     {
-        return thaidate('H:i j M Y', $str);
+        return thaidate('j M Y H:i', $str);
     }
 }

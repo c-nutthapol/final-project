@@ -71,7 +71,7 @@
                     <i class="leading-none fi fi-rr-star"></i>
                 </div>
                 <div class="flex items-center h-full px-3 font-medium bg-white text-secondary">
-                    4.5
+                    {{ number_format($reviews->avg('scors'), 1, '.', '') }}
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                     <figcaption class="inline text-base font-semibold text-secondary">
                         {{ $item->user->full_name }}
                     </figcaption>
-                    <span class="inline ml-1 text-sm text-primary-40">August 19, 2022
+                    <span class="inline ml-1 text-sm text-primary-40">{{ $item->created_at }}
                     </span>
                     <div class="flex flex-row mt-1 space-x-1">
                         @for ($i = 0; $i < 5; $i++)
@@ -106,36 +106,5 @@
         @endforeach
     </div>
     <!--------- Pagination   ---------->
-    <div class="flex justify-center mt-10" data-aos="fade-up" data-aos-duration="600" data-aos-once="true">
-        <nav aria-label="Page navigation">
-            <ul class="inline-flex items-center space-x-6">
-                <li>
-                    <a href="javascript:void(0)"
-                        class="flex items-center justify-center w-10 h-10 ml-0 text-base leading-tight transition duration-300 ease-out bg-white text-dark-theme rounded-xl shadow-pagination hover:bg-gray-100 hover:text-gray-700 active:shadow-none active:brightness-90 active:scale-95">
-                        <span class="sr-only">Previous</span>
-                        <i class="leading-none fi fi-rr-angle-left"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)"
-                        class="flex items-center justify-center w-10 h-10 text-base leading-tight text-white transition duration-300 ease-out bg-primary rounded-xl shadow-pagination hover:bg-primary hover:text-white active:shadow-none active:brightness-90 active:scale-95">1</a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)"
-                        class="flex items-center justify-center w-10 h-10 text-base leading-tight transition duration-300 ease-out bg-white text-dark-theme rounded-xl shadow-pagination hover:bg-gray-100 hover:text-gray-700 active:shadow-none active:brightness-90 active:scale-95">2</a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)"
-                        class="flex items-center justify-center w-10 h-10 text-base leading-tight transition duration-300 ease-out bg-white text-dark-theme rounded-xl shadow-pagination hover:bg-gray-100 hover:text-gray-700 active:shadow-none active:brightness-90 active:scale-95">3</a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)"
-                        class="flex items-center justify-center w-10 h-10 ml-0 text-base leading-tight transition duration-300 ease-out bg-white text-dark-theme rounded-xl shadow-pagination hover:bg-gray-100 hover:text-gray-700 active:shadow-none active:brightness-90 active:scale-95">
-                        <span class="sr-only">Next</span>
-                        <i class="leading-none fi fi-rr-angle-right"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    {{ $reviews->links('pagination.livewire.main') }}
 </div>

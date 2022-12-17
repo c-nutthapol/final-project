@@ -35,38 +35,37 @@
                             </svg>
                         </button>
                     </div>
-                    <form>
-                        <!-- Modal body -->
-                        <div class="p-6">
-                            <div class="grid grid-cols-2 gap-x-3 gap-y-4">
-                                <div class="col-span-2">
-                                    <label for="requirement" class="block mb-1.5 text-base font-medium text-dark-theme">
-                                        สิ่งที่ผู้เรียนต้องมี
-                                    </label>
-                                    <input type="text" id="requirement"
-                                        class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                                        x-model="nameEdit" placeholder="สิ่งที่ผู้เรียนต้องมี"
-                                        x-on:keyup.enter="UpdateWillLearn(idEdit,nameEdit)" />
-                                </div>
+                    <!-- Modal body -->
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 gap-x-3 gap-y-4">
+                            <div class="col-span-2">
+                                <label for="requirement" class="block mb-1.5 text-base font-medium text-dark-theme">
+                                    สิ่งที่ผู้เรียนต้องมี
+                                </label>
+                                <input type="text" id="requirement"
+                                    class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
+                                    x-model="nameEdit" placeholder="สิ่งที่ผู้เรียนต้องมี"
+                                    x-on:keyup.enter="UpdateWillLearn(idEdit,nameEdit); idEdit = null; nameEdit = null;" />
                             </div>
                         </div>
-                        <!-- Modal footer -->
-                        <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b">
-                            <button data-modal-toggle="edit-requirement-modal" type="button" class="btn is-secondary">
-                                <div class="flex items-center">
-                                    <i class="text-lg leading-none fi fi-rr-cross-small"></i>
-                                    <span class="inline-block ml-2 font-medium">ยกเลิก</span>
-                                </div>
-                            </button>
-                            <button data-modal-toggle="edit-requirement-modal" type="button"
-                                x-on:click="UpdateWillLearn(idEdit,nameEdit)" class="btn is-warning">
-                                <div class="flex items-center">
-                                    <i class="text-lg leading-none fi fi-rr-edit"></i>
-                                    <span class="inline-block ml-2 font-medium">แก้ไข</span>
-                                </div>
-                            </button>
-                        </div>
-                    </form>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b">
+                        <button data-modal-toggle="edit-requirement-modal" type="button" class="btn is-secondary">
+                            <div class="flex items-center">
+                                <i class="text-lg leading-none fi fi-rr-cross-small"></i>
+                                <span class="inline-block ml-2 font-medium">ยกเลิก</span>
+                            </div>
+                        </button>
+                        <button data-modal-toggle="edit-requirement-modal" type="button"
+                            x-on:click="UpdateWillLearn(idEdit,nameEdit); idEdit = null; nameEdit = null;"
+                            class="btn is-warning">
+                            <div class="flex items-center">
+                                <i class="text-lg leading-none fi fi-rr-edit"></i>
+                                <span class="inline-block ml-2 font-medium">แก้ไข</span>
+                            </div>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -93,38 +92,36 @@
                             </svg>
                         </button>
                     </div>
-                    <form>
-                        <!-- Modal body -->
-                        <div class="p-6">
-                            <div class="grid grid-cols-2 gap-x-3 gap-y-4">
-                                <div class="col-span-2">
-                                    <label for="requirement" class="block mb-1.5 text-base font-medium text-dark-theme">
-                                        สิ่งที่ผู้เรียนต้องมี
-                                    </label>
-                                    <input type="text" id="requirement"
-                                        class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                                        x-model="nameCreate" placeholder="สิ่งที่ผู้เรียนต้องมี"
-                                        x-on:keyup.enter="CreateWillLearn(nameCreate)" />
-                                </div>
+                    <!-- Modal body -->
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 gap-x-3 gap-y-4">
+                            <div class="col-span-2">
+                                <label for="requirement" class="block mb-1.5 text-base font-medium text-dark-theme">
+                                    สิ่งที่ผู้เรียนต้องมี
+                                </label>
+                                <input type="text" id="requirement"
+                                    class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
+                                    x-model="nameCreate" placeholder="สิ่งที่ผู้เรียนต้องมี"
+                                    x-on:keyup.enter="CreateWillLearn(nameCreate); nameCreate = null;" />
                             </div>
                         </div>
-                        <!-- Modal footer -->
-                        <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b">
-                            <button data-modal-toggle="create-requirement-modal" type="button" class="btn is-secondary">
-                                <div class="flex items-center">
-                                    <i class="text-lg leading-none fi fi-rr-cross-small"></i>
-                                    <span class="inline-block ml-2 font-medium">ยกเลิก</span>
-                                </div>
-                            </button>
-                            <button data-modal-toggle="create-requirement-modal" type="button"
-                                x-on:click="CreateWillLearn(nameCreate)" class="btn is-primary">
-                                <div class="flex items-center">
-                                    <i class="text-lg leading-none fi fi-rr-disk"></i>
-                                    <span class="inline-block ml-2 font-medium">ยืนยัน</span>
-                                </div>
-                            </button>
-                        </div>
-                    </form>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b">
+                        <button data-modal-toggle="create-requirement-modal" type="button" class="btn is-secondary">
+                            <div class="flex items-center">
+                                <i class="text-lg leading-none fi fi-rr-cross-small"></i>
+                                <span class="inline-block ml-2 font-medium">ยกเลิก</span>
+                            </div>
+                        </button>
+                        <button data-modal-toggle="create-requirement-modal" type="button"
+                            x-on:click="CreateWillLearn(nameCreate); nameCreate = null;" class="btn is-primary">
+                            <div class="flex items-center">
+                                <i class="text-lg leading-none fi fi-rr-disk"></i>
+                                <span class="inline-block ml-2 font-medium">ยืนยัน</span>
+                            </div>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
