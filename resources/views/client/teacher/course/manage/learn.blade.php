@@ -45,7 +45,7 @@
                                 <input type="text" id="learn"
                                     class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
                                     x-model="nameEdit" placeholder="สิ่งที่ผู้เรียนจะได้"
-                                    x-on:keyup.enter="UpdateWillLearn(idEdit,nameEdit) idEdit = null; nameEdit = null;" />
+                                    x-on:keyup.enter="UpdateWillLearn(idEdit,nameEdit); idEdit = null; nameEdit = null;" />
                             </div>
                         </div>
                     </div>
