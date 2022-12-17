@@ -1,7 +1,7 @@
 @section('subtitle', $subtitle)
 <div class="mx-auto font-ibm">
     <div class="flex items-center justify-between mb-6 space-x-6">
-        <div class="bg-white p-6 basis-2/4 rounded-xl shadow-card-course">
+        <div class="p-6 bg-white basis-2/4 rounded-xl shadow-card-course">
             <label class="text-base font-bold tracking-wide text-secondary">
                 คะแนน
             </label>
@@ -66,11 +66,11 @@
         </div>
         <div>
             <div
-                class="flex items-center  border-yellow-300 border overflow-hidden rounded-md text-sm flex-row-reverse bg-white">
-                <div class="px-3 py-3 bg-yellow-300 text-white   flex items-center h-full">
-                    <i class="fi fi-rr-star leading-none"></i>
+                class="flex flex-row-reverse items-center overflow-hidden text-sm bg-white border border-yellow-300 rounded-md">
+                <div class="flex items-center h-full px-3 py-3 text-white bg-yellow-300">
+                    <i class="leading-none fi fi-rr-star"></i>
                 </div>
-                <div class="px-3 text-secondary font-medium bg-white  flex items-center h-full">
+                <div class="flex items-center h-full px-3 font-medium bg-white text-secondary">
                     4.5
                 </div>
             </div>
@@ -79,8 +79,8 @@
 
     <div class="grid grid-cols-2 gap-5">
         @foreach ($reviews as $item)
-            <figure class="flex items-start space-x-3 bg-white p-6 rounded-xl" data-aos="fade-up" data-aos-delay="260"
-                data-aos-duration="1200" data-aos-once="true">
+            <figure class="flex items-start p-6 space-x-3 break-words bg-white rounded-xl" data-aos="fade-up"
+                data-aos-delay="260" data-aos-duration="1200" data-aos-once="true">
                 <img src="{{ !is_null($item->user->avatar) && Storage::exists($item->user->avatar) ? Storage::url($item->user->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
                     alt="avatar" class="object-cover object-top w-12 h-12 rounded-xl shadow-avatar">
                 <div class="flex-1">
@@ -97,7 +97,6 @@
                                 <i class="fi fi-rr-star"></i>
                             @endif
                         @endfor
-
                     </div>
                     <p class="mt-3 text-sm font-normal leading-relaxed tracking-wide text-secondary">
                         {{ $item->comment }}
