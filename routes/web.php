@@ -36,6 +36,7 @@ Route::name('client.')->group(function () {
             Route::prefix('courses')->name('courses.')->group(function () {
                 Route::view('/', 'client.auth.mycourses.index')->name('all');
                 Route::view('/view', 'client.auth.mycourses.view')->name('view');
+                Route::view('/lecture', 'client.courses.lecture.index')->name('lecture');
             });
         });
     });

@@ -143,20 +143,24 @@
                                 <div id="curriculum-body-1" class="hidden" aria-labelledby="curriculum-heading-1">
                                     <div class="px-4 py-5 font-light">
                                         <ul class="flex flex-col flex-wrap gap-y-4">
-                                            <li class="flex items-center justify-between basis-1/4">
-                                                <div class="flex items-center space-x-3 text-success">
-                                                    <i class="text-sm leading-none fi fi-rr-check"></i>
-                                                    <span
-                                                        class="inline-block text-sm font-normal leading-normal text-success">
-                                                        What is Angular?
+                                            <li>
+                                                <a href="{{ route('client.auth.courses.lecture') }}"
+                                                    class="flex items-center justify-between basis-1/4">
+                                                    <div class="flex items-center space-x-3 text-success">
+                                                        <i class="text-sm leading-none fi fi-rr-check"></i>
+                                                        <span
+                                                            class="inline-block text-sm font-normal leading-normal text-success">
+                                                            What is Angular?
+                                                        </span>
+                                                    </div>
+                                                    <span class="text-sm font-normal text-secondary">
+                                                        05:42
                                                     </span>
-                                                </div>
-                                                <span class="text-sm font-normal text-secondary">
-                                                    05:42
-                                                </span>
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="#" class="flex items-center justify-between basis-1/4">
+                                                <a href="{{ route('client.auth.courses.lecture') }}"
+                                                    class="flex items-center justify-between basis-1/4">
                                                     <div class="flex items-center space-x-3">
                                                         <i class="text-sm leading-none fi fi-rr-play"></i>
                                                         <span
@@ -170,7 +174,8 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" class="flex items-center justify-between basis-1/4">
+                                                <a href="{{ route('client.auth.courses.lecture') }}"
+                                                    class="flex items-center justify-between basis-1/4">
                                                     <div class="flex items-center space-x-3">
                                                         <i class="text-sm leading-none fi fi-rr-play"></i>
                                                         <span
@@ -205,7 +210,8 @@
                                     <div class="px-4 py-5 font-light">
                                         <ul class="flex flex-col flex-wrap gap-y-4">
                                             <li>
-                                                <a href="#" class="flex items-center justify-between basis-1/4">
+                                                <a href="{{ route('client.auth.courses.lecture') }}"
+                                                    class="flex items-center justify-between basis-1/4">
                                                     <div class="flex items-center space-x-3">
                                                         <i class="text-sm leading-none fi fi-rr-play"></i>
                                                         <span
@@ -219,7 +225,8 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" class="flex items-center justify-between basis-1/4">
+                                                <a href="{{ route('client.auth.courses.lecture') }}"
+                                                    class="flex items-center justify-between basis-1/4">
                                                     <div class="flex items-center space-x-3">
                                                         <i class="text-sm leading-none fi fi-rr-play"></i>
                                                         <span

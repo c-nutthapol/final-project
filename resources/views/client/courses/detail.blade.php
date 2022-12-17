@@ -2,7 +2,7 @@
 
 @section('title', 'หลักสูตร')
 
-@section('subtitle','| Angular - The Complete Guide (2022 Edititon)')
+@section('subtitle', '| Angular - The Complete Guide (2022 Edititon)')
 
 @section('content')
     <!--------- Content  ---------->
@@ -55,10 +55,10 @@
                                     </figure>
                                 </div>
                                 <div>
-                                    <button type="button"
+                                    <a href="{{ route('client.auth.courses.lecture') }}"
                                         class="font-normal uppercase text-base text-white text-center tracking-wider bg-primary py-2.5 px-20 rounded-xl shadow-btn transition ease-out duration-300 hover:shadow-[0_4px_10px_#B6B3FF] hover:brightness-95 active:shadow-none active:brightness-90 active:scale-95">
                                         Register
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
