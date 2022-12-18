@@ -96,13 +96,13 @@ class Course extends Model
     }
 
     /**
-     * It returns the average of the scors column in the reviews table.
+     * It returns the average of the scores column in the reviews table.
      *
-     * @return The average of the scors column in the reviews table.
+     * @return The average of the scores column in the reviews table.
      */
     public function getRatingAttribute()
     {
-        return number_format($this->reviews()->avg('scors'), 1, '.', '');
+        return number_format($this->reviews()->avg('scores'), 1, '.', '');
     }
 
     /**

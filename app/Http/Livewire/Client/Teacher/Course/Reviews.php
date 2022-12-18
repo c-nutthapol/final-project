@@ -11,12 +11,22 @@ class Reviews extends Component
 {
     public function render()
     {
-        $reviews = Review::whereHas('course')->paginate(4);
+        $reviews = Review::when($this->score != 'all', function ($query) {
+            $query->when($this->score == '>=4', function ($query) {
+                $query->where('scores', '>=', 4);
+            });
+            $query->when($this->score == '3', function ($query) {
+                $query->where('scores', 3);
+            });
+            $query->when($this->score == '<=2', function ($query) {
+                $query->where('scores', '<=', 2);
+            });
+        })->where('course_id', $this->idTable)->paginate(4);
 
         return view('livewire.client.teacher.course.reviews', compact('reviews'));
     }
 
-    public $subtitle, $idTable, $idHash;
+    public $subtitle, $idTable, $idHash, $score = 'all';
 
     public function mount($id)
     {

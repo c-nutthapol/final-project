@@ -7,7 +7,8 @@
             </label>
             <div class="mt-1.5 flex space-x-6">
                 <div class="flex items-center">
-                    <input checked="" id="radio-review-all" type="radio" value="" name="radio-review"
+                    <input checked="" id="radio-review-all" type="radio" value="all" wire:model="score"
+                        name="radio-review"
                         class="w-4 h-4 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80">
                     <label for="radio-review-all"
                         class="flex items-center pl-3 text-base font-normal cursor-pointer text-secondary">
@@ -15,7 +16,7 @@
                     </label>
                 </div>{{--  --}}
                 <div class="flex items-center">
-                    <input id="radio-review-4" type="radio" value="" name="radio-review"
+                    <input id="radio-review-4" type="radio" value=">=4" wire:model="score" name="radio-review"
                         class="w-4 h-4 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80">
                     <label for="radio-review-4"
                         class="flex items-center pl-3 text-base font-normal cursor-pointer text-secondary">
@@ -33,7 +34,7 @@
                     </label>
                 </div>
                 <div class="flex items-center">
-                    <input id="radio-review-3" type="radio" value="" name="radio-review"
+                    <input id="radio-review-3" type="radio" value="3" wire:model="score" name="radio-review"
                         class="w-4 h-4 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80">
                     <label for="radio-review-3"
                         class="flex items-center pl-3 text-base font-normal cursor-pointer text-secondary">
@@ -49,7 +50,7 @@
                     </label>
                 </div>
                 <div class="flex items-center">
-                    <input id="radio-review-2" type="radio" value="" name="radio-review"
+                    <input id="radio-review-2" type="radio" value="<=2" wire:model="score" name="radio-review"
                         class="w-4 h-4 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80">
                     <label for="radio-review-2"
                         class="flex items-center pl-3 text-base font-normal cursor-pointer text-secondary">
@@ -71,7 +72,7 @@
                     <i class="leading-none fi fi-rr-star"></i>
                 </div>
                 <div class="flex items-center h-full px-3 font-medium bg-white text-secondary">
-                    {{ number_format($reviews->avg('scors'), 1, '.', '') }}
+                    {{ number_format($reviews->avg('scores'), 1, '.', '') }}
                 </div>
             </div>
         </div>
@@ -80,7 +81,7 @@
     <div class="grid grid-cols-2 gap-5">
         @foreach ($reviews as $item)
             <figure class="relative flex flex-row items-start min-w-0 p-6 space-x-3 break-all bg-white rounded-xl"
-                data-aos="fade-up" data-aos-delay="260" data-aos-duration="1200" data-aos-once="true">
+                data-aos-delay="260" data-aos-duration="1200" data-aos-once="true">
                 <img src="{{ !is_null($item->user->avatar) && Storage::exists($item->user->avatar) ? Storage::url($item->user->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
                     alt="avatar" class="object-cover object-top w-12 h-12 rounded-xl shadow-avatar">
                 <div class="flex-auto">
@@ -92,7 +93,7 @@
                     </span>
                     <div class="flex flex-row mt-1 space-x-1">
                         @for ($i = 0; $i < 5; $i++)
-                            @if ($item->scors > $i)
+                            @if ($item->scores > $i)
                                 <i class="text-yellow-300 fi fi-rr-star"></i>
                             @else
                                 <i class="fi fi-rr-star"></i>
