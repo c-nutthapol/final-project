@@ -44,6 +44,11 @@ class Course extends Model
         });
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
     /**
      * The `sub_category()` function returns the sub category that belongs to the product
      *

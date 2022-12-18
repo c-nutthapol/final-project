@@ -63,9 +63,9 @@ class CreateCourse extends Component
                 'onDenied' => '',
             ]);
             $this->emit('coursesRefresh');
-            $this->reset('name', 'category', 'sub_category_id', 'level');
+            return $this->reset('name', 'category', 'sub_category_id', 'level');
         } catch (\Exception $e) {
-            $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
+            return $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
                 'position' => 'top-end',
                 'timer' => 3000,
                 'toast' => true,

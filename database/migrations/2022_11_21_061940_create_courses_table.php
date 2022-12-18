@@ -24,7 +24,7 @@ return new class extends Migration
             $table->text('video')->nullable();
             $table->bigInteger('sub_category_id', 0, 1)->nullable();
             $table->string('post_status', 60)->default('private'); //private = ส่วนตัว, public = สาธารณะ
-            $table->string('status', 60)->default('correct'); //terminate = ยุติ, correct = ถูกต้อง
+            $table->string('status', 60)->default('no_status'); //no_status = ไม่มีสถานะ checking = กำลังตรวจสอบ terminate = ยุติ, correct = ถูกต้อง
             $table->bigInteger('created_by', 0, 1)->nullable();
             $table->bigInteger('updated_by', 0, 1)->nullable();
             $table->bigInteger('deleted_by', 0, 1)->nullable();
