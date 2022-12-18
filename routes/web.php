@@ -18,6 +18,8 @@ Route::name('client.')->group(function () {
         return view('client.home');
     })->name('home');
 
+    Route::view('/instructor', 'client.instructor-form')->name('instructor-form');
+
     // คอร์สทั้งหมด
     Route::prefix('courses')->name('courses.')->group(function () {
         Route::view('/', 'client.courses.index')->name('all');
@@ -67,8 +69,15 @@ Route::name('client.')->group(function () {
     });
 });
 
-Route::prefix('admin')->middleware(['auth:web', 'role:administrator'])->name('admin-')->group(function () {
-    Route::get('/', function () {
-        return view('admin.home');
-    })->name('home');
+// Route::prefix('admin')->middleware(['auth:web', 'role:administrator'])->name('admin-')->group(function () {
+//     // Route::get('/', function () {
+//     //     return view('admin.home');
+//     // })->name('home');
+//     Route::view('/', 'admin.home')->name('home');
+// });
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::view('/', 'admin.home')->name('home');
+    Route::view('/instructor', 'admin.instructor')->name('instructor');
+    Route::view('/courses', 'admin.courses')->name('courses');
 });

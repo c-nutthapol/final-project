@@ -6,10 +6,10 @@
 
 @section('content')
     <main class="relative bg-white font-ibm">
-        <div class="h-screen bg-gradient-to-b from-primary-20">
-            <nav class="flex items-center justify-between w-full h-16 bg-white/80 backdrop-blur-md p-4">
+        <div class="h-full bg-gradient-to-b from-primary-20">
+            <nav class="flex items-center justify-between w-full h-16 p-4 bg-white/80 backdrop-blur-md">
                 <div class="flex items-center justify-start space-x-4 text-secondary">
-                    <a href="{{ route('client.auth.courses.view') }}" class="inline-block leading-none text-2xl">
+                    <a href="{{ route('client.auth.courses.view') }}" class="inline-block text-2xl leading-none">
                         <i class="fi fi-rr-arrow-left"></i>
                     </a>
                     <h1 class="text-xl font-medium">
@@ -20,7 +20,7 @@
             <div class="flex flex-row justify-start h-full">
                 {{-- Menu --}}
                 <aside
-                    class="w-96 h-full backdrop-blur-md bg-white/20 overflow-y-auto overflow-x-hidden sticky left-0 top-0">
+                    class="sticky top-0 left-0 h-full overflow-x-hidden overflow-y-auto w-96 backdrop-blur-md bg-white/20">
                     <div id="curriculum" data-accordion="collapse">
                         <div>
                             <h2 id="curriculum-heading-1">
@@ -87,7 +87,7 @@
                         <div>
                             <h2 id="curriculum-heading-2">
                                 <button type="button"
-                                    class="flex items-center justify-between w-full p-4 text-base font-semibold tracking-wide text-left  text-dark-theme bg-primary-40/20"
+                                    class="flex items-center justify-between w-full p-4 text-base font-semibold tracking-wide text-left text-dark-theme bg-primary-40/20"
                                     data-accordion-target="#curriculum-body-2" aria-expanded="false"
                                     aria-controls="curriculum-body-2">
                                     <span>Two Step</span>
@@ -138,19 +138,19 @@
                 </aside>
 
                 {{-- Content --}}
-                <div class="flex-1 overflow-x-hidden">
-                    <div class="h-3/4 bg-transparent">
-                        {{-- Video --}}
-                        <div>
-                            <video id="player" playsinline controls data-poster="/path/to/poster.jpg" class="w-full">
-                                <source src="/path/to/video.mp4" type="video/mp4" />
-                            </video>
-                        </div>
-                        {{-- Quiz --}}
-                        {{-- <div class="flex items-center justify-center h-full">
+                <div class="flex-1 h-full overflow-hidden">
+                    {{-- Video --}}
+                    <div class="relative bg-transparent">
+                        <video id="player" playsinline controls data-poster="/path/to/poster.jpg">
+                            <source src="/path/to/video.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    {{-- Quiz --}}
+                    {{-- <div class="relative h-[75vh] bg-transparent">
+                        <div class="flex items-center justify-center h-full">
                             <div class="bg-white/70 backdrop-blur-lg w-[42rem] p-8 rounded-2xl shadow-card-course">
                                 <form>
-                                    <h3 class="text-lg text-secondary font-medium tracking-wide">HTML คืออะไร</h3>
+                                    <h3 class="text-lg font-medium tracking-wide text-secondary">HTML คืออะไร</h3>
                                     <div class="mt-6 space-y-4">
                                         <div class="flex items-center">
                                             <input id="radio-quiz-1" type="radio" name="quiz"
@@ -192,23 +192,24 @@
                                     </div>
                                     <div class="float-right mt-6">
                                         <button type="submit" class="flex items-center btn is-primary">
-                                            <i class="leading-none  fi fi-rr-paper-plane"></i>
+                                            <i class="leading-none fi fi-rr-paper-plane"></i>
                                             <span class="inline-block ml-2 text-sm">ส่งคำตอบ</span>
                                         </button>
                                     </div>
                                 </form>
                             </div>
-                        </div> --}}
-                    </div>
-                    {{-- เอกสารประกอบ --}}
-                    <div class="p-6">
-                        <h4 class="text-2xl font-semibold text-secondary tracking-wide mb-8">เอกสารประกอบ</h4>
+                        </div>
+                    </div> --}}
 
-                        <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+                    {{-- เอกสารประกอบ --}}
+                    <div class="p-6 mb-8">
+                        <h4 class="mb-8 text-2xl font-semibold tracking-wide text-secondary">เอกสารประกอบ</h4>
+
+                        <div class="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-6">
                             <a href="#">
                                 <div
-                                    class="flex items-center space-x-2 bg-primary-20/30 text-secondary py-4 px-4 rounded-md break-words transition ease-linear duration-150 hover:bg-primary-20/60">
-                                    <i class="fi fi-rr-document leading-none text-base"></i>
+                                    class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
+                                    <i class="text-base leading-none fi fi-rr-document"></i>
                                     <div class="text-sm line-clamp-1">
                                         Document
                                     </div>
@@ -216,8 +217,8 @@
                             </a>
                             <a href="#">
                                 <div
-                                    class="flex items-center space-x-2 bg-primary-20/30 text-secondary py-4 px-4 rounded-md break-words transition ease-linear duration-150 hover:bg-primary-20/60">
-                                    <i class="fi fi-rr-document leading-none text-base"></i>
+                                    class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
+                                    <i class="text-base leading-none fi fi-rr-document"></i>
                                     <div class="text-sm line-clamp-1">
                                         Document
                                     </div>
@@ -225,8 +226,8 @@
                             </a>
                             <a href="#">
                                 <div
-                                    class="flex items-center space-x-2 bg-primary-20/30 text-secondary py-4 px-4 rounded-md break-words transition ease-linear duration-150 hover:bg-primary-20/60">
-                                    <i class="fi fi-rr-document leading-none text-base"></i>
+                                    class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
+                                    <i class="text-base leading-none fi fi-rr-document"></i>
                                     <div class="text-sm line-clamp-1">
                                         Document
                                     </div>
@@ -234,8 +235,8 @@
                             </a>
                             <a href="#">
                                 <div
-                                    class="flex items-center space-x-2 bg-primary-20/30 text-secondary py-4 px-4 rounded-md break-words transition ease-linear duration-150 hover:bg-primary-20/60">
-                                    <i class="fi fi-rr-document leading-none text-base"></i>
+                                    class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
+                                    <i class="text-base leading-none fi fi-rr-document"></i>
                                     <div class="text-sm line-clamp-1">
                                         Document
                                     </div>
@@ -243,8 +244,8 @@
                             </a>
                             <a href="#">
                                 <div
-                                    class="flex items-center space-x-2 bg-primary-20/30 text-secondary py-4 px-4 rounded-md break-words transition ease-linear duration-150 hover:bg-primary-20/60">
-                                    <i class="fi fi-rr-document leading-none text-base"></i>
+                                    class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
+                                    <i class="text-base leading-none fi fi-rr-document"></i>
                                     <div class="text-sm line-clamp-1">
                                         Document
                                     </div>
@@ -252,8 +253,8 @@
                             </a>
                             <a href="#">
                                 <div
-                                    class="flex items-center space-x-2 bg-primary-20/30 text-secondary py-4 px-4 rounded-md break-words transition ease-linear duration-150 hover:bg-primary-20/60">
-                                    <i class="fi fi-rr-document leading-none text-base"></i>
+                                    class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
+                                    <i class="text-base leading-none fi fi-rr-document"></i>
                                     <div class="text-sm line-clamp-1">
                                         Document
                                     </div>
@@ -262,9 +263,8 @@
                         </div>
                     </div>
 
-
                     {{-- Footer --}}
-                    <footer class="py-4 bg-secondary mt-10">
+                    <footer class="py-4 bg-secondary">
                         <p class="text-xs font-light tracking-wide text-center text-white font-montserrat">
                             © 2022 D-Course. All Right Reserved.
                         </p>
