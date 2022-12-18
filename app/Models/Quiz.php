@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Quiz extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 
@@ -16,15 +16,18 @@ class Quiz extends Model
     {
         parent::boot();
 
+        /* A boot method that is called when a model is created. */
         static::creating(function ($model) {
             $model->created_by = auth()->check() ? auth()->user()->id : null;
             $model->updated_by = auth()->check() ? auth()->user()->id : null;
         });
 
+        /* Updating the updated_by field with the user id of the user who is updating the record. */
         static::updating(function ($model) {
             $model->updated_by = auth()->check() ? auth()->user()->id : null;
         });
 
+        /* Updating the deleted_by field with the user id of the user who is deleting the record. */
         static::deleting(function ($model) {
             $model->deleted_by = auth()->check() ? auth()->user()->id : null;
         });
