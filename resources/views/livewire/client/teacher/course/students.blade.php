@@ -3,12 +3,12 @@
     <div class="mx-auto font-ibm">
         <div class="flex items-center justify-between mb-6">
             <div>
-                <select id="filter-category"
+                {{-- <select id="filter-category"
                     class="block px-3 py-2 w-56 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary">
                     <option selected>ความคืบหน้าทั้งหมด</option>
                     <option value="">ความคืบหน้ามากที่สุด</option>
                     <option value="">ความคืบหน้าน้อยที่สุด</option>
-                </select>
+                </select> --}}
             </div>
             <div class="flex space-x-3">
                 <div class="relative">
@@ -17,7 +17,7 @@
                     </div>
                     <input type="search" id="search"
                         class="block w-full py-2 pl-10 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                        placeholder="ค้นหา..." required />
+                        placeholder="ค้นหา..." wire:model="search" />
                 </div>
                 <div
                     class="flex items-center  border-primary border overflow-hidden rounded-md text-sm flex-row-reverse bg-white">
@@ -25,7 +25,7 @@
                         <i class="fi fi-rr-users leading-none"></i>
                     </div>
                     <div class="px-3 text-secondary font-medium h-full flex items-center"">
-                        6
+                        {{ $students->count() }}
                     </div>
                 </div>
             </div>
@@ -54,10 +54,13 @@
                         </div>
                     </div>
                     <div>
-                        <div class="flex items-center gap-2 text-sm font-semibold text-yellow-300 font-ibm">
-                            <i class="leading-none fi fi-rr-star"></i>
-                            <div>{{ $item->reviews()->find($idTable)->scores }}</div>
-                        </div>
+                        @php($review = $item->reviews()->find($idTable))
+                        @if ($review)
+                            <div class="flex items-center gap-2 text-sm font-semibold text-yellow-300 font-ibm">
+                                <i class="leading-none fi fi-rr-star"></i>
+                                <div>{{ $review->scores }}</div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             @endforeach

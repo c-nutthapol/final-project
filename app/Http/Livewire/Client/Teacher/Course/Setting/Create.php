@@ -17,9 +17,9 @@ class Create extends Component
     {
         $users = !empty($this->search) ? User::where(function ($query) {
             $query->where('username', 'like', '%' . $this->search);
+            $query->orWhere('email', 'like', '%' . $this->search);
             $query->orWhere('first_name', 'like', '%' . $this->search);
             $query->orWhere('last_name', 'like', '%' . $this->search);
-            $query->orWhere('email', 'like', '%' . $this->search);
             $query->orWhere(DB::raw("concat(first_name, ' ',last_name)"), 'like', '%' . $this->search);
         })->where('level', 'lecturer')->whereNotIn('id', Course::find($this->idTable)->lecturers()->pluck('id'))->get() : [];
         return view('livewire.client.teacher.course.setting.create', compact('users'));

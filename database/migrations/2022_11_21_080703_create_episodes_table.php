@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('section_id', 0, 1);
             $table->string('name', 120);
             $table->text('video');
+            $table->text('files');
             $table->bigInteger('created_by', 0, 1)->nullable();
             $table->bigInteger('updated_by', 0, 1)->nullable();
             $table->bigInteger('deleted_by', 0, 1)->nullable();
