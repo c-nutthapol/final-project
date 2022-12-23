@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RequestLecturer extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 
@@ -25,11 +25,6 @@ class RequestLecturer extends Model
         /* Adding the user id to the updated_by field. */
         static::updating(function ($model) {
             $model->updated_by = auth()->check() ? auth()->user()->id : null;
-        });
-
-        /* Adding the user id to the deleted_by field. */
-        static::deleting(function ($model) {
-            $model->deleted_by = auth()->check() ? auth()->user()->id : null;
         });
     }
 }

@@ -20,13 +20,9 @@ return new class extends Migration
             $table->string('status', 50);
             $table->bigInteger('created_by', 0, 1)->nullable();
             $table->bigInteger('updated_by', 0, 1)->nullable();
-            $table->bigInteger('deleted_by', 0, 1)->nullable();
             $table->timestamps();
-            $table->softDeletes();
-
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
-            $table->foreign('deleted_by')->references('id')->on('users');
         });
     }
 

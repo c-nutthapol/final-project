@@ -27,9 +27,9 @@
                     {{ !empty($cid) || !empty($cid) ? 'แก้ไข' : 'เพิ่ม' }}เนื้อหาย่อย
                 </h3>
             </div>
-            @if (!empty($cid) && route()->getName() == 'client.teacher.course.content.edit-quiz')
+            @if (!empty($cid) && Route::currentRouteName() == 'client.teacher.course.content.edit-quiz')
                 @livewire('client.teacher.course.content.edit-quiz', ['id' => $id, 'sid' => $sid, 'cid' => $cid])
-            @elseif(!empty($cid) && route()->getName() == 'client.teacher.course.content.edit-ep')
+            @elseif(!empty($cid) && Route::currentRouteName() == 'client.teacher.course.content.edit-ep')
                 @livewire('client.teacher.course.content.edit-e-p', ['id' => $id, 'sid' => $sid, 'cid' => $cid])
             @else
                 @livewire('client.teacher.course.content.form', ['id' => $id, 'sid' => $sid])

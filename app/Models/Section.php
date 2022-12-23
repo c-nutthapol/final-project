@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Section extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $guarded = [];
 
@@ -26,7 +26,18 @@ class Section extends Model
         });
 
         static::deleting(function ($model) {
-            $model->deleted_by = auth()->check() ? auth()->user()->id : null;
+            $model->quizzes()->delete();
+            foreach ($model->episodes as $ep) {
+                if ($ep->video != null && Storage::exists($ep->video)) {
+                    Storage::delete($ep->video);
+                }
+                foreach ($ep->files as $file) {
+                    if (!empty($file->path) && Storage::exists($file->path)) {
+                        Storage::delete($file->path);
+                    }
+                }
+            }
+            $model->episodes()->delete();
         });
     }
 

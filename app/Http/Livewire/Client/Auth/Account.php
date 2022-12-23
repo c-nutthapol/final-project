@@ -75,7 +75,7 @@ class Account extends Component
                 if ($user->avatar != null && Storage::exists($user->avatar)) {
                     Storage::delete($user->avatar);
                 }
-                $user->avatar = $this->avatar->store('public/account/' . md5(auth()->user()->id));
+                $user->avatar = $this->avatar->store('account/' . md5(auth()->user()->id), 'public');
             }
             /* Used to check if the password is empty or not. If it is not empty, it will be updated. */
             if (!empty($validatedData['password'])) {

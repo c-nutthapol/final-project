@@ -59,7 +59,8 @@
                                     </li>
                                 </ul>
                                 <div class="py-1">
-                                    <a href="javascript:void(0);" wire:click=""
+                                    <a href="javascript:void(0);"
+                                        wire:click="destroyConfirm({{ $item->id }},'{{ $item->name }}')"
                                         class="block px-4 py-2 text-sm text-danger hover:bg-red-100">
                                         <div class="flex items-center space-x-2">
                                             <i class="leading-none fi fi-rr-trash"></i>

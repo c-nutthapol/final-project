@@ -18,7 +18,7 @@ class Form extends Component
     }
 
 
-    public $subtitle, $idTable, $sidTable, $idHash, $sidHash, $search;
+    public $subtitle, $idTable, $sidTable, $idHash, $sidHash;
 
     public function mount($id, $sid)
     {

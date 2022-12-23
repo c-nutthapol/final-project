@@ -12,6 +12,11 @@ class Index extends Component
 {
     use LivewireAlert;
 
+    protected $listeners = [
+        'destroy'
+    ];
+
+
     public function render()
     {
         $sections = Section::get();
@@ -83,5 +88,27 @@ class Index extends Component
                 'text' => $e->getMessage(),
             ]);
         }
+    }
+
+    public function destroyConfirm($id, $name)
+    {
+        $this->alert('warning', 'คุณต้องการจะลบ ' . $name . ' ?', [
+            'position' => 'center',
+            'timer' => null,
+            'toast' => false,
+            'showCancelButton' => true,
+            'onDismissed' => '',
+            'showConfirmButton' => true,
+            'data' => [$id],
+            'onConfirmed' => 'destroy',
+            'cancelButtonText' => 'ยกเลิก',
+            'confirmButtonText' => 'ตกลง',
+        ]);
+    }
+
+    public function destroy($res)
+    {
+        $id = $res['data'][0];
+        return  Section::find($id)->delete();
     }
 }

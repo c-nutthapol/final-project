@@ -97,13 +97,13 @@ class Overview extends Component
                 if ($update->image != null && Storage::exists($update->image)) {
                     Storage::delete($update->image);
                 }
-                $update->image = $this->image->store('public/course/' . $this->idHash);
+                $update->image = $this->image->store('course/' . $this->idHash, 'public');
             }
             if (!empty($this->video)) {
                 if ($update->video != null && Storage::exists($update->video)) {
                     Storage::delete($update->video);
                 }
-                $update->video = $this->video->store('public/course/' . $this->idHash);
+                $update->video = $this->video->store('course/' . $this->idHash, 'public');
                 $this->video_temp = $update->video;
             }
             $update->name = $validateData['name'];
