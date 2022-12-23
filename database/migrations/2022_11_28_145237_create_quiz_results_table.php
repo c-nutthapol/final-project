@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('guiz_results', function (Blueprint $table) {
+        Schema::create('quiz_results', function (Blueprint $table) {
             $table->id('id');
             $table->bigInteger('quiz_id', 0, 1);
             $table->json('result_questions');
