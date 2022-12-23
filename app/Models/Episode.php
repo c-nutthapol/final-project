@@ -12,6 +12,11 @@ class Episode extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'files' => 'object',
+    ];
+
+
     protected static function boot()
     {
         parent::boot();

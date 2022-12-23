@@ -74,7 +74,7 @@ class Overview extends Component
     ];
 
     protected $messages = [
-        'required' => 'โปรดกรอกข้อมูล :attribute',
+        'required' => 'โปรดระบุข้อมูล :attribute',
         'max_mb' => ':attribute ต้องไม่เกิน :max_mb เมกะไบต์',
         'max' => [
             'string' => ':attribute ต้องไม่เกิน :max อักขระ',

@@ -42,7 +42,7 @@
                             </svg>
                         </button>
                     </div>
-                    <form>
+                    <form @submit.prevent="updateSection">
                         <!-- Modal body -->
                         <div class="p-6">
                             <div class="grid grid-cols-2 gap-x-3 gap-y-4">
@@ -52,7 +52,13 @@
                                     </label>
                                     <input type="text" id="content"
                                         class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                                        placeholder="ชื่อเนื้อหา" />
+                                        placeholder="ชื่อเนื้อหา" x-model="formData.name" />
+                                    <span x-show="formData.name.length == 0" class="error text-error">โปรดระบุข้อมูล
+                                        ชื่อเนื้อหา</span>
+                                    <span x-show="formData.name.length != 0 && formData.name.length > 120"
+                                        class="error text-error">ชื่อเนื้อหา ต้องไม่เกิน 120 อักขระ</span>
+                                    <span x-show="formData.name.length != 0 && formData.name.length < 8"
+                                        class="error text-error">ชื่อเนื้อหา ต้องมีอักขระอย่างน้อย 8</span>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +70,7 @@
                                     <span class="inline-block ml-2 font-medium">ยกเลิก</span>
                                 </div>
                             </button>
-                            <button data-modal-toggle="edit-modal" type="submit" class="btn is-warning">
+                            <button type="submit" class="btn is-warning">
                                 <div class="flex items-center">
                                     <i class="text-lg leading-none fi fi-rr-edit"></i>
                                     <span class="inline-block ml-2 font-medium">แก้ไข</span>
@@ -109,7 +115,7 @@
                                     <input type="text" id="content"
                                         class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
                                         placeholder="ชื่อเนื้อหา" x-model="formData.name" />
-                                    <span x-show="formData.name.length == 0" class="error text-error">โปรดกรอกข้อมูล
+                                    <span x-show="formData.name.length == 0" class="error text-error">โปรดระบุข้อมูล
                                         ชื่อเนื้อหา</span>
                                     <span x-show="formData.name.length != 0 && formData.name.length > 120"
                                         class="error text-error">ชื่อเนื้อหา ต้องไม่เกิน 120 อักขระ</span>

@@ -37,6 +37,16 @@ class TeacherController extends Controller
         return view('client.teacher.course.content.form', compact('id'));
     }
 
+    public function courseContenEditEP($id)
+    {
+        return view('client.teacher.course.content.form', compact('id'));
+    }
+
+    public function courseContenEditQuiz($id)
+    {
+        return view('client.teacher.course.content.form', compact('id'));
+    }
+
     public function courseReviews($id)
     {
         return view('client.teacher.course.reviews', compact('id'));

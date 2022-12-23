@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('description');
             $table->longText('files');
             $table->string('status', 50);
-            $table->bigInteger('created_by', 0, 1);
-            $table->bigInteger('updated_by', 0, 1);
+            $table->bigInteger('created_by', 0, 1)->nullable();
+            $table->bigInteger('updated_by', 0, 1)->nullable();
             $table->bigInteger('deleted_by', 0, 1)->nullable();
             $table->timestamps();
             $table->softDeletes();

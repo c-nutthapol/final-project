@@ -49,7 +49,7 @@
                 <div>{{ $subtitle }}</div>
             </li>
             <li class="flex items-center justify-between px-4 py-6 border-b border-b-secondary/10"
-                x-data="{ post_status: $wire.get('post_status').defer }">
+                x-data="{ post_status: $wire.get('post_status') }">
                 <div>สถานะ</div>
                 <div class="flex items-center">
                     {{-- <label for="status" class="mr-3 text-base font-normal text-secondary">

@@ -56,7 +56,7 @@ class Account extends Component
     ];
 
     protected $messages = [
-        'required' => 'โปรดกรอกข้อมูล :attribute',
+        'required' => 'โปรดระบุข้อมูล :attribute',
         'max' => ':attribute ต้องไม่เกิน :max อักขระ',
         'min' => ':attribute ต้องมีอักขระอย่างน้อย :min',
         'same' => ':attribute และ :other ต้องตรงกัน',

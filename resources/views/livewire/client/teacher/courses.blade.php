@@ -44,7 +44,7 @@
                             <div class="flex items-center justify-start mb-2 space-x-3">
                                 <div class="flex items-center text-sm font-normal tracking-wide text-secondary">
                                     <i class="leading-none fi fi-rr-book"></i>
-                                    <span class="inline-block ml-1.5 mr-1">4</span>
+                                    <span class="inline-block ml-1.5 mr-1">{{ $item->contentCount() }}</span>
                                     เนื้อหา
                                 </div>
                                 <div class="flex items-center gap-2 text-sm font-normal text-primary-80">

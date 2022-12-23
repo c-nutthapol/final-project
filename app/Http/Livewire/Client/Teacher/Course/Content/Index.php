@@ -4,14 +4,18 @@ namespace App\Http\Livewire\Client\Teacher\Course\Content;
 
 use App\Models\Course;
 use App\Models\Section;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Vinkla\Hashids\Facades\Hashids;
 
 class Index extends Component
 {
+    use LivewireAlert;
+
     public function render()
     {
-        return view('livewire.client.teacher.course.content.index');
+        $sections = Section::get();
+        return view('livewire.client.teacher.course.content.index', compact('sections'));
     }
 
     public $subtitle, $idTable, $idHash, $score = 'all';
@@ -27,8 +31,57 @@ class Index extends Component
         }
     }
 
-    public function createSection(string $name)
+    public function create(string $name)
     {
-        Section::create(['course_id' => $this->idTable, 'name' => $name]);
+        try {
+            Section::create(['course_id' => $this->idTable, 'name' => $name]);
+            $this->alert('success', 'บันทึกเสร็จสิ้น', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                'showDenyButton' => false,
+                'onDenied' => '',
+            ]);
+        } catch (\Exception $e) {
+            $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                'showDenyButton' => false,
+                'onDenied' => '',
+                'text' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function update(int $id, string $name)
+    {
+        try {
+            $update = Section::find($id);
+            if ($update) {
+                $update->name = $name;
+                $update->save();
+                $this->alert('success', 'บันทึกเสร็จสิ้น', [
+                    'position' => 'top-end',
+                    'timer' => 3000,
+                    'toast' => true,
+                    'timerProgressBar' => true,
+                    'showDenyButton' => false,
+                    'onDenied' => '',
+                ]);
+            }
+        } catch (\Exception $e) {
+            $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                'showDenyButton' => false,
+                'onDenied' => '',
+                'text' => $e->getMessage(),
+            ]);
+        }
     }
 }

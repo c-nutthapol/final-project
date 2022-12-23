@@ -57,7 +57,9 @@ Route::name('client.')->group(function () {
             // จัดการเนื้อหาของคอร์สเรียน
             Route::prefix('content')->name('content.')->group(function () {
                 Route::get('/{id}', 'Client\TeacherController@courseContent')->name('index');
-                Route::get('/{id}/form', 'Client\TeacherController@courseContenFrom')->name('form');
+                Route::any('/{id}/form', 'Client\TeacherController@courseContenFrom')->name('form');
+                Route::any('/{id}/ep', 'Client\TeacherController@courseContenEditEP')->name('edit-ep');
+                Route::get('/{id}/quiz', 'Client\TeacherController@courseContenEditQuiz')->name('edit-quiz');
             });
             // ผู้ลงเรียน
             Route::get('/students/{id}', 'Client\TeacherController@courseStudents')->name('students');

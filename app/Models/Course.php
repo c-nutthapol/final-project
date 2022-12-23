@@ -69,6 +69,22 @@ class Course extends Model
         return $this->hasMany(Review::class, 'course_id');
     }
 
+
+    public function sections()
+    {
+        return $this->hasMany(Section::class, 'course_id');
+    }
+
+    public function contentCount()
+    {
+        $count = 0;
+        foreach ($this->sections as $section) {
+            $count += $section->episodes->count();
+        }
+        return $count;
+    }
+
+
     /**
      * This course belongs to many lecturers, and the relationship is defined by the courses_lecturers table, where the
      * course_id is the foreign key and the user_id is the local key.

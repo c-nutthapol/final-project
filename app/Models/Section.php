@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Section extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 
@@ -28,5 +28,15 @@ class Section extends Model
         static::deleting(function ($model) {
             $model->deleted_by = auth()->check() ? auth()->user()->id : null;
         });
+    }
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class, 'section_id');
+    }
+
+    public function episodes()
+    {
+        return $this->hasMany(Episode::class, 'section_id');
     }
 }
