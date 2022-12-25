@@ -36,6 +36,14 @@
             let href = $(this).prop('href');
             window.open(href, 'popup', 'width=600,height=600,scrollbars=yes');
         });
+
+        window.addEventListener("redirect_page", (event) => {
+            let url = event.detail.url
+            let delay = event.detail.delay ?? 2000
+            setTimeout(function() {
+                window.location = url;
+            }, delay);
+        });
     </script>
 </body>
 

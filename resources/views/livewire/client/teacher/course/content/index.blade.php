@@ -140,6 +140,7 @@
                 },
                 idEdit: null,
                 opened_tab: null,
+                opened_dropdown: null,
             }
         }
 

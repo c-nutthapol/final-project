@@ -4,13 +4,14 @@ namespace App\Http\Livewire\Client\Teacher\Course\Content;
 
 use App\Models\Course;
 use App\Models\Episode;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Vinkla\Hashids\Facades\Hashids;
 
 class Form extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, LivewireAlert;
 
     public function render()
     {
@@ -103,6 +104,16 @@ class Form extends Component
                 $data['files'][$key]['path'] = $file['path']->storeAs('course/' . $this->idHash . '/section/' . $this->sidHash . '/assembly', time() . '_' . $file['name'], 'public');
             }
             Episode::create($data);
+            $this->alert('success', 'บันทึกเสร็จสิ้น', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                'showDenyButton' => false,
+                'onDenied' => '',
+            ]);
+
+            return $this->dispatchBrowserEvent('redirect_page', ['url' => route('client.teacher.course.content.index', $this->idHash)]);
         } elseif ($validateData['type'] ==  'quiz') {
         }
     }

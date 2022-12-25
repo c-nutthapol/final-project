@@ -43,7 +43,7 @@ Route::name('client.')->group(function () {
         });
     });
 
-    Route::prefix('teacher')->name('teacher.')->middleware(['auth:web', 'role:lecturer,student'])->group(function () {
+    Route::prefix('teacher')->name('teacher.')->middleware(['auth:web', 'role:lecturer'])->group(function () {
         // คอร์สเรียนทั้งหมดของผู้สอน
         Route::get('/', 'Client\TeacherController@courses')->name('all');
 

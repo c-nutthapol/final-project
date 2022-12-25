@@ -102,12 +102,14 @@
                             คอร์สทั้งหมด
                         </a>
                     </li>
-                    <li class="block px-3 py-2 lg:inline-block md:p-0">
-                        <a href="{{ route('client.teacher.all') }}"
-                            class="text-base font-normal tracking-wider font-ibm text-secondary hover:text-primary">
-                            ร่วมสอนกับเรา
-                        </a>
-                    </li>
+                    @if (auth()->user()->level == 'lecturer')
+                        <li class="block px-3 py-2 lg:inline-block md:p-0">
+                            <a href="{{ route('client.teacher.all') }}"
+                                class="text-base font-normal tracking-wider font-ibm text-secondary hover:text-primary">
+                                ร่วมสอนกับเรา
+                            </a>
+                        </li>
+                    @endif
                     <li class="block px-3 py-2 lg:inline-block md:p-0">
                         <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="inline-block btn is-primary"
                             type="button">
