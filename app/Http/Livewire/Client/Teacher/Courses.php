@@ -70,7 +70,7 @@ class Courses extends Component
             });
             $query->when(!empty($this->search['sort']) && $this->search['sort'] == 'highReview', function ($query) {
                 $query->whereHas('reviews', function ($query) {
-                    $query->select(DB::raw('coalesce(avg(scors),0) as rating'));
+                    $query->select(DB::raw('coalesce(avg(scores),0) as rating'));
                     $query->orderByDesc('rating');
                 });
             });
