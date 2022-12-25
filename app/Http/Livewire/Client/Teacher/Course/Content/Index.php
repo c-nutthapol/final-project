@@ -48,6 +48,7 @@ class Index extends Component
                 'showDenyButton' => false,
                 'onDenied' => '',
             ]);
+            return $this->dispatchBrowserEvent('redirect_page', ['url' => route('client.teacher.course.content.index', $this->idHash)]);
         } catch (\Exception $e) {
             $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
                 'position' => 'top-end',
