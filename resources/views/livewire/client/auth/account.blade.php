@@ -7,7 +7,7 @@
             <div class="text-center">
                 {{-- @IF สำหรับตอนที่มีรูป --}}
                 @if ($avatar_temp && empty($avatar))
-                    <img src="{{ !is_null($avatar_temp) && Storage::exists($avatar_temp) ? Storage::url($avatar_temp) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
+                    <img src="{{ !is_null($avatar_temp) && Storage::disk('public')->exists($avatar_temp) ? Storage::disk('public')->url($avatar_temp) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
                         alt="Avatar"
                         class="relative z-10 object-cover object-top w-32 h-32 mx-auto mb-6 rounded-full" />
                 @elseif ($avatar)

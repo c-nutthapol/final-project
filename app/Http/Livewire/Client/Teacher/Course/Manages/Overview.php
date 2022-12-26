@@ -108,7 +108,7 @@ class Overview extends Component
             }
             $update->name = $validateData['name'];
             $update->sub_category_id = $validateData['sub_category_id'];
-            $update->level = $validateData['name'];
+            $update->level = $validateData['level'];
             $update->description = $validateData['description'];
             $update->save();
 

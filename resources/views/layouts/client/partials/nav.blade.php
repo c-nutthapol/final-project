@@ -114,7 +114,7 @@
                         <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="inline-block btn is-primary"
                             type="button">
                             <figure class="flex items-center gap-3">
-                                <img src="{{ !is_null(auth()->user()->avatar) && Storage::exists(auth()->user()->avatar) ? Storage::url(auth()->user()->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
+                                <img src="{{ !is_null(auth()->user()->avatar) && Storage::disk('public')->exists(auth()->user()->avatar) ? Storage::disk('public')->url(auth()->user()->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
                                     alt="avatar" class="object-cover object-top rounded-full w-7 h-7" />
                                 <figcaption class="text-base font-normal text-white">
                                     {{ auth()->user()->full_name }}

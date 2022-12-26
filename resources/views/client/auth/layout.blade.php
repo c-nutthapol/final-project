@@ -13,7 +13,7 @@
                             <div class="p-10 text-center bg-white rounded-2xl shadow-card-course">
                                 <figure class="relative">
                                     {{-- User Picture --}}
-                                    <img src="{{ !is_null(auth()->user()->avatar) && Storage::exists(auth()->user()->avatar) ? Storage::url(auth()->user()->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
+                                    <img src="{{ !is_null(auth()->user()->avatar) && Storage::disk('public')->exists(auth()->user()->avatar) ? Storage::disk('public')->url(auth()->user()->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
                                         alt="Avatar"
                                         class="relative z-10 object-cover object-top w-32 h-32 mx-auto mb-6 rounded-full" />
                                     {{-- Blobs --}}

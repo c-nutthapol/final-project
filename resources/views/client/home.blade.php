@@ -42,9 +42,9 @@
             <div class="relative z-10 font-montserrat">
                 <div class="container px-3 py-24 mx-auto lg:px-6">
                     <!--------- Title  ---------->
-                    <h1 class="mb-12 text-3xl font-bold tracking-wide text-center text-secondary" data-aos="fade-up"
+                    <h1 class="mb-12 text-3xl font-bold tracking-wide text-center text-secondary font-ibm" data-aos="fade-up"
                         data-aos-delay="600" data-aos-duration="1000" data-aos-once="true">
-                        Courses
+                        คอร์สเรียนแนะนำ
                     </h1>
 
                     <!--------- Items  ---------->

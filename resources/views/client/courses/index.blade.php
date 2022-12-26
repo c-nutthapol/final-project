@@ -13,10 +13,10 @@
             <img src="{{ asset('assets/images/icons/blobs-right.svg') }}" class="absolute z-0 w-96 -top-20 -right-10" />
             <!--------- Content ---------->
             <div class="container relative z-10 flex items-center justify-center h-full mx-auto">
-                <div class="text-center font-montserrat">
+                <div class="text-center font-ibm">
                     <h1 class="mb-0 text-6xl font-extrabold tracking-widest text-secondary" data-aos="fade-up"
                         data-aos-delay="200" data-aos-duration="1000">
-                        Courses
+                        คอร์สเรียนทั้งหมด
                     </h1>
                 </div>
             </div>
@@ -35,18 +35,18 @@
                             </div>
                             <input type="search"
                                 class="block w-full h-full pl-10 text-base tracking-wide bg-white border-0 text-secondary-80 focus:ring-0"
-                                placeholder="Search" required />
+                                placeholder="ค้นหาคอร์สเรียน" required />
                         </div>
                         <div class="flex-initial w-1/4 border-l border-secondary-80">
                             <select
                                 class="block w-full h-full text-base tracking-wide bg-white border-0 text-secondary-80 focus:ring-0">
-                                <option selected>Category</option>
+                                <option selected>หมวดหมู่</option>
                             </select>
                         </div>
                         <div class="flex-initial w-1/5 border-l border-secondary-80">
                             <select
                                 class="block w-full h-full text-base tracking-wide bg-white border-0 text-secondary-80 focus:ring-0">
-                                <option selected>All</option>
+                                <option selected>หมวดหมู่ย่อย</option>
                             </select>
                         </div>
                     </form>

@@ -56,8 +56,8 @@
                                 </div>
                                 <div>
                                     <a href="{{ route('client.auth.courses.lecture') }}"
-                                        class="font-normal uppercase text-base text-white text-center tracking-wider bg-primary py-2.5 px-20 rounded-xl shadow-btn transition ease-out duration-300 hover:shadow-[0_4px_10px_#B6B3FF] hover:brightness-95 active:shadow-none active:brightness-90 active:scale-95">
-                                        Register
+                                        class="font-normal uppercase text-base text-white text-center tracking-wider font-ibm bg-primary py-2.5 px-20 rounded-xl shadow-btn transition ease-out duration-300 hover:shadow-[0_4px_10px_#B6B3FF] hover:brightness-95 active:shadow-none active:brightness-90 active:scale-95">
+                                        ลงทะเบียน
                                     </a>
                                 </div>
                             </div>
@@ -71,8 +71,8 @@
         <div class="container relative z-10 px-3 py-24 mx-auto bg-transparent lg:px-6 font-montserrat">
             <!--------- Course Overview  ---------->
             <div class="mb-20" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1100" data-aos-once="true">
-                <h4 class="mb-8 text-2xl font-semibold tracking-wide text-dark-theme">
-                    Course Overview
+                <h4 class="mb-8 text-2xl font-semibold tracking-wide text-dark-theme font-ibm">
+                    ภาพรวมคอร์สเรียน
                 </h4>
                 <p class="mb-4 text-base font-normal leading-normal text-secondary">
                     At vero eos et accusamus et iusto odio dignissimos ducimus qui
@@ -100,8 +100,8 @@
 
             <!--------- What you’ll learn  ---------->
             <div class="mb-20" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1100" data-aos-once="true">
-                <h4 class="mb-8 text-2xl font-semibold tracking-wide text-dark-theme">
-                    What you’ll learn
+                <h4 class="mb-8 text-2xl font-semibold tracking-wide text-dark-theme font-ibm">
+                    สิ่งที่ผู้เรียนจะได้เรียนรู้ทั้งหมด
                 </h4>
                 <ul class="flex flex-row flex-wrap gap-y-4">
                     <li class="flex items-start space-x-3 basis-1/4">
@@ -157,8 +157,8 @@
 
             <!--------- Requirements  ---------->
             <div class="mb-20" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1100" data-aos-once="true">
-                <h4 class="mb-8 text-2xl font-semibold tracking-wide text-dark-theme">
-                    Requirements
+                <h4 class="mb-8 text-2xl font-semibold tracking-wide text-dark-theme font-ibm">
+                    สิ่งที่ผู้เรียนต้องมี
                 </h4>
                 <ul class="flex flex-col flex-wrap gap-y-4">
                     <li class="flex items-start space-x-3 basis-1/4">
@@ -185,8 +185,8 @@
 
             <!--------- Curriculum  ---------->
             <div class="mb-20" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1100" data-aos-once="true">
-                <h4 class="mb-8 text-2xl font-semibold tracking-wide text-dark-theme">
-                    Curriculum
+                <h4 class="mb-8 text-2xl font-semibold tracking-wide text-dark-theme font-ibm">
+                    เนื้อหา
                 </h4>
 
                 <div id="curriculum" data-accordion="collapse">
@@ -302,9 +302,9 @@
 
             <!--------- Reviews  ---------->
             <div>
-                <h4 class="mb-8 text-2xl font-semibold tracking-wide text-dark-theme" data-aos="fade-up"
+                <h4 class="mb-8 text-2xl font-semibold tracking-wide text-dark-theme font-ibm" data-aos="fade-up"
                     data-aos-delay="100" data-aos-duration="1000" data-aos-once="true">
-                    Reviews<span class="inline-block ml-2">(2)</span>
+                    รีวิว<span class="inline-block ml-2">(2)</span>
                 </h4>
                 <div class="flex flex-col w-full gap-y-6">
                     <!--------- Avatar ---------->

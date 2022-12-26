@@ -15,14 +15,14 @@
             @forelse ($courses as $item)
                 <a href="{{ route('client.teacher.course.manage.overview', $item->encode) }}"
                     class="flex justify-between p-4 overflow-hidden duration-200 ease-in-out transform bg-primary-20/20 rounded-2xl hover:bg-primary-20/40 focus:bg-primary-20/60">
-                    <div class="flex flex-row justify-start space-x-4">
-                        <img src="{{ !is_null($item->image) && Storage::exists($item->image) ? Storage::url($item->image) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
+                    <div class="flex flex-row justify-start flex-grow space-x-4">
+                        <img src="{{ !is_null($item->image) && Storage::disk('public')->exists($item->image) ? Storage::disk('public')->url($item->image) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
                             alt="photo" class="object-cover rounded-2xl h-36" />
                         <div>
                             <h4 class="mb-2 text-lg font-bold leading-normal tracking-wide text-secondary line-clamp-2">
                                 {{ $item->name }}
                             </h4>
-                            <div class="flex justify-start mb-3 space-x-2">
+                            <div class="flex justify-start items-center mb-3 space-x-2">
                                 <div class="flex items-center space-x-1 text-sm">
                                     @if (floor($item->rating))
                                         @for ($i = 0; $i < floor($item->rating); $i++)

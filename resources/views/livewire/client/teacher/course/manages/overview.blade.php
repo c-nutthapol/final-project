@@ -6,7 +6,7 @@
             <div class="text-center">
                 @if ($image_temp && empty($image))
                     {{-- <!--------- @IF กรณีที่มีรูป  ----------> --}}
-                    <img src="{{ !is_null($image_temp) && Storage::exists($image_temp) ? Storage::url($image_temp) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
+                    <img src="{{ !is_null($image_temp) && Storage::disk('public')->exists($image_temp) ? Storage::disk('public')->url($image_temp) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
                         alt="Course {{ $name }}"
                         class="relative z-10 object-cover object-top mx-auto mb-4 w-[28.75rem] h-60 rounded-xl" />
                 @elseif ($image)

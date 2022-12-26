@@ -21,7 +21,6 @@ class Courses extends Component
     public function render()
     {
         $courses = $this->queryCourse();
-
         return view('livewire.client.teacher.courses', compact('courses'));
     }
 
@@ -65,9 +64,9 @@ class Courses extends Component
                 });
             });
             $query->whereIn('level', $this->search['level']);
-            $query->when(!empty($this->search['sort']) && $this->search['sort'] != 'highReview', function ($query) {
-                $query->orderBy('created_at', $this->search['sort']);
-            });
+            // $query->when(!empty($this->search['sort']) && $this->search['sort'] != 'highReview', function ($query) {
+            //     $query->orderBy('created_at', $this->search['sort']);
+            // });
             $query->when(!empty($this->search['sort']) && $this->search['sort'] == 'highReview', function ($query) {
                 $query->whereHas('reviews', function ($query) {
                     $query->select(DB::raw('coalesce(avg(scores),0) as rating'));
