@@ -38,6 +38,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guiz_results');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('quiz_results');
+        Schema::enableForeignKeyConstraints();
     }
 };
