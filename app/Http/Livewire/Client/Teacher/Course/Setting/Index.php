@@ -39,7 +39,7 @@ class Index extends Component
         }
     }
 
-    public $post_status, $status, $full_name, $created_by;
+    public $post_status, $full_name, $created_by;
 
     public function changePostStatus(bool $value)
     {
@@ -47,16 +47,8 @@ class Index extends Component
             $update = Course::find($this->idTable);
             if ($value) {
                 $update->post_status = 'public';
-                if ($update->status == 'no_status') {
-                    $update->status = 'checking';
-                    $this->status = 'checking';
-                }
             } else {
                 $update->post_status = 'private';
-                if ($update->status == 'checking') {
-                    $update->status = 'no_status';
-                    $this->status = 'no_status';
-                }
             }
             $update->save();
             return $this->alert('success', 'บันทึกเสร็จสิ้น', [

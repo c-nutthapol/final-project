@@ -67,7 +67,7 @@
                     </label>
                 </div>
             </li>
-            @if ($status != 'no_status')
+            {{-- @if ($status != 'no_status')
                 <li class="flex items-center justify-between px-4 py-6 border-b border-b-secondary/10">
                     <div>การตรวจสอบ</div>
                     <div>
@@ -86,7 +86,7 @@
                         @endif
                     </div>
                 </li>
-            @endif
+            @endif --}}
             <li class="flex items-center justify-between px-4 py-6 border-b border-b-secondary/10">
                 <div>ผู้สร้างคอร์ส</div>
                 <div>
