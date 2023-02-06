@@ -106,6 +106,12 @@ class Course extends Model
         return $this->belongsToMany(User::class, 'courses_students', 'course_id', 'user_id');
     }
 
+    public function check_register()
+    {
+        return $this->students()->where('user_id', auth()->user()->id)->first();
+    }
+
+
     /**
      * It encodes the id of the model into a hashid.
      *

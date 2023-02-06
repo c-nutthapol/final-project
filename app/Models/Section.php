@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Section extends Model
 {
@@ -39,6 +40,10 @@ class Section extends Model
             }
             $model->episodes()->delete();
         });
+    }
+    public function getEncodeAttribute()
+    {
+        return Hashids::encodeHex($this->id);
     }
 
     public function quizzes()

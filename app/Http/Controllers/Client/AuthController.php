@@ -56,4 +56,19 @@ class AuthController extends Controller
     {
         return view('client.auth.account');
     }
+
+    public function authCoursesItem()
+    {
+        return view('client.auth.mycourses.index');
+    }
+
+    public function authCoursesView($id)
+    {
+        return view('client.auth.mycourses.view', compact('id'));
+    }
+
+    public function authCoursesLecture($id)
+    {
+        return view('client.courses.lecture.index', compact('id'));
+    }
 }

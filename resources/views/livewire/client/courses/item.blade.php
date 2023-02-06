@@ -3,7 +3,7 @@
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <!--------- Card  ---------->
         @foreach ($courses as $course)
-            <a href="{{ route('client.courses.detail') }}" class="group">
+            <a href="{{ route('client.courses.detail', $course->encode) }}" class="group">
                 <div
                     class="flex flex-col justify-between bg-white overflow-hidden h-full rounded-xl cursor-pointer box-border shadow-card-course transition duration-150 ease-out group-hover:ease-in group-hover:scale-105 group-hover:-translate-y-2 group-hover:shadow-[0_12px_40px_rgba(182,179,255,0.3)] group-active:scale-100 group-active:opacity-80 group-active:translate-y-0">
                     <div>

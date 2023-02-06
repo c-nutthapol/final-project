@@ -14,16 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('client.')->group(function () {
-    Route::get('/', function () {
-        return view('client.home');
-    })->name('home');
+    Route::get('/', 'Client\HomeController@index')->name('home');
 
     Route::view('/instructor', 'client.instructor-form')->name('instructor-form');
 
     // คอร์สทั้งหมด
     Route::prefix('courses')->name('courses.')->group(function () {
-        Route::view('/', 'client.courses.index')->name('all');
-        Route::view('/detail', 'client.courses.detail')->name('detail');
+        Route::get('/', 'Client\HomeController@courses')->name('all');
+        Route::get('/detail/{id}', 'Client\HomeController@courseDetail')->name('detail');
     });
 
     Route::prefix('auth')->name('auth.')->group(function () {
@@ -36,9 +34,9 @@ Route::name('client.')->group(function () {
 
             // คอร์สเรียนของฉัน
             Route::prefix('courses')->name('courses.')->group(function () {
-                Route::view('/', 'client.auth.mycourses.index')->name('all');
-                Route::view('/view', 'client.auth.mycourses.view')->name('view');
-                Route::view('/lecture', 'client.courses.lecture.index')->name('lecture');
+                Route::get('/', 'Client\AuthController@authCoursesItem')->name('all');
+                Route::get('/view/{id}', 'Client\AuthController@authCoursesView')->name('view');
+                Route::get('/lecture/{id?}', 'Client\AuthController@authCoursesLecture')->name('lecture');
             });
         });
     });
@@ -70,13 +68,6 @@ Route::name('client.')->group(function () {
         });
     });
 });
-
-// Route::prefix('admin')->middleware(['auth:web', 'role:administrator'])->name('admin-')->group(function () {
-//     // Route::get('/', function () {
-//     //     return view('admin.home');
-//     // })->name('home');
-//     Route::view('/', 'admin.home')->name('home');
-// });
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::view('/', 'admin.home')->name('home');

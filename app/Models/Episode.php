@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Episode extends Model
 {
@@ -35,5 +36,10 @@ class Episode extends Model
         static::deleting(function ($model) {
             $model->deleted_by = auth()->check() ? auth()->user()->id : null;
         });
+    }
+
+    public function getEncodeAttribute()
+    {
+        return Hashids::encodeHex($this->id);
     }
 }
