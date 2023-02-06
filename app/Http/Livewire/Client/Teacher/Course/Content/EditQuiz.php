@@ -29,9 +29,7 @@ class EditQuiz extends Component
         }
     }
 
-    public $name, $type; //simple
-
-    public $video, $files = []; // type video
+    public $name; //simple
 
     public $questions = []; // type quiz
 }

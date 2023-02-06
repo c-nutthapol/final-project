@@ -12,34 +12,8 @@
                 <span class="error text-error">{{ $message }}</span>
             @enderror
         </div>
-        <div class="col-span-2">
-            <label for="rank" class="block mb-1.5 text-base font-medium text-dark-theme">
-                ประเภทเนื้อหาย่อย
-            </label>
-            <div class="space-y-2">
-                <div class="flex items-center">
-                    <input x-model="type" checked id="radio-video" type="radio" value="video" name="radio-type"
-                        class="w-4 h-4 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
-                        wire:model.defer="type" />
-                    <label for="radio-video" class="pl-3 text-base font-normal cursor-pointer text-secondary">
-                        วิดีโอ
-                    </label>
-                </div>
-                <div class="flex items-center">
-                    <input x-model="type" id="radio-quiz" type="radio" value="quiz" name="radio-type"
-                        class="w-4 h-4 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
-                        wire:model.defer="type" />
-                    <label for="radio-quiz" class="pl-3 text-base font-normal cursor-pointer text-secondary">
-                        แบบทดสอบ
-                    </label>
-                </div>
-                @error('type')
-                    <span class="error text-error">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
         {{-- <!--------- @IF สำหรับประเภทวิดีโอ  ----------> --}}
-        <div x-show="type === 'video'" class="col-span-2 space-y-6" x-transition:enter.opacity.duration.700ms
+        <div class="col-span-2 space-y-6" x-transition:enter.opacity.duration.700ms
             x-transition:leave.opacity.duration.150ms>
             <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
                 x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
@@ -111,100 +85,7 @@
                 </div>
             </div>
         </div>
-        {{-- <!--------- @ELSE สำหรับประเภทแบบทดสอบ  ----------> --}}
-        <div x-show="type === 'quiz'" class="col-span-2 space-y-6" x-transition:enter.opacity.duration.700ms
-            x-transition:leave.opacity.duration.150ms>
-            <button type="button" wire:click="addQuestion" class="btn is-success">
-                <div class="flex items-center space-x-2">
-                    <i class="leading-none fi fi-rr-plus"></i>
-                    <span>เพิ่มคำถาม</span>
-                </div>
-            </button>
-            @foreach ($questions as $key => $question)
-                <hr>
-                <div>
-                    <button type="button" wire:click="delQuestion({{ $key }})" class="btn is-danger">
-                        <div class="flex items-center space-x-2">
-                            <i class="leading-none fi fi-rr-trash"></i>
-                            <span>ลบ</span>
-                        </div>
-                    </button>
-                </div>
-                <div>
-                    <label for="question-{{ $key }}"
-                        class="block mb-1.5 text-base font-medium text-dark-theme">
-                        คำถาม
-                    </label>
-                    <input type="text" id="question-{{ $key }}"
-                        class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                        placeholder="กรุณากรอกคำถาม" wire:model.defer="questions.{{ $key }}.title" />
-                    @error('questions.' . $key . '.title')
-                        <span class="error text-error">{{ $message }}</span>
-                    @enderror
 
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="flex items-center space-x-4">
-                        <input checked id="radio-choice-{{ $key }}-1" type="radio" value="1"
-                            name="radio-choice-{{ $key }}"
-                            class="w-6 h-6 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
-                            wire:model.defer="questions.{{ $key }}.answer" />
-                        <input type="text"
-                            class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                            placeholder="กรุณากรอกตัวเลือก"
-                            wire:model.defer="questions.{{ $key }}.choice.1" />
-                        @error('questions.' . $key . '.choice.1')
-                            <span class="error text-error">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <input id="radio-choice-{{ $key }}-2" type="radio" value="2"
-                            name="radio-choice-{{ $key }}"
-                            class="w-6 h-6 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
-                            wire:model.defer="questions.{{ $key }}.answer" />
-                        <input type="text"
-                            class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                            placeholder="กรุณากรอกตัวเลือก"
-                            wire:model.defer="questions.{{ $key }}.choice.2" />
-                        @error('questions.' . $key . '.choice.2')
-                            <span class="error text-error">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <input id="radio-choice-{{ $key }}-3" type="radio" value="3"
-                            name="radio-choice-{{ $key }}"
-                            class="w-6 h-6 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
-                            wire:model.defer="questions.{{ $key }}.answer" />
-                        <input type="text"
-                            class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                            placeholder="กรุณากรอกตัวเลือก"
-                            wire:model.defer="questions.{{ $key }}.choice.3" />
-                        @error('questions.' . $key . '.choice.3')
-                            <span class="error text-error">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <input id="radio-choice-{{ $key }}-4" type="radio" value="4"
-                            name="radio-choice-{{ $key }}"
-                            class="w-6 h-6 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
-                            wire:model.defer="questions.{{ $key }}.answer" />
-                        <input type="text"
-                            class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                            placeholder="กรุณากรอกตัวเลือก"
-                            wire:model.defer="questions.{{ $key }}.choice.4" />
-                        @error('questions.' . $key . '.choice.4')
-                            <span class="error text-error">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-                @error('questions.' . $key . '.choice')
-                    <span class="error text-error">{{ $message }}</span>
-                @enderror
-                @error('questions.' . $key . '.answer')
-                    <span class="error text-error">{{ $message }}</span>
-                @enderror
-            @endforeach
-        </div>
     </div>
 
     <!--------- Submit  ---------->

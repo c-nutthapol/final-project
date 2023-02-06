@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Client\Teacher\Course\Content;
 
 use App\Models\Course;
+use App\Models\Episode;
+use App\Models\Quiz;
 use App\Models\Section;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
@@ -13,7 +15,9 @@ class Index extends Component
     use LivewireAlert;
 
     protected $listeners = [
-        'destroy'
+        'destroySection',
+        'destroyEP',
+        'destroyQuiz'
     ];
 
 
@@ -91,7 +95,7 @@ class Index extends Component
         }
     }
 
-    public function destroyConfirm($id, $name)
+    public function destroySectionConfirm($id, $name)
     {
         $this->alert('warning', 'คุณต้องการจะลบ ' . $name . ' ?', [
             'position' => 'center',
@@ -101,15 +105,59 @@ class Index extends Component
             'onDismissed' => '',
             'showConfirmButton' => true,
             'data' => [$id],
-            'onConfirmed' => 'destroy',
+            'onConfirmed' => 'destroySection',
             'cancelButtonText' => 'ยกเลิก',
             'confirmButtonText' => 'ตกลง',
         ]);
     }
 
-    public function destroy($res)
+    public function destroySection($res)
     {
         $id = $res['data'][0];
         return  Section::find($id)->delete();
+    }
+
+
+    public function destroyEPConfirm($id, $name)
+    {
+        $this->alert('warning', 'คุณต้องการจะลบ ' . $name . ' ?', [
+            'position' => 'center',
+            'timer' => null,
+            'toast' => false,
+            'showCancelButton' => true,
+            'onDismissed' => '',
+            'showConfirmButton' => true,
+            'data' => [$id],
+            'onConfirmed' => 'destroyEP',
+            'cancelButtonText' => 'ยกเลิก',
+            'confirmButtonText' => 'ตกลง',
+        ]);
+    }
+
+    public function destroyEP($res)
+    {
+        $id = $res['data'][0];
+        return  Episode::find($id)->delete();
+    }
+    public function destroyQuizConfirm($id, $name)
+    {
+        $this->alert('warning', 'คุณต้องการจะลบ ' . $name . ' ?', [
+            'position' => 'center',
+            'timer' => null,
+            'toast' => false,
+            'showCancelButton' => true,
+            'onDismissed' => '',
+            'showConfirmButton' => true,
+            'data' => [$id],
+            'onConfirmed' => 'destroyQuiz',
+            'cancelButtonText' => 'ยกเลิก',
+            'confirmButtonText' => 'ตกลง',
+        ]);
+    }
+
+    public function destroyQuiz($res)
+    {
+        $id = $res['data'][0];
+        return  Quiz::find($id)->delete();
     }
 }

@@ -10,6 +10,10 @@ class Quiz extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'questions' => 'object',
+    ];
+
     protected static function boot()
     {
         parent::boot();

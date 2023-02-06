@@ -60,7 +60,7 @@
                                 </ul>
                                 <div class="py-1">
                                     <a href="javascript:void(0);"
-                                        wire:click="destroyConfirm({{ $item->id }},'{{ $item->name }}')"
+                                        wire:click="destroySectionConfirm({{ $item->id }},'{{ $item->name }}')"
                                         class="block px-4 py-2 text-sm text-danger hover:bg-red-100">
                                         <div class="flex items-center space-x-2">
                                             <i class="leading-none fi fi-rr-trash"></i>
@@ -94,7 +94,8 @@
                                             class="text-base text-secondary hover:text-warning">
                                             <i class="leading-none fi fi-rr-edit"></i>
                                         </a>
-                                        <button type="button" class="text-base text-secondary hover:text-danger">
+                                        <button type="button" class="text-base text-secondary hover:text-danger"
+                                            wire:click="destroyEPConfirm('{{ $ep->id }}','{{ $ep->name }}')">
                                             <i class="leading-none fi fi-rr-trash"></i>
                                         </button>
                                     </div>
@@ -117,7 +118,8 @@
                                             class="text-base text-secondary hover:text-warning">
                                             <i class="leading-none fi fi-rr-edit"></i>
                                         </a>
-                                        <button type="button" class="text-base text-secondary hover:text-danger">
+                                        <button type="button" class="text-base text-secondary hover:text-danger"
+                                            wire:click="destroyQuizConfirm('{{ $quiz->id }}','{{ $quiz->name }}')">
                                             <i class="leading-none fi fi-rr-trash"></i>
                                         </button>
                                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Client\Teacher\Course\Content;
 
 use App\Models\Course;
 use App\Models\Episode;
+use App\Models\Quiz;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -50,14 +51,12 @@ class Form extends Component
             $rules['files.*.name'] = 'required';
             $rules['files.*.path'] = 'required|file|max_mb:100';
         } elseif ($this->type == 'quiz') {
-            $rules['questions'] = 'array|min:1';
+            $rules['questions'] = 'array';
             $rules['questions.*.title'] = 'required|string|max:255';
             $rules['questions.*.answer'] = 'required|in:1,2,3,4';
             $rules['questions.*.choice'] = 'array';
-            $rules['questions.*.choice.1'] = 'required|min:1|max:255';
-            $rules['questions.*.choice.2'] = 'required|min:1|max:255';
-            $rules['questions.*.choice.3'] = 'required|min:1|max:255';
-            $rules['questions.*.choice.4'] = 'required|min:1|max:255';
+            $rules['questions.*.type'] = 'required';
+            $rules['questions.*.choice.*'] = 'required|min:1|max:255';
         }
         return $rules;
     }
@@ -78,10 +77,7 @@ class Form extends Component
     protected $attributes = [
         'questions.*.answer' => 'เฉลย',
         'questions.*.choice' => 'ตัวเลือก',
-        'questions.*.choice.1' => 'ตัวเลือก',
-        'questions.*.choice.2' => 'ตัวเลือก',
-        'questions.*.choice.3' => 'ตัวเลือก',
-        'questions.*.choice.4' => 'ตัวเลือก',
+        'questions.*.choice.*' => 'ตัวเลือก',
         'questions.*.title' => 'คำถาม',
         'questions' => 'คำถาม',
         'files' => 'ไฟล์ประกอบการสอน',
@@ -95,33 +91,58 @@ class Form extends Component
     public function submit()
     {
         $validateData = $this->validate($this->rules(), $this->messages, $this->attributes);
-        if ($validateData['type'] == 'video') {
+        try {
             $data['section_id'] = $this->sidTable;
             $data['name'] = $validateData['name'];
-            $data['video'] = $this->video->store('course/' . $this->idHash . '/section/' . $this->sidHash, 'public');
-            foreach ($this->files as $key => $file) {
-                $data['files'][$key]['name'] = $file['name'];
-                $data['files'][$key]['path'] = $file['path']->storeAs('course/' . $this->idHash . '/section/' . $this->sidHash . '/assembly', time() . '_' . $file['name'], 'public');
+            if ($validateData['type'] == 'video') {
+
+                $data['video'] = $this->video->store('course/' . $this->idHash . '/section/' . $this->sidHash, 'public');
+                foreach ($this->files as $key => $file) {
+                    $data['files'][$key]['name'] = $file['name'];
+                    $data['files'][$key]['path'] = $file['path']->storeAs('course/' . $this->idHash . '/section/' . $this->sidHash . '/assembly', time() . '_' . $file['name'], 'public');
+                }
+                Episode::create($data);
+                $this->alert('success', 'บันทึกเสร็จสิ้น', [
+                    'position' => 'top-end',
+                    'timer' => 3000,
+                    'toast' => true,
+                    'timerProgressBar' => true,
+                    'showDenyButton' => false,
+                    'onDenied' => '',
+                ]);
+
+                return $this->dispatchBrowserEvent('redirect_page', ['url' => route('client.teacher.course.content.index', $this->idHash)]);
+            } elseif ($validateData['type'] ==  'quiz') {
+                $data['questions'] = $validateData['questions'];
+                Quiz::create($data);
+                $this->alert('success', 'บันทึกเสร็จสิ้น', [
+                    'position' => 'top-end',
+                    'timer' => 3000,
+                    'toast' => true,
+                    'timerProgressBar' => true,
+                    'showDenyButton' => false,
+                    'onDenied' => '',
+                ]);
+
+                return $this->dispatchBrowserEvent('redirect_page', ['url' => route('client.teacher.course.content.index', $this->idHash)]);
             }
-            Episode::create($data);
-            $this->alert('success', 'บันทึกเสร็จสิ้น', [
+        } catch (\Exception $e) {
+            $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
                 'position' => 'top-end',
                 'timer' => 3000,
                 'toast' => true,
                 'timerProgressBar' => true,
                 'showDenyButton' => false,
                 'onDenied' => '',
+                'text' => $e->getMessage(),
             ]);
-
-            return $this->dispatchBrowserEvent('redirect_page', ['url' => route('client.teacher.course.content.index', $this->idHash)]);
-        } elseif ($validateData['type'] ==  'quiz') {
         }
     }
 
     public function addQuestion($type = 'multiple-choices')
     {
         $questions = collect($this->questions);
-        $questions->push(['type' => $type]);
+        $questions->push(['type' => $type,'choice' => [1 => null,2 => null,3 => null,4 => null]]);
         $this->questions = $questions->toArray();
     }
 
