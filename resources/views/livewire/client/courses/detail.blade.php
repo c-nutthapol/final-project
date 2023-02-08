@@ -186,8 +186,8 @@
                 @foreach ($reviews as $review)
                     <figure class="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="260"
                         data-aos-duration="1200" data-aos-once="true">
-                        <img src="{{ asset('assets/images/users/avatar-3.jpg') }}" alt="avatar"
-                            class="object-cover object-top w-12 h-12 rounded-xl shadow-avatar" />
+                        <img src="{{ !is_null($review->user->avatar) && Storage::disk('public')->exists($review->user->avatar) ? Storage::disk('public')->url($review->user->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
+                            alt="avatar" class="object-cover object-top w-12 h-12 rounded-xl shadow-avatar" />
                         <div class="flex-1">
                             <figcaption class="inline text-base font-semibold text-secondary">
                                 {{ $review->user->full_name }}

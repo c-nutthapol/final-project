@@ -53,16 +53,19 @@
                         <div class="col-span-2">
                             <div
                                 class="relative p-10 overflow-hidden text-center bg-success rounded-2xl shadow-card-course">
-                                <div
-                                    class="absolute top-0 left-0 flex items-center justify-center w-full h-full cursor-no-drop bg-black/70 backdrop-blur-[1px] transform ease-in-out duration-200 text-white">
-                                    <div class="text-2xl font-bold tracking-wider font-ibm">
-                                        คอร์สเรียนนี้ไม่มีแบบทดสอบ
+                                @if (!$exam)
+                                    <div
+                                        class="absolute top-0 left-0 flex items-center justify-center w-full h-full cursor-no-drop bg-black/70 backdrop-blur-[1px] transform ease-in-out duration-200 text-white">
+                                        <div class="text-2xl font-bold tracking-wider font-ibm">
+                                            คอร์สเรียนนี้ไม่มีแบบทดสอบ
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
+
                                 <!--------- Icon ---------->
                                 <div
                                     class="flex items-center justify-center w-40 h-40 mx-auto mb-4 overflow-hidden text-4xl font-bold tracking-wider bg-white rounded-full text-success font-montserrat">
-                                    0%
+                                    {{ $exam_success }}%
                                 </div>
                                 <!--------- Title ---------->
                                 <h4 class="text-xl font-bold tracking-wider text-white font-ibm">

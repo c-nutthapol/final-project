@@ -23,6 +23,8 @@ class View extends Component
 
     public $image, $name, $rating, $contentCount, $created_at, $avatar, $full_name;
 
+    public $exam, $exam_success;
+
     public $description, $will_learn, $must_have;
 
     public $reviews, $sections, $check_register;
@@ -36,6 +38,17 @@ class View extends Component
 
         if ($course) {
             $this->subtitle = $course->name;
+
+            $this->exam = 0;
+            $this->exam_success = 0;
+            foreach ($course->sections as $section) {
+                $this->exam += $section->quizzes->count();
+                foreach ($section->quizzes as $quiz) {
+                    $this->exam_success += $quiz->check_user_answered() ? 1 : 0;
+                }
+            }
+            $this->exam_success = ($this->exam_success / $this->exam) * 100;
+
 
             $this->image = $course->image;
             $this->name = $course->name;

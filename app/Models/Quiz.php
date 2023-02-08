@@ -41,4 +41,14 @@ class Quiz extends Model
     {
         return Hashids::encodeHex($this->id);
     }
+
+    public function quiz_result()
+    {
+        return $this->hasMany(QuizResult::class, 'quiz_id', 'id');
+    }
+
+    public function check_user_answered()
+    {
+        return $this->quiz_result->where('created_by', auth()->user()->id)->count();
+    }
 }
