@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id('id');
             $table->bigInteger('course_id', 0, 1);
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->integer('scores');
             $table->bigInteger('created_by', 0, 1)->nullable();
             $table->timestamps();

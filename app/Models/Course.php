@@ -93,7 +93,7 @@ class Course extends Model
      */
     public function lecturers()
     {
-        return $this->belongsToMany(User::class, 'courses_lecturers', 'course_id', 'user_id');
+        return $this->belongsToMany(User::class, 'courses_lecturers', 'course_id', 'user_id')->withTimestamps();
     }
 
     /**
@@ -103,7 +103,7 @@ class Course extends Model
      */
     public function students()
     {
-        return $this->belongsToMany(User::class, 'courses_students', 'course_id', 'user_id');
+        return $this->belongsToMany(User::class, 'courses_students', 'course_id', 'user_id')->withTimestamps();
     }
 
     public function check_register()

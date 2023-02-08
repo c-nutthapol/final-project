@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Vinkla\Hashids\Facades\Hashids;
+
 // use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -79,5 +81,10 @@ class User extends Authenticatable
     public function reviews()
     {
         return $this->hasMany(Review::class, 'created_by');
+    }
+
+    public function check_course($id)
+    {
+        return $this->students->contains($id);
     }
 }

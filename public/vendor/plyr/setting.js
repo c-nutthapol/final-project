@@ -129,23 +129,23 @@ const plyrDefaults = {
     // Default controls
     controls: [
         'play-large',
-        // 'restart',
-        // 'rewind',
+        'restart',
+        'rewind',
         'play',
-        // 'fast-forward',
+        'fast-forward',
         'progress',
         'current-time',
-        // 'duration',
+        'duration',
         'mute',
         'volume',
-        'captions',
+        // 'captions',
         'settings',
-        'pip',
+        // 'pip',
         'airplay',
         // 'download',
         'fullscreen',
     ],
-    settings: ['captions', 'quality', 'speed'],
+    settings: ['quality', 'speed'],
 
     // Localisation
     i18n: {

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
+use App\Models\Episode;
+use App\Models\Quiz;
 use App\Models\SocialMedia;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Vinkla\Hashids\Facades\Hashids;
 
 class AuthController extends Controller
 {
@@ -64,11 +67,61 @@ class AuthController extends Controller
 
     public function authCoursesView($id)
     {
+        $did = Hashids::decodeHex($id);
+
+        if (!auth()->user()->check_course($did)) {
+            return redirect()->route('client.courses.detail', $id);
+        }
         return view('client.auth.mycourses.view', compact('id'));
     }
 
-    public function authCoursesLecture($id)
+    public function authCoursesLecture($id, ?Request $request)
     {
-        return view('client.courses.lecture.index', compact('id'));
+        $did = Hashids::decode($id);
+        if ($did) {
+            $tid = $did[0];
+            $cid = $did[1];
+            $sid = $did[2];
+            $eqid = $did[3];
+        } else {
+            return redirect()->route('client.home');
+        }
+
+
+        $tidHash = Hashids::encodeHex($tid);
+        $cidHash = Hashids::encodeHex($cid);
+        $sidHash = Hashids::encodeHex($sid);
+        $eqidHash = Hashids::encodeHex($eqid);
+
+        if (!auth()->user()->check_course($cid)) {
+            return redirect()->route('client.courses.detail', $cidHash);
+        }
+        $course = Course::find($cid);
+        $ep = false;
+        $quz = false;
+        if ($tid == 100) {
+            $ep = Episode::find($eqid);
+        } elseif ($tid == 200) {
+            $quz = Quiz::find($eqid);
+        } else {
+            return redirect()->route('client.home');
+        }
+        $second = 0;
+        if ($request->s) {
+            $second = $request->s;
+        }
+
+        return view('client.courses.lecture.index', compact(
+            'tid',
+            'cid',
+            'tidHash',
+            'cidHash',
+            'sidHash',
+            'eqidHash',
+            'course',
+            'ep',
+            'quz',
+            'second'
+        ));
     }
 }

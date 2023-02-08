@@ -36,7 +36,7 @@ Route::name('client.')->group(function () {
             Route::prefix('courses')->name('courses.')->group(function () {
                 Route::get('/', 'Client\AuthController@authCoursesItem')->name('all');
                 Route::get('/view/{id}', 'Client\AuthController@authCoursesView')->name('view');
-                Route::get('/lecture/{id?}', 'Client\AuthController@authCoursesLecture')->name('lecture');
+                Route::get('/lecture/{id}', 'Client\AuthController@authCoursesLecture')->name('lecture');
             });
         });
     });

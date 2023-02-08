@@ -40,16 +40,22 @@ return new class extends Migration
         Schema::create('courses_students', function (Blueprint $table) {
             $table->bigInteger('course_id', 0, 1);
             $table->bigInteger('user_id', 0, 1);
+            $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->unique(['course_id', 'user_id']);
         });
         Schema::create('courses_lecturers', function (Blueprint $table) {
             $table->bigInteger('course_id', 0, 1);
             $table->bigInteger('user_id', 0, 1);
+            $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->unique(['course_id', 'user_id']);
         });
     }
 

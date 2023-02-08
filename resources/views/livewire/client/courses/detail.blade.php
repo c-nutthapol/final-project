@@ -54,7 +54,7 @@
                                         ลงทะเบียน
                                     </button>
                                 @else
-                                    <a href="{{ route('client.auth.courses.lecture', $idHash) }}"
+                                    <a href="{{ route('client.auth.courses.view', $idHash) }}"
                                         class="font-normal uppercase text-base text-white text-center tracking-wider font-ibm bg-primary py-2.5 px-20 rounded-xl shadow-btn transition ease-out duration-300 hover:shadow-[0_4px_10px_#B6B3FF] hover:brightness-95 active:shadow-none active:brightness-90 active:scale-95">
                                         เข้าคอร์สเรียน
                                     </a>
@@ -89,7 +89,7 @@
                     <li class="flex items-start space-x-3 basis-1/4">
                         <i class="leading-none fi fi-rr-check"></i>
                         <span class="inline-block text-base font-normal leading-normal text-secondary">
-                            {{ $item->name }}
+                            {{ $item->name ?? '' }}
                         </span>
                     </li>
                 @endforeach
@@ -106,7 +106,7 @@
                     <li class="flex items-start space-x-3 basis-1/4">
                         <i class="leading-none fi fi-rr-check"></i>
                         <span class="inline-block text-base font-normal leading-normal text-secondary">
-                            {{ $item->name }}
+                            {{ $item->name ?? '' }}
                         </span>
                     </li>
                 @endforeach

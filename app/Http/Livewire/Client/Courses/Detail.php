@@ -43,8 +43,8 @@ class Detail extends Component
             $this->full_name = $course->user->full_name;
 
             $this->description = $course->description;
-            $this->will_learn = $course->will_learn;
-            $this->must_have = $course->must_have;
+            $this->will_learn = $course->will_learn ?? [];
+            $this->must_have = $course->must_have ?? [];
 
             $this->sections = $course->sections;
 
@@ -61,6 +61,7 @@ class Detail extends Component
         $course = Course::find($this->idTable);
         if ($course) {
             $course->students()->attach(auth()->user()->id);
+            $this->check_register = $course->check_register();
             return $this->alert('success', 'ลงทะเบียนเสร็จสิ้น', [
                 'position' => 'top-end',
                 'timer' => 3000,
