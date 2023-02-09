@@ -58,17 +58,29 @@ class Detail extends Component
 
     public function register()
     {
-        $course = Course::find($this->idTable);
-        if ($course) {
-            $course->students()->attach(auth()->user()->id);
-            $this->check_register = $course->check_register();
-            return $this->alert('success', 'ลงทะเบียนเสร็จสิ้น', [
+        try {
+            $course = Course::find($this->idTable);
+            if ($course) {
+                $course->students()->attach(auth()->user()->id);
+                $this->check_register = $course->check_register();
+                return $this->alert('success', 'ลงทะเบียนเสร็จสิ้น', [
+                    'position' => 'top-end',
+                    'timer' => 3000,
+                    'toast' => true,
+                    'timerProgressBar' => true,
+                    'showDenyButton' => false,
+                    'onDenied' => '',
+                ]);
+            }
+        } catch (\Exception $e) {
+            $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
                 'position' => 'top-end',
                 'timer' => 3000,
                 'toast' => true,
                 'timerProgressBar' => true,
                 'showDenyButton' => false,
                 'onDenied' => '',
+                'text' => $e->getMessage(),
             ]);
         }
     }

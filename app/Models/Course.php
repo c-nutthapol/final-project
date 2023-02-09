@@ -108,7 +108,11 @@ class Course extends Model
 
     public function check_register()
     {
-        return $this->students()->where('user_id', auth()->user()->id)->first();
+        if (auth()->check()) {
+            return $this->students()->where('user_id', auth()->user()->id)->first();
+        } else {
+            return false;
+        }
     }
 
 
