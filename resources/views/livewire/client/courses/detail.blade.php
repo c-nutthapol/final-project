@@ -49,17 +49,10 @@
                             <div>
 
                                 @if (!$check_register)
-                                    @if (auth()->check())
-                                        <button type="button" wire:click="register"
-                                            class="font-normal uppercase text-base text-white text-center tracking-wider font-ibm bg-primary py-2.5 px-20 rounded-xl shadow-btn transition ease-out duration-300 hover:shadow-[0_4px_10px_#B6B3FF] hover:brightness-95 active:shadow-none active:brightness-90 active:scale-95">
-                                            ลงทะเบียน
-                                        </button>
-                                    @else
-                                        <a href="{{ route('client.auth.login') }}"
-                                            class="font-normal uppercase text-base text-white text-center tracking-wider font-ibm bg-primary py-2.5 px-20 rounded-xl shadow-btn transition ease-out duration-300 hover:shadow-[0_4px_10px_#B6B3FF] hover:brightness-95 active:shadow-none active:brightness-90 active:scale-95">
-                                            ลงทะเบียน
-                                        </a>
-                                    @endif
+                                    <button type="button" wire:click="register"
+                                        class="font-normal uppercase text-base text-white text-center tracking-wider font-ibm bg-primary py-2.5 px-20 rounded-xl shadow-btn transition ease-out duration-300 hover:shadow-[0_4px_10px_#B6B3FF] hover:brightness-95 active:shadow-none active:brightness-90 active:scale-95">
+                                        ลงทะเบียน
+                                    </button>
                                 @else
                                     <a href="{{ route('client.auth.courses.view', $idHash) }}"
                                         class="font-normal uppercase text-base text-white text-center tracking-wider font-ibm bg-primary py-2.5 px-20 rounded-xl shadow-btn transition ease-out duration-300 hover:shadow-[0_4px_10px_#B6B3FF] hover:brightness-95 active:shadow-none active:brightness-90 active:scale-95">
