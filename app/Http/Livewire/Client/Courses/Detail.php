@@ -22,11 +22,11 @@ class Detail extends Component
 
     public $description, $will_learn, $must_have;
 
-    public $reviews, $sections, $check_register;
+    public $reviews, $sections, $check_register, $url;
 
     public function mount($id)
     {
-
+        $this->url = url()->current();
         $this->idHash = $id;
         $this->idTable = Hashids::decodeHex($id);
         $course = Course::find($this->idTable);
@@ -59,6 +59,10 @@ class Detail extends Component
     public function register()
     {
         try {
+            if (!auth()->check()) {
+                return redirect()->route('client.auth.login', ['redirect' => $this->url]);
+            }
+
             $course = Course::find($this->idTable);
             if ($course) {
                 $course->students()->attach(auth()->user()->id);
