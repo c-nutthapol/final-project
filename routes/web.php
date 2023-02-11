@@ -37,8 +37,8 @@ Route::name('client.')->group(function () {
                 Route::get('/', 'Client\AuthController@authCoursesItem')->name('all');
                 Route::get('/view/{id}', 'Client\AuthController@authCoursesView')->name('view');
                 Route::get('/lecture/{id}', 'Client\AuthController@authCoursesLecture')->name('lecture');
-                Route::post('/lecture/download', 'Client\AuthController@DownloadFile')->name('download');
-                Route::get('/lecture/certificate/{id?}', 'Client\CertificateController@index')->name('certificate');
+                Route::post('/assembly/download', 'Client\AuthController@DownloadFile')->name('download');
+                Route::get('/certificate/{id?}', 'Client\CertificateController@index')->name('certificate');
             });
         });
     });

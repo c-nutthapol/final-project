@@ -10,8 +10,10 @@ class CertificateController extends Controller
 {
     public function index()
     {
-        $pdf = PDF::loadView('', [], []);
-
-        return $pdf->setPaper('a4')->setOrientation('landscape')->stream();
+        $pdf = PDF::loadView('client.courses.certificate', [], [], [
+            'format' => 'A4',
+            'orientation' => 'L'
+        ]);
+        return $pdf->stream();
     }
 }
