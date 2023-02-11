@@ -38,6 +38,7 @@ Route::name('client.')->group(function () {
                 Route::get('/view/{id}', 'Client\AuthController@authCoursesView')->name('view');
                 Route::get('/lecture/{id}', 'Client\AuthController@authCoursesLecture')->name('lecture');
                 Route::post('/lecture/download', 'Client\AuthController@DownloadFile')->name('download');
+                Route::get('/lecture/certificate/{id?}', 'Client\CertificateController@index')->name('certificate');
             });
         });
     });
