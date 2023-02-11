@@ -12,6 +12,14 @@
                 <span class="error text-error">{{ $message }}</span>
             @enderror
         </div>
+        @if ($video_temp)
+            <div>
+                <a href="{{ !is_null($video_temp) && Storage::disk('public')->exists($video_temp) ? Storage::disk('public')->url($video_temp) : '' }}"
+                    target="popup" class="btn is-success">
+                    <span>ดูวิดีโอ</span>
+                </a>
+            </div>
+        @endif
         {{-- <!--------- @IF สำหรับประเภทวิดีโอ  ----------> --}}
         <div class="col-span-2 space-y-6" x-transition:enter.opacity.duration.700ms
             x-transition:leave.opacity.duration.150ms>
@@ -43,6 +51,34 @@
                 </button>
 
                 <div class="grid grid-cols-1 gap-4 mt-6">
+                    @foreach ($files_temp as $key => $file)
+                        <div class="grid items-end grid-cols-3 gap-6">
+                            <div>
+                                <label for="fileName_temp{{ $key }}"
+                                    class="block mb-1.5 text-base font-medium text-dark-theme">
+                                    ชื่อไฟล์
+                                </label>
+                                <input type="text" value="{{ $file['name'] }}" id="fileName_temp{{ $key }}"
+                                    class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
+                                    placeholder="ชื่อไฟล์" readonly />
+                            </div>
+                            <div>
+                                <button type="button" wire:click="DownloadFile('{{ $file['path'] }}')"
+                                    class="btn is-success">
+                                    <span>ดาวน์โหลด</span>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" wire:click="delFile({{ $key }},'temp')"
+                                    class="btn is-danger">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="leading-none fi fi-rr-trash"></i>
+                                        <span>ลบ</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    @endforeach
                     @foreach ($files as $key => $file)
                         <div class="grid items-end grid-cols-3 gap-6">
                             <div>
@@ -59,6 +95,7 @@
                                 @enderror
                             </div>
                             <div>
+
                                 <label for="file{{ $key }}"
                                     class="block mb-1.5 text-base font-medium text-dark-theme">
                                     เลือกไฟล์
@@ -70,6 +107,7 @@
                                 @error('files.' . $key . '.path')
                                     <span class="error text-error">{{ $message }}</span>
                                 @enderror
+
                             </div>
                             <div>
                                 <button type="button" wire:click="delFile({{ $key }})" class="btn is-danger">

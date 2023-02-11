@@ -114,7 +114,7 @@
         </div>
         @if ($video_temp)
             <div>
-                <a href="{{ !is_null($video_temp) && Storage::exists($video_temp) ? Storage::url($video_temp) : '' }}"
+                <a href="{{ !is_null($video_temp) && Storage::disk('public')->exists($video_temp) ? Storage::disk('public')->url($video_temp) : '' }}"
                     target="popup" class="btn is-success">
                     <span>ดูวิดีโอ</span>
                 </a>

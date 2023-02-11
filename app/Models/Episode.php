@@ -13,7 +13,7 @@ class Episode extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'files' => 'object',
+        'files' => 'array',
     ];
 
 

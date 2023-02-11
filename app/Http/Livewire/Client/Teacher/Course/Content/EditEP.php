@@ -4,11 +4,16 @@ namespace App\Http\Livewire\Client\Teacher\Course\Content;
 
 use App\Models\Course;
 use App\Models\Episode;
+use Illuminate\Support\Facades\Storage;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Vinkla\Hashids\Facades\Hashids;
 
 class EditEP extends Component
 {
+    use WithFileUploads, LivewireAlert;
+
     public function render()
     {
         return view('livewire.client.teacher.course.content.edit-e-p');
@@ -31,32 +36,24 @@ class EditEP extends Component
             /* Setting the subtitle to the name of the course. */
             $this->subtitle = $course->name;
 
+            $this->video_temp = $episode->video;
             $this->name = $episode->name;
-            $this->files = collect($episode->files)->toArray();
+            $this->files_temp = $episode->files;
         }
     }
 
     public $name; //simple
 
-    public $video, $files = []; // type video
+    public $video, $video_temp, $files = [], $files_temp; // type video
 
     protected function rules()
     {
         $rules['name'] = 'required|max:120';
-        $rules['type'] = 'in:video,quiz';
-        if ($this->type == 'video') {
-            $rules['video'] = 'required|file|mimes:mp4,wmv,avi,mov|max_mb:1024';
-            $rules['files'] = 'array';
-            $rules['files.*.name'] = 'required';
-            $rules['files.*.path'] = 'required|file|max_mb:100';
-        } elseif ($this->type == 'quiz') {
-            $rules['questions'] = 'array';
-            $rules['questions.*.title'] = 'required|string|max:255';
-            $rules['questions.*.answer'] = 'required|in:1,2,3,4';
-            $rules['questions.*.choice'] = 'array';
-            $rules['questions.*.type'] = 'required';
-            $rules['questions.*.choice.*'] = 'required|min:1|max:255';
-        }
+        $rules['video'] = 'nullable|file|mimes:mp4,wmv,avi,mov|max_mb:1024';
+        $rules['files'] = 'array';
+        $rules['files.*.name'] = 'required';
+        $rules['files.*.path'] = 'nullable|file|max_mb:100';
+
         return $rules;
     }
 
@@ -83,7 +80,6 @@ class EditEP extends Component
         'files.*.name' => 'ชื่อไฟล์',
         'files.*.path' => 'ไฟล์',
         'video' => 'วิดีโอ',
-        'type' => 'ประเภทเนื้อหาย่อย',
         'name' => 'ชื่อเนื้อหาย่อย',
     ];
 
@@ -91,14 +87,28 @@ class EditEP extends Component
     {
         $validateData = $this->validate($this->rules(), $this->messages, $this->attributes);
         try {
-            $data['section_id'] = $this->sidTable;
-            $data['name'] = $validateData['name'];
-            $data['video'] = $this->video->store('course/' . $this->idHash . '/section/' . $this->sidHash, 'public');
-            foreach ($this->files as $key => $file) {
-                $data['files'][$key]['name'] = $file['name'];
-                $data['files'][$key]['path'] = $file['path']->storeAs('course/' . $this->idHash . '/section/' . $this->sidHash . '/assembly', time() . '_' . $file['name'], 'public');
+            $update = Episode::find($this->cidTable);
+            if ($update) {
+                $update->name = $validateData['name'];
+                if ($this->video) {
+                    $update->video = $this->video->store('course/' . $this->idHash . '/section/' . $this->sidHash, 'public');
+                    $this->video_temp = $update->video;
+                }
+
+                foreach ($this->files as $key => $file) {
+                    $data['files'][$key]['name'] = $file['name'];
+                    $extension = $file['path']->extension();
+                    $data['files'][$key]['path'] = $file['path']->storeAs('course/' . $this->idHash . '/section/' . $this->sidHash . '/assembly', time() . '_' . $file['name'] . '.' . $extension, 'public');
+
+                    $this->files_temp[] = $data['files'][$key];
+                }
+                $update->files = $this->files_temp;
+                $this->files = $update->files;
+                $update->save();
             }
-            Episode::create($data);
+
+            $this->reset('files');
+
             $this->alert('success', 'บันทึกเสร็จสิ้น', [
                 'position' => 'top-end',
                 'timer' => 3000,
@@ -108,7 +118,7 @@ class EditEP extends Component
                 'onDenied' => '',
             ]);
 
-            return $this->dispatchBrowserEvent('redirect_page', ['url' => route('client.teacher.course.content.index', $this->idHash)]);
+            // return $this->dispatchBrowserEvent('redirect_page', ['url' => route('client.teacher.course.content.index', $this->idHash)]);
         } catch (\Exception $e) {
             $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
                 'position' => 'top-end',
@@ -129,10 +139,32 @@ class EditEP extends Component
         $this->files = $files->toArray();
     }
 
-    public function delFile($key)
+    public function delFile($key, $local = 'local')
     {
-        $files = collect($this->files);
+        $files = collect($local == 'local' ? $this->files : $this->files_temp);
         $files->offsetUnset($key);
-        $this->files = $files->toArray();
+        if ($local == 'local') {
+            $this->files = $files->toArray();
+        } else {
+            $this->files_temp = $files->toArray();
+        }
+    }
+
+    public function DownloadFile($path)
+    {
+        try {
+            $path = Storage::disk('public')->exists($path) ? Storage::disk('public')->path($path) : false;
+            return response()->download($path);
+        } catch (\Exception $e) {
+            $this->alert('error', 'ไม่พบไฟล์', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                'showDenyButton' => false,
+                'onDenied' => '',
+                'text' => $e->getMessage(),
+            ]);
+        }
     }
 }

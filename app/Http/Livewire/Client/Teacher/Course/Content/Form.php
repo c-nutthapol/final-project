@@ -99,7 +99,8 @@ class Form extends Component
                 $data['video'] = $this->video->store('course/' . $this->idHash . '/section/' . $this->sidHash, 'public');
                 foreach ($this->files as $key => $file) {
                     $data['files'][$key]['name'] = $file['name'];
-                    $data['files'][$key]['path'] = $file['path']->storeAs('course/' . $this->idHash . '/section/' . $this->sidHash . '/assembly', time() . '_' . $file['name'], 'public');
+                    $extension = $file['path']->extension();
+                    $data['files'][$key]['path'] = $file['path']->storeAs('course/' . $this->idHash . '/section/' . $this->sidHash . '/assembly', time() . '_' . $file['name'] . '.' . $extension, 'public');
                 }
                 Episode::create($data);
                 $this->alert('success', 'บันทึกเสร็จสิ้น', [
@@ -142,7 +143,7 @@ class Form extends Component
     public function addQuestion($type = 'multiple-choices')
     {
         $questions = collect($this->questions);
-        $questions->push(['type' => $type,'choice' => [1 => null,2 => null,3 => null,4 => null]]);
+        $questions->push(['type' => $type, 'choice' => [1 => null, 2 => null, 3 => null, 4 => null]]);
         $this->questions = $questions->toArray();
     }
 

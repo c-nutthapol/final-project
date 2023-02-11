@@ -103,66 +103,23 @@
                     @elseif($quz)
                         @livewire('client.courses.lecture.quiz', ['quz' => $quz])
                     @endif
-                    @if ($ep)
+                    @if ($ep && $ep->files)
                         {{-- เอกสารประกอบ --}}
                         <div class="p-6 mb-8">
                             <h4 class="mb-8 text-2xl font-semibold tracking-wide text-secondary">เอกสารประกอบ</h4>
 
                             <div class="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-6">
-                                <a href="#">
-                                    <div
-                                        class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
-                                        <i class="text-base leading-none fi fi-rr-document"></i>
-                                        <div class="text-sm line-clamp-1">
-                                            Document
+                                @foreach ($ep->files as $file)
+                                    <button type="button" data-name="{{ $file['name'] }}" data-path="{{ $file['path'] }}" class="download-file">
+                                        <div
+                                            class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
+                                            <i class="text-base leading-none fi fi-rr-document"></i>
+                                            <div class="text-sm line-clamp-1">
+                                                {{ $file['name'] }}
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div
-                                        class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
-                                        <i class="text-base leading-none fi fi-rr-document"></i>
-                                        <div class="text-sm line-clamp-1">
-                                            Document
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div
-                                        class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
-                                        <i class="text-base leading-none fi fi-rr-document"></i>
-                                        <div class="text-sm line-clamp-1">
-                                            Document
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div
-                                        class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
-                                        <i class="text-base leading-none fi fi-rr-document"></i>
-                                        <div class="text-sm line-clamp-1">
-                                            Document
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div
-                                        class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
-                                        <i class="text-base leading-none fi fi-rr-document"></i>
-                                        <div class="text-sm line-clamp-1">
-                                            Document
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div
-                                        class="flex items-center px-4 py-4 space-x-2 break-words transition duration-150 ease-linear rounded-md bg-primary-20/30 text-secondary hover:bg-primary-20/60">
-                                        <i class="text-base leading-none fi fi-rr-document"></i>
-                                        <div class="text-sm line-clamp-1">
-                                            Document
-                                        </div>
-                                    </div>
-                                </a>
+                                    </button>
+                                @endforeach
                             </div>
                         </div>
                     @endif
@@ -180,19 +137,51 @@
 @if ($ep)
     @section('script')
         <script>
-            const player = new Plyr('#player', plyrDefaults);
+            $(document).ready(function() {
+                const player = new Plyr('#player', plyrDefaults);
 
-            player.on("ready", function() {
-                let settime = setInterval(() => {
-                    player.currentTime = {{ $second ?? 0 }}
-                    if (Math.round(player.currentTime) == Math.round({{ $second ?? 0 }})) {
-                        clearInterval(settime);
-                        player.play();
-                    }
-                }, 300);
+                player.on("ready", function() {
+                    let settime = setInterval(() => {
+                        player.currentTime = {{ $second ?? 0 }}
+                        if (Math.round(player.currentTime) == Math.round({{ $second ?? 0 }})) {
+                            clearInterval(settime);
+                            player.play();
+                        }
+                    }, 300);
 
-            })
+                })
 
+                $('.download-file').click(function(e) {
+                    e.preventDefault();
+                    const path = $(this).data("path")
+                    const name = $(this).data("name")
+                    var data = {
+                        path: path,
+                        name: name,
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('client.auth.courses.download') }}",
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        xhrFields: {
+                            responseType: 'blob'
+                        },
+                        data: data,
+                        success: function(response) {
+                            var a = document.createElement('a');
+                            var url = window.URL.createObjectURL(response);
+                            a.href = url;
+                            a.download = data.name;
+                            document.body.append(a);
+                            a.click();
+                            a.remove();
+                            window.URL.revokeObjectURL(url);
+                        }
+                    });
+                });
+            });
             // player.on('play', (event) => {
             //     setInterval(() => {
             //         const data = {

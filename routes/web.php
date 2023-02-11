@@ -37,6 +37,7 @@ Route::name('client.')->group(function () {
                 Route::get('/', 'Client\AuthController@authCoursesItem')->name('all');
                 Route::get('/view/{id}', 'Client\AuthController@authCoursesView')->name('view');
                 Route::get('/lecture/{id}', 'Client\AuthController@authCoursesLecture')->name('lecture');
+                Route::post('/lecture/download', 'Client\AuthController@DownloadFile')->name('download');
             });
         });
     });

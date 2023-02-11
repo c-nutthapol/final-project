@@ -8,6 +8,7 @@
     <title> @yield('title')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
     <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @livewireStyles
     @include('layouts.admin.partials.header')
 </head>

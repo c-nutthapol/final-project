@@ -9,6 +9,7 @@ use App\Models\Quiz;
 use App\Models\SocialMedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -123,5 +124,15 @@ class AuthController extends Controller
             'quz',
             'second'
         ));
+    }
+
+    public function DownloadFile(Request $request)
+    {
+        try {
+            $path = Storage::disk('public')->exists($request->path) ? Storage::disk('public')->path($request->path) : false;
+            return response()->download($path, $request->name);
+        } catch (\Exception $e) {
+            return abort(500);
+        }
     }
 }
