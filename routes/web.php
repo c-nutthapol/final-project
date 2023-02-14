@@ -16,12 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::name('client.')->group(function () {
     Route::get('/', 'Client\HomeController@index')->name('home');
 
-    Route::view('/instructor', 'client.instructor-form')->name('instructor-form');
-
     // คอร์สทั้งหมด
     Route::prefix('courses')->name('courses.')->group(function () {
         Route::get('/', 'Client\HomeController@courses')->name('all');
         Route::get('/detail/{id}', 'Client\HomeController@courseDetail')->name('detail');
+    });
+
+    Route::middleware('auth:web')->group(function () {
+        Route::view('/instructor', 'client.instructor-form')->name('instructor-form');
     });
 
     Route::prefix('auth')->name('auth.')->group(function () {
