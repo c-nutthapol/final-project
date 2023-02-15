@@ -47,7 +47,7 @@ class View extends Component
                     $this->exam_success += $quiz->check_user_answered() ? 1 : 0;
                 }
             }
-            $this->exam_success = ($this->exam_success / $this->exam) * 100;
+            $this->exam_success = $this->exam_success ? ($this->exam_success / $this->exam) * 100 : 0;
 
 
             $this->image = $course->image;
