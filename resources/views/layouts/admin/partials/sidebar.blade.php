@@ -38,7 +38,7 @@
                           </div>
                       </a>
                   </li>
-                  <li>
+                  {{-- <li>
                       <a href="{{ route('admin.courses') }}"
                           class="block w-full py-5 text-base font-medium tracking-wide text-gray-100 transition duration-150 ease-linear border-b-2 cursor-pointer px-7 border-secondary/20 {{ Route::currentRouteName() == 'admin.courses' ? 'font-semibold text-white bg-secondary/40' : 'text-gray-100 hover:text-white hover:bg-secondary/20' }}">
                           <div class="flex items-center space-x-4">
@@ -52,7 +52,7 @@
                               <span class="inline-block"> ตรวจสอบคอร์ส </span>
                           </div>
                       </a>
-                  </li>
+                  </li> --}}
               </ul>
           </div>
       </aside>

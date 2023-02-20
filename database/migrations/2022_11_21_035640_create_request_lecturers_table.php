@@ -15,12 +15,21 @@ return new class extends Migration
     {
         Schema::create('request_lecturers', function (Blueprint $table) {
             $table->id('id');
-            $table->text('description');
-            $table->longText('files');
-            $table->string('status', 50);
+            $table->text('record');
+            $table->integer('experience');
+            $table->string('target_audience');
+            $table->text('description')->nullable();
+            $table->string('status', 4)->default(0);
+            /**
+             * status
+             *  0 == รอการอนุมัติ
+             *
+             */
+
             $table->bigInteger('created_by', 0, 1)->nullable();
             $table->bigInteger('updated_by', 0, 1)->nullable();
             $table->timestamps();
+
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });

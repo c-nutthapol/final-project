@@ -38,7 +38,7 @@ class EditEP extends Component
 
             $this->video_temp = $episode->video;
             $this->name = $episode->name;
-            $this->files_temp = $episode->files;
+            $this->files_temp = $episode->files ?? [];
         }
     }
 
