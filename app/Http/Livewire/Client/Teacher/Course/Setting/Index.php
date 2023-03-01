@@ -21,7 +21,7 @@ class Index extends Component
         return view('livewire.client.teacher.course.setting.index', compact('lecturers'));
     }
 
-    public $subtitle, $idTable, $idHash;
+    public $subtitle, $idTable, $idHash, $status, $avatar;
 
     public function mount($id)
     {

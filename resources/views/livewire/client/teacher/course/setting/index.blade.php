@@ -102,7 +102,7 @@
             <li class="flex items-center justify-between px-4 py-6 border-b border-b-secondary/10">
                 <div>ลบคอร์สเรียน</div>
                 <div>
-                    <button type="button" class="btn is-danger" data-popover-target="popover-delete">
+                    <button type="button" class="btn is-danger" data-popover-target="popover-delete" wire:click="destroyConfirm('{{ $subtitle }}')">
                         <div class="flex items-center content-center">
                             <i class="leading-none fi fi-rr-trash"></i>
                         </div>
