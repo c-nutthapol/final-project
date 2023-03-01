@@ -19,7 +19,7 @@ class Register extends Component
 
 
     /* A default value for the form. */
-    public $username = 'usertest', $password = 'P@ssw0rd', $email = 'usertest@gmail.com', $first_name = 'user', $last_name = 'test', $password_confirm = 'P@ssw0rd';
+    public $username = '', $password = '', $email = '', $first_name = '', $last_name = '', $password_confirm = '';
 
     /* A validation rule for the form. */
     protected $rules = [

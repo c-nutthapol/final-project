@@ -23,7 +23,7 @@ class Login extends Component
         $this->redirect = $redirect;
     }
     /* It's a default value for the form. */
-    public $usernameOrEmail = 'usertest', $password = 'P@ssw0rd';
+    public $usernameOrEmail = '', $password = '';
 
     /* A validation rule for the form. */
     protected $rules = [
