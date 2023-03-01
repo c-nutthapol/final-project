@@ -36,6 +36,8 @@ class Index extends Component
             $this->full_name = $record->user->full_name;
             $this->avatar = $record->avatar;
             $this->created_by = $record->created_by;
+        } else {
+            return  redirect()->route('client.teacher.all');
         }
     }
 
