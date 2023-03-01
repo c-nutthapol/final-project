@@ -9,7 +9,7 @@ class Item extends Component
 {
     public function render()
     {
-        $courses = Course::where('post_status','status')->paginate(12);
+        $courses = Course::where('post_status','public')->paginate(12);
 
         return view('livewire.client.courses.item', compact('courses'));
     }
