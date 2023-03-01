@@ -17,7 +17,7 @@ class Index extends Component
 
     public function render()
     {
-        $lecturers = Course::find($this->idTable)->lecturers;
+        $lecturers = Course::find($this->idTable)->lecturers ?? [];
         return view('livewire.client.teacher.course.setting.index', compact('lecturers'));
     }
 
@@ -91,6 +91,6 @@ class Index extends Component
     {
         $update = Course::find($this->idTable);
         $update->delete();
-        return  $update->save();
+        return  redirect()->route('client.teacher.all');
     }
 }
