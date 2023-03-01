@@ -14,13 +14,13 @@
                       <li>
                           <div
                               class="flex items-center px-2 py-1.5 space-x-4 rounded-full bg-primary/10 text-primary font-bold tracking-wide">
-                              <img src="https://images.pexels.com/photos/206434/pexels-photo-206434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                              <img src="{{ !is_null(auth()->user()->avatar) && Storage::disk('public')->exists(auth()->user()->avatar) ? Storage::disk('public')->url(auth()->user()->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
                                   alt="Avatar" class="object-cover object-center w-10 h-10 rounded-full" />
-                              <span>Super Admin</span>
+                              <span>{{ auth()->user()->full_name }}</span>
                           </div>
                       </li>
                       <li>
-                          <a href="#"
+                          <a href="{{ route('client.home') }}"
                               class="flex items-center justify-center w-12 h-12 rounded-full hover:bg-primary/10 text-secondary">
                               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                                   xmlns="http://www.w3.org/2000/svg">

@@ -73,7 +73,7 @@ Route::name('client.')->group(function () {
     });
 });
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth:web', 'role:administrator'])->name('admin.')->group(function () {
     Route::view('/', 'admin.home')->name('home');
     Route::view('/instructor', 'admin.instructor')->name('instructor');
     Route::view('/courses', 'admin.courses')->name('courses');

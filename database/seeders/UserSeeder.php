@@ -25,6 +25,14 @@ class UserSeeder extends Seeder
                 'last_name' => 'Test',
                 'level' => 'lecturer',
             ],
+            [
+                'username' => 'admin',
+                'password' => bcrypt('P@ssw0rd'),
+                'email' => 'admin@gmail.com',
+                'first_name' => 'Super',
+                'last_name' => 'Admin',
+                'level' => 'administrator'
+            ]
         ];
         User::insert($data);
     }

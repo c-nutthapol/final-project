@@ -103,7 +103,7 @@
                         </a>
                     </li>
                     <li class="block px-3 py-2 lg:inline-block md:p-0">
-                        <a href="{{ route('client.teacher.all') }}"
+                        <a href="{{ auth()->user()->level == 'student' ? route('client.instructor-form') : route('client.teacher.all')  }}"
                             class="text-base font-normal tracking-wider font-ibm text-secondary hover:text-primary">
                             ร่วมสอนกับเรา
                         </a>

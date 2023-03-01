@@ -15,15 +15,18 @@ class InstructorForm extends Component
         return view('livewire.client.instructor-form');
     }
 
-    public $textStatus;
+    public $textStatus = false;
 
     public function mount()
     {
         $record = RequestLecturer::where('created_by', auth()->user()->id)->orderBy('created_at', 'desc')->first();
-        if ($record->status == 0 && $record->updated_by == null) {
-            $this->textStatus = 'รอการอนุมัติ';
-        }
-        if ($record->status == 0 && $record->updated_by != null) {
+        if ($record) {
+            if ($record->status == 0 && $record->updated_by == null) {
+                $this->textStatus = 'รอการอนุมัติ';
+            }
+            if ($record->status != 111 && $record->updated_by != null) {
+                $this->textStatus = 'ไม่ผ่านเงื่อนไขที่กำหนด';
+            }
         }
     }
 
@@ -70,7 +73,7 @@ class InstructorForm extends Component
                 'onDenied' => '',
             ]);
 
-            $this->dispatchBrowserEvent('redirect_page', ['url' => route('client.instructor-form'), 'delay' => 3000]);
+            // $this->dispatchBrowserEvent('redirect_page', ['url' => route('client.instructor-form'), 'delay' => 3000]);
         } catch (\Exception $e) {
             $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
                 'position' => 'top-end',
