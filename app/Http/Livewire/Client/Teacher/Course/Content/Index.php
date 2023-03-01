@@ -23,7 +23,7 @@ class Index extends Component
 
     public function render()
     {
-        $sections = Section::get();
+        $sections = Section::where('course_id', $this->idTable)->get();
         return view('livewire.client.teacher.course.content.index', compact('sections'));
     }
 
