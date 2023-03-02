@@ -46,6 +46,9 @@
         <div>
             <h1>ท่านได้ลงทะเบียนไปแล้ว</h1>
             <p>สถานะ : {{ $textStatus }}</p>
+            @if ($textDescription)
+                <p>เนื่องจาก : {{ $textDescription }}</p>
+            @endif
         </div>
     @endif
 

@@ -89,7 +89,13 @@
                         </td>
                         <td class="px-6 py-4">
                             <button type="button" class="font-medium text-primary hover:underline"
-                                data-modal-toggle="statusModal">
+                                data-modal-toggle="statusModal"
+                                x-on:click="idEdit = {{ $request->id }};
+                                record = {{ $request->record }};
+                                experience = {{ $request->experience }};
+                                target_audience = {{ $request->target_audience }};
+                                full_name = {{ $request->full_name }};
+                                avatar = {{ $request->avatar }};">
                                 จัดการ
                             </button>
                         </td>
@@ -105,3 +111,29 @@
     <!--------- Pagination   ---------->
     {{ $requests->links('pagination.livewire.main') }}
 </div>
+
+@push('script')
+    <script>
+        function getData() {
+            return {
+                formData: {
+                    description: "",
+                    status: "",
+                },
+                idEdit: null,
+                record: null,
+                experience: null,
+                target_audience: null,
+                full_name: null,
+                avatar: null,
+            }
+        }
+
+        function updateInstructor() {
+            if (this.formData.name.length != 0 && this.formData.name.length >= 8 && this.formData.name.length <= 120) {
+                @this.update(this.idEdit, this.formData)
+                return this.formData.name = "";
+            }
+        }
+    </script>
+@endpush

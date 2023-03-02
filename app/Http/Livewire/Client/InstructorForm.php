@@ -15,7 +15,7 @@ class InstructorForm extends Component
         return view('livewire.client.instructor-form');
     }
 
-    public $textStatus = false;
+    public $textStatus = false, $textDescription = false;
 
     public function mount()
     {
@@ -26,6 +26,7 @@ class InstructorForm extends Component
             }
             if ($record->status != 111 && $record->updated_by != null) {
                 $this->textStatus = 'ไม่ผ่านเงื่อนไขที่กำหนด';
+                $this->textDescription = $record->description;
             }
         }
     }
@@ -61,7 +62,11 @@ class InstructorForm extends Component
     {
         $validatedData = $this->validate($this->rules, $this->messages, $this->attributes);
         try {
-            RequestLecturer::create($validatedData);
+            $create = RequestLecturer::create($validatedData);
+
+            if ($create->status == 0 && $create->updated_by == null) {
+                $this->textStatus = 'รอการอนุมัติ';
+            }
 
             $this->alert('success', 'ขอบคุณ', [
                 'position' => 'center',
