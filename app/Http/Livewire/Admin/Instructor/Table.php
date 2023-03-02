@@ -32,4 +32,8 @@ class Table extends Component
             ->orderBy('created_at', $this->sort)->paginate(5);
         return view('livewire.admin.instructor.table', compact('requests'));
     }
+
+    public function update($id,$data){
+
+    }
 }

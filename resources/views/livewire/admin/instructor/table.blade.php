@@ -132,7 +132,7 @@
         function updateInstructor() {
             if (this.formData.name.length != 0 && this.formData.name.length >= 8 && this.formData.name.length <= 120) {
                 @this.update(this.idEdit, this.formData)
-                return this.formData.name = "";
+                // return this.formData = "";
             }
         }
     </script>
