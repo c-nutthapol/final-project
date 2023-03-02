@@ -131,7 +131,12 @@
 
         function getInstructor(id){
             let data = @this.getInstructor(id)
-            // this.idEdit = data.idz
+            this.idEdit = data.id
+            this.record = data.record
+            this.experience = data.experience
+            this.target_audience = data.target_audience
+            this.full_name = data.full_name
+            this.avatar = data.avatar
 
         }
 
