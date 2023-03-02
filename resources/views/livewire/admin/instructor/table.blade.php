@@ -74,7 +74,7 @@
                         @endif
                     </td>
                     <td class="px-6 py-4">
-                        <button type="button" class="font-medium text-primary hover:underline" data-modal-toggle="statusModal" onclick="getInstructor({{ $request->id }})">
+                        <button type="button" class="font-medium text-primary hover:underline" data-modal-toggle="statusModal" x-on:click="getInstructor({{ $request->id }})">
                             จัดการ
                         </button>
                     </td>
