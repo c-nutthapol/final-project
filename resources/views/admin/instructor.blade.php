@@ -81,7 +81,7 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="flex items-center justify-center p-6 space-x-2 border-t rounded-b border-secondary/10">
-                            <button data-modal-toggle="statusModal" type="submit" class="btn is-primary">
+                            <button type="submit" class="btn is-primary">
                                 <div class="flex items-center">
                                     <i class="text-lg leading-none fi fi-rr-disk"></i>
                                     <span class="inline-block ml-2 font-medium">ยืนยัน</span>
