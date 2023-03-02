@@ -111,6 +111,7 @@
     async function getInstructor(id) {
 
         let data = await @this.getInstructor(id)
+        console.log(data);
         this.idEdit = data.id
         this.record = data.record
         this.experience = data.experience
