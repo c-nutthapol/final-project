@@ -90,12 +90,7 @@
                         <td class="px-6 py-4">
                             <button type="button" class="font-medium text-primary hover:underline"
                                 data-modal-toggle="statusModal"
-                                x-on:click="idEdit = {{ $request->id }};
-                                record = {{ $request->record }};
-                                experience = {{ $request->experience }};
-                                target_audience = {{ $request->target_audience }};
-                                full_name = {{ $request->full_name }};
-                                avatar = {{ $request->avatar }};">
+                                x-on:click="getInstructor({{ $request->id }})">
                                 จัดการ
                             </button>
                         </td>
