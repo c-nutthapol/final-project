@@ -39,8 +39,6 @@ class Table extends Component
 
     public function update($id,$data){
         try {
-
-            dd($id,$data);
             $update = RequestLecturer::find($id);
             if($update){
                 $update->status = $data['status'];
