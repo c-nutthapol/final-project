@@ -119,6 +119,8 @@
         this.full_name = data.full_name
         this.avatar = data.avatar
 
+        console.log(this.idEdit);
+
     }
 
     function updateInstructor() {
