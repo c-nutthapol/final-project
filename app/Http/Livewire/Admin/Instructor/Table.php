@@ -36,9 +36,9 @@ class Table extends Component
     public function update($id,$data){
         try {
             $update = RequestLecturer::find($id);
-            dd($id,$data);
             if($update){
                 $update->status = $data['status'];
+                $update->description = $data['description'];
                 if($update->status == '111'){
                     $update->user->level = 'lecturer';
                     $update->user->save();
