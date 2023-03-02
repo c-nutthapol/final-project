@@ -57,6 +57,7 @@
                                 <label for="description" class="block mb-1.5 text-base font-medium text-dark-theme">
                                     หมายเหตุ
                                 </label>
+                                <input type="hidden" x-model='idEdit'>
                                 <textarea
                                     class="block w-full px-3 py-2 text-base font-normal bg-transparent border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
                                     id="description" rows="5" x-model="formData.description"></textarea>
