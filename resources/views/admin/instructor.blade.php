@@ -72,11 +72,7 @@
                                     <option value="111">อนุมัติ</option>
                                     <option value="100">ปฎิเสธ</option>
                                 </select>
-                                <span x-show="formData.status == ''" class="error text-error">โปรดระบุข้อมูล
-                                    ชื่อเนื้อหา</span>
-                                <span
-                                    x-show="(formData.status != '111' || formData.status != '100') && formData.status != ''"
-                                    class="error text-error">ระบุสถานะให้ถูกต้อง</span>
+                              
                             </div>
                         </div>
                         <!-- Modal footer -->
