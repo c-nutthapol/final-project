@@ -111,7 +111,7 @@
     function getInstructor(id) {
 
         let data = @this.getInstructor(id)
-        console.log(id, data.id);
+        console.log(id, data['id']);
         this.idEdit = data.id
         this.record = data.record
         this.experience = data.experience
