@@ -3,11 +3,14 @@
 namespace App\Http\Livewire\Admin\Instructor;
 
 use App\Models\RequestLecturer;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Table extends Component
 {
+    use LivewireAlert;
+
     public $status, $sort = 'desc', $search;
 
     public function render()
