@@ -3,7 +3,7 @@
 @section('title', 'ข้อมูลผู้สอน')
 
 @section('content')
-    <div>
+    <div x-data="getData()">
         <!-- Page Title -->
         <h2 class="mb-6 text-2xl font-bold tracking-wide text-secondary">
             คำขอเป็นผู้สอนทั้งหมด
@@ -16,7 +16,7 @@
         <div id="statusModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
             class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
             wire:ignore.self>
-            <div class="relative w-full h-full max-w-md md:h-auto font-ibm" x-data="getData()">
+            <div class="relative w-full h-full max-w-md md:h-auto font-ibm" >
                 <!-- Modal content -->
                 <div class="relative shadow bg-white/60 backdrop-blur-md rounded-2xl">
                     <form @submit.prevent="updateInstructor">
