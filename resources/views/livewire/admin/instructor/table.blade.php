@@ -74,7 +74,7 @@
                         @endif
                     </td>
                     <td class="px-6 py-4">
-                        <button type="button" class="font-medium text-primary hover:underline" data-modal-toggle="statusModal" onclick="getInstructor({{ $request->id }})">
+                        <button type="button" class="font-medium text-primary hover:underline" data-modal-toggle="statusModal" x-ob:click="getInstructor({{ $request->id }})">
                             จัดการ
                         </button>
                     </td>
@@ -93,7 +93,7 @@
 
 @push('script')
 <script>
-    function getData() {
+    function getData(data = []) {
         return {
             formData: {
                 description: "",
@@ -111,16 +111,12 @@
     async function getInstructor(id) {
 
         let data = await @this.getInstructor(id)
-        console.log(id, data,data.id);
         this.idEdit = data.id
         this.record = data.record
         this.experience = data.experience
         this.target_audience = data.target_audience
         this.full_name = data.full_name
         this.avatar = data.avatar
-
-        console.log(this.idEdit);
-
     }
 
     function updateInstructor() {
