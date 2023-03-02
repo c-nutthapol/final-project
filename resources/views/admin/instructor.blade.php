@@ -70,7 +70,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="flex items-center justify-center p-6 space-x-2 border-t rounded-b border-secondary/10">
-                        <input type="hidden" x-model="idEdit">
+                        <input type="hidden" id="idEdit" x-model="idEdit">
                         <button type="submit" class="btn is-primary">
 
 
