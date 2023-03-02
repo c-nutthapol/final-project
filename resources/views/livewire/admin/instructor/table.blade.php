@@ -129,6 +129,12 @@
             }
         }
 
+        function getInstructor(id){
+            let data = @this.getInstructor(id)
+            // this.idEdit = data.idz
+
+        }
+
         function updateInstructor() {
             if (this.formData.name.length != 0 && this.formData.name.length >= 8 && this.formData.name.length <= 120) {
                 @this.update(this.idEdit, this.formData)

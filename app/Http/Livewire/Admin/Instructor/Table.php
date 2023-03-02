@@ -34,6 +34,35 @@ class Table extends Component
     }
 
     public function update($id,$data){
+        try {
+            $update = RequestLecturer::find($id);
+            if($update){
+                $update->status = $data['status'];
+                if($update->status == '111'){
+                    $update->user->level = 'lecturer';
+                    $update->user->save();
+                }
+                $update->save();
+            }
 
+            $this->alert('success', 'บันทึกเสร็จสิ้น', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                'showDenyButton' => false,
+                'onDenied' => '',
+            ]);
+        } catch (\Exception $e) {
+            return $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                'showDenyButton' => false,
+                'onDenied' => '',
+                'text' => $e->getMessage(),
+            ]);
+        }
     }
 }
