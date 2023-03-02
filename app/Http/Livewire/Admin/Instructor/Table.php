@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Instructor;
 
 use App\Models\RequestLecturer;
+use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -39,7 +40,7 @@ class Table extends Component
     public function update($id,$data){
         try {
 
-            dd($id,$data);
+            
             $update = RequestLecturer::find($id);
             if($update){
                 $update->status = $data['status'];
@@ -49,16 +50,18 @@ class Table extends Component
                     $update->user->save();
                 }
                 $update->save();
+
+                $this->alert('success', 'บันทึกเสร็จสิ้น', [
+                    'position' => 'top-end',
+                    'timer' => 3000,
+                    'toast' => true,
+                    'timerProgressBar' => true,
+                    'showDenyButton' => false,
+                    'onDenied' => '',
+                ]);
             }
 
-            $this->alert('success', 'บันทึกเสร็จสิ้น', [
-                'position' => 'top-end',
-                'timer' => 3000,
-                'toast' => true,
-                'timerProgressBar' => true,
-                'showDenyButton' => false,
-                'onDenied' => '',
-            ]);
+            
         } catch (\Exception $e) {
             return $this->alert('error', 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง', [
                 'position' => 'top-end',
@@ -69,6 +72,23 @@ class Table extends Component
                 'onDenied' => '',
                 'text' => $e->getMessage(),
             ]);
+        }
+    }
+
+    public function getInstructor($id){
+        $record = RequestLecturer::find($id);
+        if($record){
+            $data = [
+                'id' => $id,
+                'record' => $record->record,
+                'experience' => $record->experience,
+                'target_audience' => $record->target_audience,
+                'full_name' => $record->user->full_name,
+                'avatar' => Storage::disk('public')->url($record->user->avatar),
+            ];
+
+
+            return $data;
         }
     }
 }
