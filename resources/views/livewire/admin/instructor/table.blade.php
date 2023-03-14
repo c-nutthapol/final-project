@@ -97,6 +97,8 @@
                         target_audience = '{{ $request->target_audience }}';
                         full_name = '{{ $request->full_name }}';
                         avatar = '{{ !is_null($request->user->avatar) && Storage::disk('public')->exists($request->user->avatar) ? Storage::disk('public')->url($request->user->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}';
+                        formData.description = '{{ $request->description }}';
+                        formData.status = '{{ $request->status }}';
                         ">
                                 จัดการ
                             </button>
