@@ -5,7 +5,7 @@
                 <a href="#" class="flex items-center justify-between p-4 bg-white rounded-lg shadow-card-course">
                     <!--------- Avatar ---------->
                     <figure class="flex items-center space-x-3">
-                        <img src="{{ !is_null($request->user->avatar) && Storage::disk('public')->exists($request->user->avatar) ? Storage::disk('public')->url(auth()->user()->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}" alt="avatar"
+                        <img src="{{ !is_null($request->user->avatar) && Storage::disk('public')->exists($request->user->avatar) ? Storage::disk('public')->url($request->user->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}" alt="avatar"
                             class="object-cover object-top w-10 h-10 rounded-full" />
                         <figcaption class="text-base font-semibold text-secondary">
                             {{ $request->user->full_name }}

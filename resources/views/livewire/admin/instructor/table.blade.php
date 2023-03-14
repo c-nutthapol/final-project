@@ -45,7 +45,7 @@
                         <th scope="row" class="flex items-center px-6 py-4 space-x-3 whitespace-nowrap">
                             <!--------- Avatar ---------->
                             <figure class="flex items-center space-x-3">
-                                <img src="{{ !is_null($request->user->avatar) && Storage::disk('public')->exists($request->user->avatar) ? Storage::disk('public')->url(auth()->user()->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
+                                <img src="{{ !is_null($request->user->avatar) && Storage::disk('public')->exists($request->user->avatar) ? Storage::disk('public')->url($request->user->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}"
                                     alt="avatar" class="object-cover object-top w-10 h-10 rounded-full" />
                                 <figcaption class="text-base font-semibold text-secondary">
                                     {{ $request->user->full_name }}
@@ -96,7 +96,7 @@
                         experience = '{{ $request->experience }}';
                         target_audience = '{{ $request->target_audience }}';
                         full_name = '{{ $request->full_name }}';
-                        avatar = '{{ Storage::disk('public')->url($request->avatar) }}';
+                        avatar = '{{ !is_null($request->user->avatar) && Storage::disk('public')->exists($request->user->avatar) ? Storage::disk('public')->url($request->user->avatar) : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png' }}';
                         ">
                                 จัดการ
                             </button>
