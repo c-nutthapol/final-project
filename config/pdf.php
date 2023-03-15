@@ -32,4 +32,12 @@ return [
     'pdfa'                     => false,
     'pdfaauto'                 => false,
     'use_active_forms'         => false,
+    'custom_font_dir'  => base_path('resources/fonts/m_plus_1/'), // don't forget the trailing slash!
+    'custom_font_data' => [
+        'mplus' => [ // must be lowercase and snake_case
+            'R'  => 'MPLUS1-Medium.ttf',    // regular font
+            'B'  => 'MPLUS1-Bold.ttf',       // optional: bold font
+        ]
+        // ...add as many as you want.
+    ]
 ];
