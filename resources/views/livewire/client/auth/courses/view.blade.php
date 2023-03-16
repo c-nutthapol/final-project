@@ -69,7 +69,7 @@
                                 </div>
                                 <!--------- Title ---------->
                                 <h4 class="text-xl font-bold tracking-wider text-white font-ibm">
-                                    ผลแบบทดสอบ
+                                    ความคืบหน้าแบบทดสอบ
                                 </h4>
                             </div>
                         </div>
@@ -99,12 +99,23 @@
                         <!--------- เกียรติบัตร ---------->
                         <div
                             class="relative p-10 overflow-hidden text-center bg-secondary rounded-2xl shadow-card-course">
-                            <div
-                                class="absolute top-0 left-0 flex items-center justify-center w-full h-full cursor-no-drop bg-black/70 backdrop-blur-[1px]">
-                                <div class="text-2xl font-bold tracking-wider text-white font-ibm">
-                                    ยังไม่ผ่าน
-                                </div>
-                            </div>
+                            @if ($certificate_url)
+                                <a href="{{ $certificate_url }}"
+                                    class="absolute top-0 left-0 flex items-center justify-center w-full h-full cursor-pointer transform ease-in-out duration-200 text-white"
+                                    target="__black">
+                                    {{-- <div class="text-2xl font-bold tracking-wider text-white font-ibm">
+                                        ออกเกียรติบัตร
+                                    </div> --}}
+                                </a>
+                            @else
+                                <a href="javascript:void(0);"
+                                    wire:click="getCertificate"class="absolute top-0 left-0 flex items-center justify-center w-full h-full cursor-pointer bg-black/70 backdrop-blur-[1px] transform ease-in-out duration-200 text-white hover:text-yellow-300">
+                                    <div class="text-2xl font-bold tracking-wider text-white font-ibm">
+                                        ออกเกียรติบัตร
+                                    </div>
+                                </a>
+                            @endif
+
                             <!--------- Icon ---------->
                             <div
                                 class="flex items-center justify-center w-40 h-40 mx-auto mb-4 overflow-hidden font-bold tracking-wider bg-white rounded-full text-7xl text-secondary font-montserrat">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Client\Auth\Courses;
 
+use App\Models\Certificate;
 use App\Models\Course;
 use App\Models\Review;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -28,6 +29,8 @@ class View extends Component
     public $description, $will_learn, $must_have;
 
     public $reviews, $sections, $check_register;
+
+    public $certificate_url;
 
     public function mount($id)
     {
@@ -65,6 +68,11 @@ class View extends Component
             $this->sections = $course->sections;
 
             $this->reviews = $course->reviews;
+
+            $certificate = Certificate::where('course_id', $course->id)->where('user_id', auth()->user()->id)->first();
+            if ($certificate) {
+                $this->certificate_url = route('client.auth.courses.certificate', $certificate->encode);
+            }
         } else {
             redirect()->route('client.home');
         }
@@ -151,6 +159,53 @@ class View extends Component
                 'showDenyButton' => false,
                 'onDenied' => '',
                 'text' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function getCertificate()
+    {
+        $course = Course::find($this->idTable);
+        $user_id = auth()->user()->id;
+        foreach ($course->sections as $section) {
+            $amount = $section->quizzes->sum('amount');
+            $scores = 0;
+            foreach ($section->quizzes as $quiz) {
+                $scores += $quiz->quiz_result()->where('created_by', $user_id)->sum('result_scores');
+            }
+        }
+
+        if (($scores * 100) / $amount > 70 && $this->exam_success == 100) {
+
+            $data = [
+                'course_id' => $course->id,
+                'user_id' => $user_id,
+                'issue_date' => date('Y-m-d')
+            ];
+            $create = Certificate::create($data);
+            if ($create) {
+                $this->certificate_url = route('client.auth.courses.certificate', $create->encode);
+            }
+            $this->alert('success', 'ออกเกียรติบัตรได้แล้ว', [
+                'position' => 'center',
+                'text' => 'คลิกอีกครั้งเพื่อเข้าหน้าเกียรติบัตร',
+                'timer' => 3000,
+                'toast' => false,
+                'showCancelButton' => false,
+                'onDismissed' => '',
+                'showConfirmButton' => true,
+                'onConfirmed' => '',
+            ]);
+        } else {
+            $this->alert('warning', 'ไม่สามารถออกเกียรติบัตรได้', [
+                'position' => 'center',
+                'text' => 'คะแนนทั้งหมดต้องได้มากกว่า 70% ขึ้นไป และต้องทำแบบทดสอบทั้งหมด',
+                'timer' => 3000,
+                'toast' => false,
+                'showCancelButton' => false,
+                'onDismissed' => '',
+                'showConfirmButton' => true,
+                'onConfirmed' => '',
             ]);
         }
     }

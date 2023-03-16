@@ -115,6 +115,7 @@ class Form extends Component
                 return $this->dispatchBrowserEvent('redirect_page', ['url' => route('client.teacher.course.content.index', $this->idHash)]);
             } elseif ($validateData['type'] ==  'quiz') {
                 $data['questions'] = $validateData['questions'];
+                $data['amount'] = count($validateData['questions']);
                 Quiz::create($data);
                 $this->alert('success', 'บันทึกเสร็จสิ้น', [
                     'position' => 'top-end',

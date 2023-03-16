@@ -68,10 +68,10 @@
                                                     $qid = Hashids::encode(200, $cid, $section->id, $quiz->id);
                                                 @endphp
                                                 <li class="flex items-center justify-between basis-1/4">
-                                                    <a id="{{ 200 . '-' . $section->encode . '-' . $episode->encode }}"
+                                                    <a id="{{ 200 . '-' . $section->encode . '-' . $quiz->encode }}"
                                                         href="{{ route('client.auth.courses.lecture', $qid) }}">
                                                         <div
-                                                            class="flex items-center space-x-3 @if ($tid == 100 && $episode->encode == $eqidHash) text-primary @endif">
+                                                            class="flex items-center space-x-3 @if ($tid == 100 && $quiz->encode == $eqidHash) text-primary @endif">
                                                             <i class="text-sm leading-none fi fi-rr-document-signed"></i>
                                                             <span
                                                                 class="inline-block text-sm font-normal leading-normal @if ($tid == 200 && $quiz->encode == $eqidHash) text-primary @endif">

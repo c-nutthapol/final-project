@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id');
             $table->bigInteger('quiz_id', 0, 1);
             $table->json('result_questions');
-            $table->integer('result_scors', 0, 1);
+            $table->integer('result_scores', 0, 1);
             $table->bigInteger('created_by', 0, 1)->nullable();
             $table->timestamps();
 
