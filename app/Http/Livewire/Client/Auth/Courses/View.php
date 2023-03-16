@@ -189,23 +189,25 @@ class View extends Component
             $this->alert('success', 'ออกเกียรติบัตรได้แล้ว', [
                 'position' => 'center',
                 'text' => 'คลิกอีกครั้งเพื่อเข้าหน้าเกียรติบัตร',
-                'timer' => 3000,
+                'timer' => 10000,
                 'toast' => false,
                 'showCancelButton' => false,
                 'onDismissed' => '',
                 'showConfirmButton' => true,
                 'onConfirmed' => '',
+                'confirmButtonText' => 'ตกลง',
             ]);
         } else {
             $this->alert('warning', 'ไม่สามารถออกเกียรติบัตรได้', [
                 'position' => 'center',
                 'text' => 'คะแนนทั้งหมดต้องได้มากกว่า 70% ขึ้นไป และต้องทำแบบทดสอบทั้งหมด',
-                'timer' => 3000,
+                'timer' => 10000,
                 'toast' => false,
                 'showCancelButton' => false,
                 'onDismissed' => '',
                 'showConfirmButton' => true,
                 'onConfirmed' => '',
+                'confirmButtonText' => 'ตกลง',
             ]);
         }
     }
