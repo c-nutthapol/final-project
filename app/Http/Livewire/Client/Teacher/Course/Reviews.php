@@ -31,7 +31,7 @@ class Reviews extends Component
     public function mount($id)
     {
         $this->idHash = $id;
-        $this->idTable = Hashids::decodeHex($id);
+        $this->idTable = Hashids::decodeHex($this->idHash);
         $record = Course::find($this->idTable);
         if ($record) {
             /* Setting the subtitle to the name of the course. */

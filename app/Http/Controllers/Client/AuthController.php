@@ -89,10 +89,10 @@ class AuthController extends Controller
         }
 
 
-        $tidHash = Hashids::encodeHex($tid);
-        $cidHash = Hashids::encodeHex($cid);
-        $sidHash = Hashids::encodeHex($sid);
-        $eqidHash = Hashids::encodeHex($eqid);
+        $tidHash = Hashids::encodeHex("{$tid}");
+        $cidHash = Hashids::encodeHex("{$cid}");
+        $sidHash = Hashids::encodeHex("{$sid}");
+        $eqidHash = Hashids::encodeHex("{$eqid}");
 
         if (!auth()->user()->check_course($cid)) {
             return redirect()->route('client.courses.detail', $cidHash);

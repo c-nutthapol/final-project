@@ -27,14 +27,22 @@
                 </div>
                 <div class="flex items-center justify-end space-x-2 mt-6">
                     @if ($key > 0)
+                        @php
+                            $i = $key - 1;
+                            $hash = Hashids::encodeHex("{$i}");
+                        @endphp
                         <button type="button" class="flex items-center btn is-primary"
-                            onclick="@this.set('q','{{ Hashids::encodeHex($key - 1) }}')">
+                            onclick="@this.set('q','{{ $hash }}')">
                             <span class="inline-block ml-2 text-sm">ก่อนหน้า</span>
                         </button>
                     @endif
                     @if ($key < $quest_length && $key != $quest_length - 1)
+                        @php
+                            $i = $key + 1;
+                            $hash = Hashids::encodeHex("{$i}");
+                        @endphp
                         <button type="button" class="flex items-center btn is-primary"
-                            onclick="@this.set('q','{{ Hashids::encodeHex($key + 1) }}')">
+                            onclick="@this.set('q','{{ $hash }}')">
                             <span class="inline-block ml-2 text-sm">ต่อไป</span>
                         </button>
                     @endif
@@ -52,7 +60,7 @@
                     @php($i = 1)
                     @foreach ($questions as $i_key => $item)
                         <div>
-                            @php($hash = Hashids::encodeHex($i_key))
+                            @php($hash = Hashids::encodeHex("{$i_key}"))
                             @if ($i_key == $key)
                                 <button id="questions-{{ $hash }}" type="button"
                                     class="items-center btn is-primary">

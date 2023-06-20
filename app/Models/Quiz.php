@@ -39,7 +39,7 @@ class Quiz extends Model
 
     public function getEncodeAttribute()
     {
-        return Hashids::encodeHex($this->id);
+        return Hashids::encodeHex("{$this->id}");
     }
 
     public function quiz_result()

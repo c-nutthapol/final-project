@@ -14,7 +14,7 @@ class Quiz extends Component
     public function render()
     {
         $this->checkReply();
-        $this->getQuiz(Hashids::decodeHex($this->q));
+        $this->getQuiz(Hashids::decodeHex($this->q ?? ""));
         return view('livewire.client.courses.lecture.quiz');
     }
 

@@ -123,7 +123,7 @@ class Course extends Model
      */
     public function getEncodeAttribute()
     {
-        return Hashids::encodeHex($this->id);
+        return Hashids::encodeHex("{$this->id}");
     }
 
     /**

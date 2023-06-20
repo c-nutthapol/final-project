@@ -8,9 +8,9 @@
             <div class="flex items-center mb-8 space-x-2">
                 @php
                     $decode = Hashids::decode($id);
-                    $id = Hashids::encodeHex($decode[0]);
-                    $sid = Hashids::encodeHex($decode[1]);
-                    $cid = !empty($decode[2]) ? Hashids::encodeHex($decode[2]) : null;
+                    $id = Hashids::encodeHex("{$decode[0]}");
+                    $sid = Hashids::encodeHex("{$decode[1]}");
+                    $cid = !empty($decode[2]) ? Hashids::encodeHex("{$decode[2]}") : null;
                 @endphp
                 <a href="{{ route('client.teacher.course.content.index', $id) }}" class="inline-block leading-none"
                     data-popover-target="popover-back-content">
@@ -28,7 +28,7 @@
                 </h3>
             </div>
             @if (!empty($cid) && Route::currentRouteName() == 'client.teacher.course.content.edit-quiz')
-                @livewire('client.teacher.course.content.edit-quiz', ['id' => $id, 'sid' => $sid, 'cid' => $cid])
+                @livewire('client.teacher.course.content.edit-quiz', ['id' => $id, 'sid' => $sid, 'qid' => $cid])
             @elseif(!empty($cid) && Route::currentRouteName() == 'client.teacher.course.content.edit-ep')
                 @livewire('client.teacher.course.content.edit-e-p', ['id' => $id, 'sid' => $sid, 'cid' => $cid])
             @else

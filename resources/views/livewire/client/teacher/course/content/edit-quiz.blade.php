@@ -1,6 +1,6 @@
 @section('subtitle', $subtitle)
 <form wire:submit.prevent="submit">
-    <div x-data="{ type: '', }" class="grid grid-cols-2 gap-6">
+    <div x-data="{ type: 'quiz', }" class="grid grid-cols-2 gap-6">
         <div class="col-span-2">
             <label for="title" class="block mb-1.5 text-base font-medium text-dark-theme">
                 ชื่อเนื้อหาย่อย
@@ -12,105 +12,7 @@
                 <span class="error text-error">{{ $message }}</span>
             @enderror
         </div>
-        <div class="col-span-2">
-            <label for="rank" class="block mb-1.5 text-base font-medium text-dark-theme">
-                ประเภทเนื้อหาย่อย
-            </label>
-            <div class="space-y-2">
-                <div class="flex items-center">
-                    <input x-model="type" checked id="radio-video" type="radio" value="video" name="radio-type"
-                        class="w-4 h-4 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
-                        wire:model.defer="type" />
-                    <label for="radio-video" class="pl-3 text-base font-normal cursor-pointer text-secondary">
-                        วิดีโอ
-                    </label>
-                </div>
-                <div class="flex items-center">
-                    <input x-model="type" id="radio-quiz" type="radio" value="quiz" name="radio-type"
-                        class="w-4 h-4 bg-gray-100 border-gray-300 cursor-pointer text-primary focus:ring-primary-80"
-                        wire:model.defer="type" />
-                    <label for="radio-quiz" class="pl-3 text-base font-normal cursor-pointer text-secondary">
-                        แบบทดสอบ
-                    </label>
-                </div>
-                @error('type')
-                    <span class="error text-error">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
-        {{-- <!--------- @IF สำหรับประเภทวิดีโอ  ----------> --}}
-        <div x-show="type === 'video'" class="col-span-2 space-y-6" x-transition:enter.opacity.duration.700ms
-            x-transition:leave.opacity.duration.150ms>
-            <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
-                x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
-                x-on:livewire-upload-progress="progress = $event.detail.progress">
-                <label for="file_video" class="block mb-1.5 text-base font-medium text-dark-theme">
-                    เลือกวิดีโอ
-                </label>
-                <input
-                    class="block w-full text-base bg-white border rounded-md cursor-pointer border-secondary-80 text-secondary focus:ring-primary focus:border-ring-primary"
-                    wire:model.defer="video" id="file_video" type="file" accept="video/mp4,video/x-m4v,video/*" />
-                @error('video')
-                    <span class="error text-error">{{ $message }}</span>
-                @enderror
-                <div x-show="isUploading">
-                    <progress max="100" x-bind:value="progress"></progress>
-                </div>
-            </div>
-            <div>
-                <h5 class="mb-2 text-base font-bold tracking-wide text-secondary">
-                    ไฟล์ประกอบการสอน
-                </h5>
-                <button type="button" wire:click="addFile" class="btn is-success">
-                    <div class="flex items-center space-x-2">
-                        <i class="leading-none fi fi-rr-plus"></i>
-                        <span>เพิ่มไฟล์ประกอบ</span>
-                    </div>
-                </button>
 
-                <div class="grid grid-cols-1 gap-4 mt-6">
-                    @foreach ($files as $key => $file)
-                        <div class="grid items-end grid-cols-3 gap-6">
-                            <div>
-                                <label for="fileName{{ $key }}"
-                                    class="block mb-1.5 text-base font-medium text-dark-theme">
-                                    ชื่อไฟล์
-                                </label>
-                                <input type="text" wire:model.defer="files.{{ $key }}.name"
-                                    id="fileName{{ $key }}"
-                                    class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                                    placeholder="ชื่อไฟล์" />
-                                @error('files.' . $key . '.name')
-                                    <span class="error text-error">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div>
-                                <label for="file{{ $key }}"
-                                    class="block mb-1.5 text-base font-medium text-dark-theme">
-                                    เลือกไฟล์
-                                </label>
-                                <input
-                                    class="block w-full text-base bg-white border rounded-md cursor-pointer border-secondary-80 text-secondary focus:ring-primary focus:border-ring-primary"
-                                    type="file" wire:model.defer="files.{{ $key }}.path"
-                                    id="file{{ $key }}" name="fileVideo[]" accept="*" />
-                                @error('files.' . $key . '.path')
-                                    <span class="error text-error">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div>
-                                <button type="button" wire:click="delFile({{ $key }})" class="btn is-danger">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="leading-none fi fi-rr-trash"></i>
-                                        <span>ลบ</span>
-                                    </div>
-                                </button>
-                            </div>
-
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
         {{-- <!--------- @ELSE สำหรับประเภทแบบทดสอบ  ----------> --}}
         <div x-show="type === 'quiz'" class="col-span-2 space-y-6" x-transition:enter.opacity.duration.700ms
             x-transition:leave.opacity.duration.150ms>
@@ -151,8 +53,7 @@
                             wire:model.defer="questions.{{ $key }}.answer" />
                         <input type="text"
                             class="block w-full px-3 py-2 text-base font-normal bg-white border rounded-md border-secondary-80 text-secondary placeholder:text-secondary-80 placeholder:font-light focus:ring-primary focus:border-ring-primary"
-                            placeholder="กรุณากรอกตัวเลือก"
-                            wire:model.defer="questions.{{ $key }}.choice.1" />
+                            placeholder="กรุณากรอกตัวเลือก" wire:model.defer="questions.{{ $key }}.choice.1" />
                         @error('questions.' . $key . '.choice.1')
                             <span class="error text-error">{{ $message }}</span>
                         @enderror

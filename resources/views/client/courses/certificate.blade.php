@@ -60,16 +60,16 @@
                 This is to certify that
             </div>
             <h1 class="font-fullname">
-                Piyawat Loekthanom
+                {{ $full_name }}
             </h1>
             <div class="font-basic mb-3">
                 Successfully completed the online course
             </div>
             <div class="font-basic mb-3">
-                React 2023
+                {{ $course }}
             </div>
             <div class="font-basic mb-3">
-                on February 06, 2023
+                on {{ $issue_date }}
             </div>
 
             <div class="logo">
